@@ -1,14 +1,52 @@
-<section class="pt-32 px-6 max-w-7xl mx-auto">
-    <h2 class="text-5xl font-serif mb-12">Cinematic <span class="italic text-orange-600">Films</span></h2>
-    <div class="grid gap-12">
-        <div class="relative h-[60vh] overflow-hidden rounded-3xl bg-black">
-            <iframe class="w-full h-full object-cover opacity-80" 
-                src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&mute=1&loop=1" 
-                frameborder="0" allowfullscreen></iframe>
-            <div class="absolute bottom-10 left-10 text-white">
-                <h3 class="text-3xl font-bold">The Royal Wedding</h3>
-                <p class="opacity-70 uppercase tracking-tighter">Bengaluru | 2025</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Films | Capture Stories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: white; }
+        h1 { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body>
+
+    <nav class="p-6 flex justify-between items-center border-b border-white/10 bg-black/80 backdrop-blur-md sticky top-0 z-50">
+        <a href="index.html" class="font-bold tracking-tighter uppercase text-sm">← Back</a>
+        <span class="text-xs tracking-[0.3em] uppercase opacity-50 font-bold">Cinematography</span>
+    </nav>
+
+    <header class="py-24 px-6 text-center">
+        <h1 class="text-5xl md:text-7xl mb-4 italic font-light">Motion Pictures</h1>
+        <p class="text-orange-500 uppercase tracking-[0.4em] text-[10px]">Documentary & Cinematic Style</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 pb-20 space-y-24">
+        <div class="space-y-6">
+            <div class="aspect-video bg-stone-900 rounded-3xl overflow-hidden shadow-2xl relative group">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" frameborder="0"></iframe>
+            </div>
+            <div class="flex justify-between items-end">
+                <div>
+                    <h3 class="text-2xl font-serif italic">Aditya & Anjali</h3>
+                    <p class="text-xs opacity-50 uppercase tracking-widest">Leela Palace, Bengaluru</p>
+                </div>
+                <div class="text-[10px] border border-white/20 px-4 py-1 rounded-full uppercase">Trailer</div>
             </div>
         </div>
-    </div>
-</section>
+
+        <div class="space-y-6">
+            <div class="aspect-video bg-stone-900 rounded-3xl overflow-hidden shadow-2xl">
+                 <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0" frameborder="0"></iframe>
+            </div>
+            <div>
+                <h3 class="text-2xl font-serif italic">The Summer Palace Wedding</h3>
+                <p class="text-xs opacity-50 uppercase tracking-widest">Hyderabad | 2024</p>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

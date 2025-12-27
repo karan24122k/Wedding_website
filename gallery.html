@@ -1,8 +1,49 @@
-<section class="pt-32 px-6 max-w-7xl mx-auto">
-    <h2 class="text-5xl font-serif mb-12">Captured <span class="italic text-orange-600">Emotions</span></h2>
-    <div class="columns-1 md:columns-3 gap-4 space-y-4">
-        <img src="img1.jpg" class="w-full rounded-lg hover:opacity-80 transition cursor-zoom-in">
-        <img src="img2.jpg" class="w-full rounded-lg hover:opacity-80 transition cursor-zoom-in">
-        <img src="img3.jpg" class="w-full rounded-lg hover:opacity-80 transition cursor-zoom-in">
-        </div>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Capture Stories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        h1 { font-family: 'Playfair Display', serif; }
+        .gallery-item:hover img { transform: scale(1.05); transition: 0.6s ease; }
+    </style>
+</head>
+<body class="bg-stone-50">
+
+    <nav class="p-6 flex justify-between items-center border-b border-stone-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <a href="index.html" class="font-bold tracking-tighter uppercase text-sm">← Back to Home</a>
+        <span class="text-xs tracking-[0.3em] uppercase opacity-50">Portfolio 2025</span>
+    </nav>
+
+    <header class="py-20 px-6 text-center">
+        <h1 class="text-5xl md:text-7xl mb-4">The <span class="italic">Anthology</span></h1>
+        <p class="text-gray-500 uppercase tracking-widest text-xs">Curated moments from across India</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-20">
+        <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200">
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" class="w-full">
+                <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">The Royal Sangeet</div>
+            </div>
+            
+            <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=800&q=1200" class="w-full">
+                <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">Candid Vidaai</div>
+            </div>
+
+            <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" class="w-full">
+                <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">The Wedding Vows</div>
+            </div>
+            
+            </div>
+    </main>
+
+</body>
+</html>
