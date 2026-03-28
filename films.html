@@ -48,26 +48,7 @@
             height: 100%;
         }
         
-        @supports (aspect-ratio: 16 / 9) {
-            .aspect-video {
-                aspect-ratio: 16 / 9;
-            }
-        }
-        
-        @supports not (aspect-ratio: 16 / 9) {
-            .aspect-video {
-                padding-bottom: 56.25%;
-                position: relative;
-            }
-            
-            .aspect-video > * {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            }
-        }
+        /* Orientation is now managed dynamically via object-contain and max-height */
     </style>
 </head>
 <body>
@@ -84,8 +65,8 @@
 
     <main class="max-w-6xl mx-auto px-6 pb-20 space-y-24">
         <div class="space-y-6">
-            <div class="video-container aspect-video">
-                <video class="w-full h-full object-cover" controls preload="metadata" poster="Images/_DSC4554 copy.webp">
+            <div class="video-container">
+                <video class="w-full max-h-[80vh] object-contain" controls preload="none" playsinline poster="Images/_DSC4554 copy.webp">
                     <source src="Images/REEL.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -100,8 +81,8 @@
         </div>
 
         <div class="space-y-6">
-            <div class="video-container aspect-video">
-                <video class="w-full h-full object-cover" controls preload="metadata" poster="Images/_DSC4572 copy.webp">
+            <div class="video-container">
+                <video class="w-full max-h-[80vh] object-contain" controls preload="none" playsinline poster="Images/_DSC4572 copy.webp">
                     <source src="Images/REEL.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -113,8 +94,8 @@
         </div>
 
         <div class="space-y-6">
-            <div class="video-container aspect-video">
-                <video class="w-full h-full object-cover" controls preload="metadata" poster="Images/_DSC4598 copy.webp">
+            <div class="video-container">
+                <video class="w-full max-h-[80vh] object-contain" controls preload="none" playsinline poster="Images/_DSC4598 copy.webp">
                     <source src="Images/REEL.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
