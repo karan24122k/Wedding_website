@@ -64,71 +64,104 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-6 pb-20 space-y-24">
-        <div class="space-y-6">
-            <div class="video-container group">
-                <div class="absolute top-4 right-4 z-10 flex flex-col items-end space-y-2">
-                    <div class="flex space-x-2 bg-black/70 p-1 rounded-lg backdrop-blur text-white shadow-xl opacity-90 transition">
-                        <button onclick="setOrientation(this, 'landscape')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-desktop mr-1"></i> Desktop Grid</button>
-                        <button onclick="setOrientation(this, 'portrait')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-mobile-alt mr-1"></i> Phone Layout</button>
-                        <button onclick="rotateVideo(this)" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-orange-500 text-orange-400"><i class="fas fa-sync-alt mr-1"></i> Rotate</button>
-                    </div>
-                </div>
-                <video class="w-full max-h-[80vh] object-contain transition-all duration-500" controls preload="none" playsinline poster="Images/_DSC4554 copy.webp">
-                    <source src="Images/REEL_opt.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="flex justify-between items-end">
-                <div>
-                    <h3 class="text-2xl font-serif italic">Aditya & Anjali</h3>
-                    <p class="text-xs opacity-50 uppercase tracking-widest">Leela Palace, Bengaluru</p>
-                </div>
-                <div class="text-[10px] border border-white/20 px-4 py-1 rounded-full uppercase">Trailer</div>
-            </div>
+        
+        <!-- Section Navigation -->
+        <div class="flex flex-wrap justify-center gap-6 border-b border-white/10 pb-6 text-xs uppercase tracking-[0.2em] font-bold text-gray-500 sticky top-20 bg-black/90 backdrop-blur-md z-40 pt-4">
+            <a href="#pre-wedding" class="hover:text-orange-500 transition">Pre-Wedding</a>
+            <a href="#wedding" class="hover:text-orange-500 transition">Wedding</a>
+            <a href="#birthdays" class="hover:text-orange-500 transition">Birthdays</a>
         </div>
 
-        <div class="space-y-6">
-            <div class="video-container group">
-                <div class="absolute top-4 right-4 z-10 flex flex-col items-end space-y-2">
-                    <div class="flex space-x-2 bg-black/70 p-1 rounded-lg backdrop-blur text-white shadow-xl opacity-90 transition">
-                        <button onclick="setOrientation(this, 'landscape')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-desktop mr-1"></i> Desktop Grid</button>
-                        <button onclick="setOrientation(this, 'portrait')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-mobile-alt mr-1"></i> Phone Layout</button>
-                        <button onclick="rotateVideo(this)" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-orange-500 text-orange-400"><i class="fas fa-sync-alt mr-1"></i> Rotate</button>
+        <!-- Pre-Wedding Section -->
+        <section id="pre-wedding" class="scroll-mt-40 space-y-12">
+            <div class="text-center md:text-left border-l-4 border-orange-500 pl-4">
+                <h2 class="text-3xl md:text-4xl font-serif mb-2">Pre-Wedding Films</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">The Prelude to Forever</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="video-container group">
+                    <div class="absolute top-4 right-4 z-10 flex flex-col items-end space-y-2">
+                        <div class="flex space-x-2 bg-black/70 p-1 rounded-lg backdrop-blur text-white shadow-xl opacity-90 transition">
+                            <button onclick="setOrientation(this, 'landscape')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-desktop mr-1"></i> Desktop Grid</button>
+                            <button onclick="setOrientation(this, 'portrait')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-mobile-alt mr-1"></i> Phone Layout</button>
+                            <button onclick="rotateVideo(this)" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-orange-500 text-orange-400"><i class="fas fa-sync-alt mr-1"></i> Rotate</button>
+                        </div>
                     </div>
+                    <video class="w-full max-h-[80vh] object-contain transition-all duration-500" controls preload="none" playsinline poster="Images/_DSC4554 copy.webp">
+                        <source src="Images/REEL_opt.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
-                <video class="w-full max-h-[80vh] object-contain transition-all duration-500" controls preload="none" playsinline poster="Images/_DSC4572 copy.webp">
-                    <source src="Images/REEL_opt.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <div class="flex justify-between items-end">
+                    <div>
+                        <h3 class="text-2xl font-serif italic">Aditya & Anjali</h3>
+                        <p class="text-xs opacity-50 uppercase tracking-widest">Leela Palace, Bengaluru</p>
+                    </div>
+                    <div class="text-[10px] border border-white/20 px-4 py-1 rounded-full uppercase">Trailer</div>
+                </div>
             </div>
-            <div>
-                <h3 class="text-2xl font-serif italic">The Summer Palace Wedding</h3>
-                <p class="text-xs opacity-50 uppercase tracking-widest">Hyderabad | 2024</p>
-            </div>
-        </div>
+        </section>
 
-        <div class="space-y-6">
-            <div class="video-container group">
-                <div class="absolute top-4 right-4 z-10 flex flex-col items-end space-y-2">
-                    <div class="flex space-x-2 bg-black/70 p-1 rounded-lg backdrop-blur text-white shadow-xl opacity-90 transition">
-                        <button onclick="setOrientation(this, 'landscape')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-desktop mr-1"></i> Desktop Grid</button>
-                        <button onclick="setOrientation(this, 'portrait')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-mobile-alt mr-1"></i> Phone Layout</button>
-                        <button onclick="rotateVideo(this)" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-orange-500 text-orange-400"><i class="fas fa-sync-alt mr-1"></i> Rotate</button>
+        <!-- Wedding Section -->
+        <section id="wedding" class="scroll-mt-40 space-y-12">
+            <div class="text-center md:text-left border-l-4 border-orange-500 pl-4">
+                <h2 class="text-3xl md:text-4xl font-serif mb-2">Wedding Films</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">Pledges & Traditions</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="video-container group">
+                    <div class="absolute top-4 right-4 z-10 flex flex-col items-end space-y-2">
+                        <div class="flex space-x-2 bg-black/70 p-1 rounded-lg backdrop-blur text-white shadow-xl opacity-90 transition">
+                            <button onclick="setOrientation(this, 'landscape')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-desktop mr-1"></i> Desktop Grid</button>
+                            <button onclick="setOrientation(this, 'portrait')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-mobile-alt mr-1"></i> Phone Layout</button>
+                            <button onclick="rotateVideo(this)" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-orange-500 text-orange-400"><i class="fas fa-sync-alt mr-1"></i> Rotate</button>
+                        </div>
                     </div>
+                    <video class="w-full max-h-[80vh] object-contain transition-all duration-500" controls preload="none" playsinline poster="Images/_DSC4572 copy.webp">
+                        <source src="Images/REEL_opt.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
-                <video class="w-full max-h-[80vh] object-contain transition-all duration-500" controls preload="none" playsinline poster="Images/_DSC4598 copy.webp">
-                    <source src="Images/REEL_opt.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <div class="flex justify-between items-end">
                 <div>
-                    <h3 class="text-2xl font-serif italic">Wedding Reel</h3>
-                    <p class="text-xs opacity-50 uppercase tracking-widest">Highlights & Moments</p>
+                    <h3 class="text-2xl font-serif italic">The Summer Palace Wedding</h3>
+                    <p class="text-xs opacity-50 uppercase tracking-widest">Hyderabad | 2024</p>
                 </div>
-                <div class="text-[10px] border border-white/20 px-4 py-1 rounded-full uppercase">Reel</div>
             </div>
-        </div>
+        </section>
+
+        <!-- Birthdays Section -->
+        <section id="birthdays" class="scroll-mt-40 space-y-12">
+            <div class="text-center md:text-left border-l-4 border-orange-500 pl-4">
+                <h2 class="text-3xl md:text-4xl font-serif mb-2">Birthdays</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">Joyful Milestones</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="video-container group">
+                    <div class="absolute top-4 right-4 z-10 flex flex-col items-end space-y-2">
+                        <div class="flex space-x-2 bg-black/70 p-1 rounded-lg backdrop-blur text-white shadow-xl opacity-90 transition">
+                            <button onclick="setOrientation(this, 'landscape')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-desktop mr-1"></i> Desktop Grid</button>
+                            <button onclick="setOrientation(this, 'portrait')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-mobile-alt mr-1"></i> Phone Layout</button>
+                            <button onclick="rotateVideo(this)" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-orange-500 text-orange-400"><i class="fas fa-sync-alt mr-1"></i> Rotate</button>
+                        </div>
+                    </div>
+                    <video class="w-full max-h-[80vh] object-contain transition-all duration-500" controls preload="none" playsinline poster="Images/_DSC4598 copy.webp">
+                        <source src="Images/REEL_opt.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="flex justify-between items-end">
+                    <div>
+                        <h3 class="text-2xl font-serif italic">Birthday Highlights</h3>
+                        <p class="text-xs opacity-50 uppercase tracking-widest">Celebrations</p>
+                    </div>
+                    <div class="text-[10px] border border-white/20 px-4 py-1 rounded-full uppercase">Reel</div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <script>

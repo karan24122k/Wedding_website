@@ -35,7 +35,9 @@
 
         .hero-bg {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Images/_DSC5454.webp');
-            background-size: cover; background-position: center;
+            background-size: cover;
+            background-position: center 30%; /* Focus slightly higher to keep subjects in frame on mobile */
+            background-repeat: no-repeat;
         }
     </style>
 </head>
@@ -43,13 +45,13 @@
 <body class="bg-white text-gray-900">
 
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3 text-xl md:text-2xl font-bold tracking-tighter uppercase">
-                <img src="Images/Kumar.png" alt="Logo" class="h-10 md:h-12 w-auto object-contain">
-                <span class="hidden sm:inline-block">Kumar Video <span class="text-orange-700 font-light">& Photography</span></span>
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-lg md:text-2xl font-bold tracking-tighter uppercase whitespace-normal">
+                <img src="Images/Kumar.png" alt="Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
+                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">& Photography</span></span>
             </a>
             
-            <button id="mobile-menu-btn" class="md:hidden text-2xl p-2 ml-auto text-gray-800"><i class="fas fa-bars"></i></button>
+            <button id="mobile-menu-btn" class="md:hidden text-xl p-2 ml-auto text-gray-800 flex-shrink-0"><i class="fas fa-bars"></i></button>
 
             <div class="hidden md:flex items-center space-x-10 font-medium text-xs tracking-[0.2em] uppercase">
                 <a href="index.html" class="hover:text-orange-700 transition">Home</a>
@@ -69,14 +71,14 @@
         </div>
     </nav>
 
-    <section class="h-screen flex items-center justify-center text-center hero-bg text-white px-6">
-        <div class="max-w-4xl">
-            <span class="uppercase tracking-[0.5em] text-sm mb-4 block opacity-80">Bengaluru | Hyderabad |
+    <section class="min-h-[100svh] flex items-center justify-center text-center hero-bg text-white px-6">
+        <div class="max-w-4xl pt-20">
+            <span class="uppercase tracking-[0.5em] text-xs md:text-sm mb-4 block opacity-80">Bengaluru | Hyderabad |
                 Destination</span>
-            <h1 class="text-5xl md:text-8xl mb-8 leading-tight">Every Wedding Has a <br><span
+            <h1 class="text-4xl md:text-8xl mb-8 leading-tight">Every Wedding Has a <br><span
                     class="italic font-light">Unique Soul</span></h1>
             <a href="gallery.html"
-                class="inline-block border border-white px-12 py-4 hover:bg-white hover:text-black transition uppercase font-bold tracking-widest text-xs">Explore
+                class="inline-block border border-white px-8 md:px-12 py-3 md:py-4 hover:bg-white hover:text-black transition uppercase font-bold tracking-widest text-[10px] md:text-xs">Explore
                 the Gallery</a>
         </div>
     </section>
