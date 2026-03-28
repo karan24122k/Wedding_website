@@ -43,18 +43,29 @@
 <body class="bg-white text-gray-900">
 
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter uppercase">
-                Kumar Video <span class="text-orange-700 font-light">& Photography</span>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 text-xl md:text-2xl font-bold tracking-tighter uppercase">
+                <img src="Images/Kumar.png" alt="Logo" class="h-10 md:h-12 w-auto object-contain">
+                <span class="hidden sm:inline-block">Kumar Video <span class="text-orange-700 font-light">& Photography</span></span>
             </a>
-            <div class="hidden md:flex space-x-10 font-medium text-xs tracking-[0.2em] uppercase">
+            
+            <button id="mobile-menu-btn" class="md:hidden text-2xl p-2 ml-auto text-gray-800"><i class="fas fa-bars"></i></button>
+
+            <div class="hidden md:flex items-center space-x-10 font-medium text-xs tracking-[0.2em] uppercase">
                 <a href="index.html" class="hover:text-orange-700 transition">Home</a>
                 <a href="gallery.html" class="hover:text-orange-700 transition">Gallery</a>
                 <a href="films.html" class="hover:text-orange-700 transition">Films</a>
                 <a href="#contact" class="hover:text-orange-700 transition">Inquire</a>
+                <a href="https://wa.me/91XXXXXXXXXX" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
             </div>
-            <a href="https://wa.me/91XXXXXXXXXX"
-                class="bg-orange-700 text-white px-7 py-2 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-6 flex flex-col space-y-6 font-medium text-xs tracking-[0.2em] uppercase shadow-xl">
+            <a href="index.html" class="hover:text-orange-700 transition w-full">Home</a>
+            <a href="gallery.html" class="hover:text-orange-700 transition w-full">Gallery</a>
+            <a href="films.html" class="hover:text-orange-700 transition w-full">Films</a>
+            <a href="#contact" class="hover:text-orange-700 transition w-full">Inquire</a>
+            <a href="https://wa.me/91XXXXXXXXXX" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
         </div>
     </nav>
 
@@ -164,6 +175,18 @@
         window.addEventListener("scroll", reveal);
         // Fire once on load
         reveal();
+        
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
     </script>
 </body>
 
