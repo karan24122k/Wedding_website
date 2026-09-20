@@ -19,16 +19,26 @@ def build_gallery_html(photos, offset):
         couple = photo.get("couple") or ""
         location = f" • {photo.get('location')}" if photo.get("location") else ""
         meta_line = f'<div class="text-[11px] text-gray-500 mt-1 font-serif italic">{couple}{location}</div>' if couple else ''
+        
+        # Build descriptive SEO alt tag with context
+        alt_desc = f"{caption} - {couple}{location} | Kumar Video & Photography" if couple else f"{caption} | Kumar Video & Photography"
+        
+        # Above-the-fold optimization: First card can load eagerly, subsequent cards lazy-load asynchronously
+        loading_attr = 'loading="eager" fetchpriority="high"' if idx == 0 else 'loading="lazy"'
 
         card = f'''                <div class="gallery-item group relative overflow-hidden rounded-2xl bg-stone-200 shadow-sm transition-all duration-500 hover:shadow-xl mb-4 md:mb-6"
                      onclick="openLightbox({idx})"
                      role="button"
                      tabindex="0"
                      aria-label="{caption}">
-                    <img loading="lazy"
-                         src="{photo.get('src')}"
-                         alt="{caption}"
-                         class="w-full h-auto object-cover protect-media block">
+                    <div class="relative overflow-hidden">
+                        <img {loading_attr}
+                             decoding="async"
+                             src="{photo.get('src')}"
+                             alt="{alt_desc}"
+                             class="w-full h-auto object-cover protect-media block">
+                        <div class="media-shield" aria-hidden="true"></div>
+                    </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
                             {caption}

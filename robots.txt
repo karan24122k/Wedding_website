@@ -1,4 +1,18 @@
+# Robots.txt for Kumar Video & Photography
+# https://karan24122k.github.io/Wedding_website/
+
 User-agent: *
 Allow: /
+Allow: /*.css$
+Allow: /*.js$
+Allow: /gallery/
+Allow: /videos/
+Allow: /Images/
 
+# Prevent crawling of internal build tools and scratch scripts
+Disallow: /scripts/
+Disallow: /scratch/
+Disallow: /.git/
+
+# Production Sitemap
 Sitemap: https://karan24122k.github.io/Wedding_website/sitemap.xml

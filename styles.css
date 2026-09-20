@@ -29,18 +29,38 @@
   outline-offset: 3px;
 }
 
-/* Content Protection (Casual Deterrence) */
+/* Content Protection & Anti-Scraping Shields */
+img,
+video,
 .protect-media,
+.gallery-item,
 .gallery-item img,
+.video-container,
 .video-container video,
-.video-container img {
+.video-container img,
+#lightbox,
+#lightbox img,
+.hero-bg {
   -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
   user-drag: none;
-  -webkit-touch-callout: none;
+  -webkit-touch-callout: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+/* Transparent Media Shield Layer (Prevents Direct Image Right-Click & Drag) */
+.media-shield {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: transparent;
+  pointer-events: auto;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 /* Subtle copyright notification toast */

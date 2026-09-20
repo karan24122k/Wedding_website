@@ -1,21 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://karan24122k.github.io/Wedding_website/</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://karan24122k.github.io/Wedding_website/gallery/wedding/bridal-01.webp</image:loc>
+      <image:title>Luxury Indian Bridal Portrait | Kumar Video &amp; Photography</image:title>
+      <image:caption>Editorial Indian bridal portrait in traditional jewelry and lehenga.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://karan24122k.github.io/Wedding_website/gallery/pre-wedding/sangeet-01.webp</image:loc>
+      <image:title>Royal Pre-Wedding Photoshoot</image:title>
+      <image:caption>Royal pre-wedding celebration photography in Udaipur, Rajasthan.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://karan24122k.github.io/Wedding_website/gallery.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://karan24122k.github.io/Wedding_website/gallery/wedding/vows-01.webp</image:loc>
+      <image:title>The Wedding Vows | Sacred Pheras Ceremony</image:title>
+      <image:caption>Sacred wedding vows and traditional rituals at The Leela Palace, Bengaluru.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://karan24122k.github.io/Wedding_website/gallery/wedding/moments-01.webp</image:loc>
+      <image:title>Emotional Vidaai Wedding Moments</image:title>
+      <image:caption>Candid emotional vidaai ceremony capture in Bengaluru.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://karan24122k.github.io/Wedding_website/gallery/wedding/reception-01.webp</image:loc>
+      <image:title>The Grand Wedding Reception</image:title>
+      <image:caption>Luxury evening wedding reception at Taj West End, Bengaluru.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://karan24122k.github.io/Wedding_website/gallery/pre-wedding/candid-01.webp</image:loc>
+      <image:title>Candid Pre-Wedding Moments</image:title>
+      <image:caption>Intimate candid couple photography session in Bengaluru.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://karan24122k.github.io/Wedding_website/films.html</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://karan24122k.github.io/Wedding_website/gallery/wedding/reception-01.webp</image:loc>
+      <image:title>Cinematic Indian Wedding Film Cover</image:title>
+      <image:caption>Featured wedding film highlight reel at The Leela Palace, Bengaluru.</image:caption>
+    </image:image>
   </url>
 </urlset>

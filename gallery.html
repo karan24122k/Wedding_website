@@ -3,27 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery | Luxury Wedding & Pre-Wedding Photography | Kumar Photography</title>
-    <meta name="description" content="Explore our curated Indian wedding photography portfolio featuring luxury pre-weddings, royal wedding ceremonies, candid vidaai, and grand receptions across India.">
-    <meta name="keywords" content="wedding photography gallery, Indian wedding photos, royal sangeet photos, bridal portraits, candid wedding moments">
-    <meta name="author" content="Kumar Video & Photography">
-    <meta name="robots" content="index, follow">
+    <title>Wedding Photography Gallery | Kumar Video &amp; Photography</title>
+    <meta name="description" content="Explore our curated Indian wedding photography portfolio featuring luxury pre-weddings, royal wedding ceremonies, candid moments, and grand receptions across India.">
+    <meta name="keywords" content="wedding photography gallery, Indian wedding photos, royal sangeet photos, bridal portraits, candid wedding moments, Bengaluru wedding photographer">
+    <meta name="author" content="Kumar Video &amp; Photography">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://karan24122k.github.io/Wedding_website/gallery.html">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
+    <!-- Performance: Preconnect Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kumar Video &amp; Photography">
+    <meta property="og:locale" content="en_IN">
     <meta property="og:url" content="https://karan24122k.github.io/Wedding_website/gallery.html">
-    <meta property="og:title" content="Gallery | Kumar Video & Photography">
-    <meta property="og:description" content="Curated luxury Indian wedding moments from across India.">
+    <meta property="og:title" content="Wedding Photography Gallery | Kumar Video &amp; Photography">
+    <meta property="og:description" content="Curated luxury Indian wedding moments, royal ceremonies, and candid celebrations across India.">
     <meta property="og:image" content="https://karan24122k.github.io/Wedding_website/gallery/wedding/reception-01.webp">
+    <meta property="og:image:alt" content="Kumar Video &amp; Photography Portfolio Gallery">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Wedding Photography Gallery | Kumar Photography">
-    <meta name="twitter:description" content="Curated luxury Indian wedding moments from across India.">
+    <meta name="twitter:title" content="Wedding Photography Gallery | Kumar Video &amp; Photography">
+    <meta name="twitter:description" content="Curated luxury Indian wedding moments, royal ceremonies, and candid celebrations across India.">
     <meta name="twitter:image" content="https://karan24122k.github.io/Wedding_website/gallery/wedding/reception-01.webp">
 
     <!-- Stylesheets & CDNs -->
@@ -31,32 +39,62 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Schema.org JSON-LD -->
+    <!-- Schema.org JSON-LD (CollectionPage, ImageGallery, BreadcrumbList) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ImageGallery",
-      "name": "Kumar Video & Photography Portfolio",
-      "url": "https://karan24122k.github.io/Wedding_website/gallery.html",
-      "description": "Curated collection of luxury Indian wedding photography, pre-weddings, and milestones.",
-      "provider": {
-        "@type": "PhotographyBusiness",
-        "name": "Kumar Video & Photography",
-        "telephone": "+910000000000",
-        "email": "contact@kumarphotography.in",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Bengaluru",
-          "addressRegion": "Karnataka",
-          "addressCountry": "IN"
+      "@graph": [
+        {
+          "@type": ["CollectionPage", "ImageGallery"],
+          "@id": "https://karan24122k.github.io/Wedding_website/gallery.html#gallery",
+          "name": "Kumar Video & Photography Wedding Anthology",
+          "url": "https://karan24122k.github.io/Wedding_website/gallery.html",
+          "description": "Curated collection of luxury Indian wedding photography, pre-weddings, and milestones.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://karan24122k.github.io/Wedding_website/#website",
+            "name": "Kumar Video & Photography",
+            "url": "https://karan24122k.github.io/Wedding_website/"
+          },
+          "provider": {
+            "@type": ["PhotographyBusiness", "LocalBusiness"],
+            "@id": "https://karan24122k.github.io/Wedding_website/#business",
+            "name": "Kumar Video & Photography",
+            "url": "https://karan24122k.github.io/Wedding_website/",
+            "telephone": "1234",
+            "email": "contact@kumarphotography.in",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bengaluru",
+              "addressRegion": "Karnataka",
+              "addressCountry": "IN"
+            },
+            "areaServed": ["Bengaluru", "Hyderabad", "India"]
+          }
         },
-        "areaServed": ["Bengaluru", "Hyderabad", "India"]
-      }
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://karan24122k.github.io/Wedding_website/gallery.html#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://karan24122k.github.io/Wedding_website/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Gallery",
+              "item": "https://karan24122k.github.io/Wedding_website/gallery.html"
+            }
+          ]
+        }
+      ]
     }
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
         body { font-family: 'Inter', sans-serif; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
@@ -113,10 +151,10 @@
         }
         #lb-close:hover { background: rgba(255,255,255,0.3); }
         #lb-info {
-            position: absolute; bottom: 14px; left: 0; right: 0;
+            position: absolute; bottom: 20px; left: 0; right: 0;
             text-align: center; color: rgba(255,255,255,0.85);
-            font-size: 11px; sm:font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
-            padding: 0 16px;
+            font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase;
+            pointer-events: none; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
         #lb-counter {
             position: absolute; top: 20px; left: 20px;
@@ -137,12 +175,15 @@
 </head>
 <body class="bg-stone-50 text-gray-900">
 
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-orange-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:text-xs focus:uppercase focus:tracking-widest">Skip to main content</a>
+
     <!-- Cohesive Navigation Matching Index and Films -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-lg md:text-2xl font-bold tracking-tighter uppercase whitespace-normal">
-                <img src="Images/Kumar.png" alt="Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
-                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">& Photography</span></span>
+                <img src="Images/Kumar.png" alt="Kumar Video &amp; Photography Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
+                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">&amp; Photography</span></span>
             </a>
             
             <button id="mobile-menu-btn" class="md:hidden text-xl p-2 ml-auto text-gray-800 flex-shrink-0" aria-label="Toggle Navigation Menu">
@@ -154,7 +195,7 @@
                 <a href="gallery.html" class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1">Gallery</a>
                 <a href="films.html" class="hover:text-orange-700 transition">Films</a>
                 <a href="index.html#contact" class="hover:text-orange-700 transition">Inquire</a>
-                <a href="https://wa.me/910000000000?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
+                <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
             </div>
         </div>
         
@@ -163,7 +204,7 @@
             <a href="gallery.html" class="text-orange-700 font-bold w-full">Gallery</a>
             <a href="films.html" class="hover:text-orange-700 transition w-full">Films</a>
             <a href="index.html#contact" class="hover:text-orange-700 transition w-full">Inquire</a>
-            <a href="https://wa.me/910000000000?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
+            <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
         </div>
     </nav>
 
@@ -173,7 +214,7 @@
         <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs max-w-xl mx-auto">Curated moments of sacred traditions, candid emotions, and royal celebrations across India</p>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 md:px-6 pb-24 space-y-16 md:space-y-24">
+    <main id="main-content" class="max-w-7xl mx-auto px-4 md:px-6 pb-24 space-y-16 md:space-y-24">
 
         <!-- Category Filter Tabs -->
         <div id="category-nav" class="sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 py-3 md:py-4 border-b border-stone-200">
@@ -209,10 +250,14 @@
                      role="button"
                      tabindex="0"
                      aria-label="The Royal Sangeet">
-                    <img loading="lazy"
-                         src="gallery/pre-wedding/sangeet-01.webp"
-                         alt="The Royal Sangeet"
-                         class="w-full h-auto object-cover protect-media block">
+                    <div class="relative overflow-hidden">
+                        <img loading="eager" fetchpriority="high"
+                             decoding="async"
+                             src="gallery/pre-wedding/sangeet-01.webp"
+                             alt="The Royal Sangeet - Vikram & Ananya • Udaipur, Rajasthan | Kumar Video & Photography"
+                             class="w-full h-auto object-cover protect-media block">
+                        <div class="media-shield" aria-hidden="true"></div>
+                    </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
                             The Royal Sangeet
@@ -225,10 +270,14 @@
                      role="button"
                      tabindex="0"
                      aria-label="Candid Moments">
-                    <img loading="lazy"
-                         src="gallery/pre-wedding/candid-01.webp"
-                         alt="Candid Moments"
-                         class="w-full h-auto object-cover protect-media block">
+                    <div class="relative overflow-hidden">
+                        <img loading="lazy"
+                             decoding="async"
+                             src="gallery/pre-wedding/candid-01.webp"
+                             alt="Candid Moments - Rohit & Meera • Bengaluru | Kumar Video & Photography"
+                             class="w-full h-auto object-cover protect-media block">
+                        <div class="media-shield" aria-hidden="true"></div>
+                    </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
                             Candid Moments
@@ -251,10 +300,14 @@
                      role="button"
                      tabindex="0"
                      aria-label="The Wedding Vows">
-                    <img loading="lazy"
-                         src="gallery/wedding/vows-01.webp"
-                         alt="The Wedding Vows"
-                         class="w-full h-auto object-cover protect-media block">
+                    <div class="relative overflow-hidden">
+                        <img loading="lazy"
+                             decoding="async"
+                             src="gallery/wedding/vows-01.webp"
+                             alt="The Wedding Vows - Aditya & Anjali • Leela Palace, Bengaluru | Kumar Video & Photography"
+                             class="w-full h-auto object-cover protect-media block">
+                        <div class="media-shield" aria-hidden="true"></div>
+                    </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
                             The Wedding Vows
@@ -267,10 +320,14 @@
                      role="button"
                      tabindex="0"
                      aria-label="Wedding Moments">
-                    <img loading="lazy"
-                         src="gallery/wedding/moments-01.webp"
-                         alt="Wedding Moments"
-                         class="w-full h-auto object-cover protect-media block">
+                    <div class="relative overflow-hidden">
+                        <img loading="lazy"
+                             decoding="async"
+                             src="gallery/wedding/moments-01.webp"
+                             alt="Wedding Moments - Aditya & Anjali • Leela Palace, Bengaluru | Kumar Video & Photography"
+                             class="w-full h-auto object-cover protect-media block">
+                        <div class="media-shield" aria-hidden="true"></div>
+                    </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
                             Wedding Moments
@@ -283,10 +340,14 @@
                      role="button"
                      tabindex="0"
                      aria-label="Bridal Bliss">
-                    <img loading="lazy"
-                         src="gallery/wedding/bridal-01.webp"
-                         alt="Bridal Bliss"
-                         class="w-full h-auto object-cover protect-media block">
+                    <div class="relative overflow-hidden">
+                        <img loading="lazy"
+                             decoding="async"
+                             src="gallery/wedding/bridal-01.webp"
+                             alt="Bridal Bliss - Ananya Sharma • Hyderabad | Kumar Video & Photography"
+                             class="w-full h-auto object-cover protect-media block">
+                        <div class="media-shield" aria-hidden="true"></div>
+                    </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
                             Bridal Bliss
@@ -299,10 +360,14 @@
                      role="button"
                      tabindex="0"
                      aria-label="The Grand Reception">
-                    <img loading="lazy"
-                         src="gallery/wedding/reception-01.webp"
-                         alt="The Grand Reception"
-                         class="w-full h-auto object-cover protect-media block">
+                    <div class="relative overflow-hidden">
+                        <img loading="lazy"
+                             decoding="async"
+                             src="gallery/wedding/reception-01.webp"
+                             alt="The Grand Reception - Karan & Simran • Taj West End, Bengaluru | Kumar Video & Photography"
+                             class="w-full h-auto object-cover protect-media block">
+                        <div class="media-shield" aria-hidden="true"></div>
+                    </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
                             The Grand Reception
@@ -325,10 +390,14 @@
                      role="button"
                      tabindex="0"
                      aria-label="Festive Celebrations">
-                    <img loading="lazy"
-                         src="gallery/birthdays/celebration-01.webp"
-                         alt="Festive Celebrations"
-                         class="w-full h-auto object-cover protect-media block">
+                    <div class="relative overflow-hidden">
+                        <img loading="lazy"
+                             decoding="async"
+                             src="gallery/birthdays/celebration-01.webp"
+                             alt="Festive Celebrations - Aarav's 1st Birthday • Bengaluru | Kumar Video & Photography"
+                             class="w-full h-auto object-cover protect-media block">
+                        <div class="media-shield" aria-hidden="true"></div>
+                    </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
                             Festive Celebrations
@@ -348,6 +417,7 @@
         <button class="lb-btn" id="lb-prev" aria-label="Previous Photo"><i class="fas fa-chevron-left"></i></button>
         <div id="lightbox-image-wrap">
             <img id="lb-img" class="protect-media" src="" alt="Fullscreen View">
+            <div class="media-shield" aria-hidden="true"></div>
         </div>
         <button class="lb-btn" id="lb-next" aria-label="Next Photo"><i class="fas fa-chevron-right"></i></button>
         <div id="lb-info">

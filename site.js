@@ -7,8 +7,8 @@
 const SITE_FALLBACK_DATA = {
   business: {
     name: "Kumar Video & Photography",
-    phone: "+91 00000 00000",
-    whatsappNumber: "910000000000",
+    phone: "1234",
+    whatsappNumber: "1234",
     whatsappMessage: "Hi Kumar Video & Photography, I would like to inquire about wedding photography and cinematography packages.",
     email: "contact@kumarphotography.in"
   },
@@ -73,25 +73,34 @@ function showToast(message, duration = 3000) {
 }
 
 /**
- * Content Protection Deterrents
- * Note: Browser client security is a deterrence against casual saving.
+ * Comprehensive Content Protection Deterrents
+ * Multi-layer client-side security against casual scraping, hotlinking, and image saving.
  */
 document.addEventListener('DOMContentLoaded', () => {
-  // Prevent dragging on images
+  // 1. Prevent dragging on all images and videos
   document.querySelectorAll('img, video').forEach(media => {
     media.setAttribute('draggable', 'false');
+    media.setAttribute('oncontextmenu', 'return false;');
     media.addEventListener('dragstart', e => e.preventDefault());
   });
 
-  // Right-click deterrence on media containers
+  // 2. Right-click deterrence across all media, galleries, lightboxes, and hero banners
   document.addEventListener('contextmenu', e => {
-    if (e.target.closest('.gallery-item, .video-container, .hero-bg')) {
+    if (e.target.closest('.gallery-item, .video-container, .hero-bg, img, video, #lightbox, #lightbox-image-wrap, .media-shield')) {
       e.preventDefault();
-      showToast('© Kumar Video & Photography. All visual content is copyrighted.');
+      showToast('© Kumar Video & Photography. Visual assets are copyrighted and protected.');
     }
   });
 
-  // Dynamic copyright year
+  // 3. Prevent casual keyboard shortcuts for saving or inspecting source (Ctrl+S, Ctrl+U, Cmd+S, Cmd+U)
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) {
+      e.preventDefault();
+      showToast('© Kumar Video & Photography. Content viewing is protected.');
+    }
+  });
+
+  // 4. Dynamic copyright year
   const yearSpan = document.getElementById('current-year');
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();

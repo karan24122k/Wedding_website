@@ -4,27 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kumar Video & Photography | Luxury Indian Wedding Photography & Films</title>
-    <meta name="description" content="Award-winning Indian luxury wedding photography and cinematography based in Bengaluru and Hyderabad, available for destination weddings worldwide.">
-    <meta name="keywords" content="Indian wedding photography, wedding films, bridal portraits, pre-wedding photoshoot, luxury wedding cinematographer, Bengaluru wedding photographer">
-    <meta name="author" content="Kumar Video & Photography">
-    <meta name="robots" content="index, follow">
+    <title>Kumar Video &amp; Photography | Luxury Wedding Photography &amp; Films</title>
+    <meta name="description" content="Award-winning luxury Indian wedding photography and cinematic wedding films based in Bengaluru and Hyderabad, available for destination weddings worldwide.">
+    <meta name="keywords" content="Indian wedding photography, luxury wedding cinematographer, Bengaluru wedding photographer, Hyderabad wedding photography, pre-wedding photoshoot, candid wedding moments">
+    <meta name="author" content="Kumar Video &amp; Photography">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="https://karan24122k.github.io/Wedding_website/">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
+    <!-- Performance: Preconnect Google Fonts & Preload Hero LCP Image -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap">
+    <link rel="preload" as="image" href="gallery/wedding/bridal-01.webp" fetchpriority="high">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kumar Video &amp; Photography">
+    <meta property="og:locale" content="en_IN">
     <meta property="og:url" content="https://karan24122k.github.io/Wedding_website/">
-    <meta property="og:title" content="Kumar Video & Photography | Luxury Indian Wedding Photography">
-    <meta property="og:description" content="Documenting emotions, timeless rituals, and cinematic family legacies across India.">
+    <meta property="og:title" content="Kumar Video &amp; Photography | Luxury Wedding Photography &amp; Films">
+    <meta property="og:description" content="Award-winning luxury Indian wedding photography and cinematic wedding films based in Bengaluru and Hyderabad, available for destination weddings worldwide.">
     <meta property="og:image" content="https://karan24122k.github.io/Wedding_website/gallery/wedding/reception-01.webp">
+    <meta property="og:image:alt" content="Kumar Video &amp; Photography Luxury Indian Wedding Reception">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Kumar Video & Photography">
-    <meta name="twitter:description" content="Luxury Indian Wedding Photography and Cinematography.">
+    <meta name="twitter:title" content="Kumar Video &amp; Photography | Luxury Wedding Photography &amp; Films">
+    <meta name="twitter:description" content="Documenting emotions, sacred rituals, and cinematic family legacies across Bengaluru, Hyderabad, and destination venues.">
     <meta name="twitter:image" content="https://karan24122k.github.io/Wedding_website/gallery/wedding/reception-01.webp">
 
     <!-- Stylesheets & CDNs -->
@@ -32,76 +41,111 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Schema.org JSON-LD (Local SEO Optimized) -->
+    <!-- Schema.org JSON-LD (WebSite, PhotographyBusiness, BreadcrumbList) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "PhotographyBusiness",
-      "name": "Kumar Video & Photography",
-      "url": "https://karan24122k.github.io/Wedding_website/",
-      "image": "https://karan24122k.github.io/Wedding_website/Images/Kumar.png",
-      "description": "Award-winning luxury Indian wedding photography and cinematic wedding films based in Bengaluru and Hyderabad, available for destination weddings worldwide.",
-      "telephone": "+910000000000",
-      "email": "contact@kumarphotography.in",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Bengaluru",
-        "addressRegion": "Karnataka",
-        "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 12.9716,
-        "longitude": 77.5946
-      },
-      "areaServed": [
+      "@graph": [
         {
-          "@type": "City",
-          "name": "Bengaluru"
+          "@type": "WebSite",
+          "@id": "https://karan24122k.github.io/Wedding_website/#website",
+          "url": "https://karan24122k.github.io/Wedding_website/",
+          "name": "Kumar Video & Photography",
+          "description": "Luxury Indian wedding photography and cinematography studio based in Bengaluru and Hyderabad.",
+          "inLanguage": "en"
         },
         {
-          "@type": "City",
-          "name": "Hyderabad"
-        },
-        {
-          "@type": "Country",
-          "name": "India"
-        }
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Wedding Photography & Cinematography Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Luxury Wedding Photography"
-            }
+          "@type": ["PhotographyBusiness", "LocalBusiness"],
+          "@id": "https://karan24122k.github.io/Wedding_website/#business",
+          "name": "Kumar Video & Photography",
+          "url": "https://karan24122k.github.io/Wedding_website/",
+          "logo": "https://karan24122k.github.io/Wedding_website/Images/Kumar.png",
+          "image": "https://karan24122k.github.io/Wedding_website/gallery/wedding/bridal-01.webp",
+          "description": "Award-winning luxury Indian wedding photography and cinematic wedding films based in Bengaluru and Hyderabad, available for destination weddings worldwide.",
+          "telephone": "1234",
+          "email": "contact@kumarphotography.in",
+          "priceRange": "₹₹₹",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bengaluru",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
           },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Cinematic Wedding Films & Highlight Reels"
-            }
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 12.9716,
+            "longitude": 77.5946
           },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Pre-Wedding Photoshoot"
+          "areaServed": [
+            {
+              "@type": "City",
+              "name": "Bengaluru"
+            },
+            {
+              "@type": "City",
+              "name": "Hyderabad"
+            },
+            {
+              "@type": "Country",
+              "name": "India"
             }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Wedding Photography & Cinematography Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Luxury Wedding Photography",
+                  "description": "Comprehensive full-ceremony wedding photography capturing traditional rituals and candid moments."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Cinematic Wedding Films & Highlight Reels",
+                  "description": "Ultra-HD cinematic wedding feature films, teasers, and vertical highlight reels."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Pre-Wedding Photoshoot",
+                  "description": "Curated editorial pre-wedding photoshoots at palace and heritage destination venues."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Bridal Portraits & Family Heirlooms",
+                  "description": "High-fashion bridal portraits and timeless generational family group portraits."
+                }
+              }
+            ]
           }
-        ]
-      },
-      "priceRange": "$$$$"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://karan24122k.github.io/Wedding_website/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://karan24122k.github.io/Wedding_website/"
+            }
+          ]
+        }
+      ]
     }
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
-
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
@@ -136,21 +180,24 @@
 
 <body class="bg-white text-gray-900">
 
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-orange-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:text-xs focus:uppercase focus:tracking-widest">Skip to main content</a>
+
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-lg md:text-2xl font-bold tracking-tighter uppercase whitespace-normal">
-                <img src="Images/Kumar.png" alt="Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
-                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">& Photography</span></span>
+                <img src="Images/Kumar.png" alt="Kumar Video &amp; Photography Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
+                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">&amp; Photography</span></span>
             </a>
             
-            <button id="mobile-menu-btn" class="md:hidden text-xl p-2 ml-auto text-gray-800 flex-shrink-0"><i class="fas fa-bars"></i></button>
+            <button id="mobile-menu-btn" class="md:hidden text-xl p-2 ml-auto text-gray-800 flex-shrink-0" aria-label="Toggle mobile menu"><i class="fas fa-bars"></i></button>
 
             <div class="hidden md:flex items-center space-x-10 font-medium text-xs tracking-[0.2em] uppercase">
                 <a href="index.html" class="hover:text-orange-700 transition">Home</a>
                 <a href="gallery.html" class="hover:text-orange-700 transition">Gallery</a>
                 <a href="films.html" class="hover:text-orange-700 transition">Films</a>
                 <a href="#contact" class="hover:text-orange-700 transition">Inquire</a>
-                <a href="https://wa.me/910000000000?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services." target="_blank" rel="noopener noreferrer" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
+                <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services." target="_blank" rel="noopener noreferrer" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
             </div>
         </div>
         
@@ -159,9 +206,12 @@
             <a href="gallery.html" class="hover:text-orange-700 transition w-full">Gallery</a>
             <a href="films.html" class="hover:text-orange-700 transition w-full">Films</a>
             <a href="#contact" class="hover:text-orange-700 transition w-full">Inquire</a>
-            <a href="https://wa.me/910000000000?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services." target="_blank" rel="noopener noreferrer" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
+            <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services." target="_blank" rel="noopener noreferrer" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
         </div>
     </nav>
+
+    <!-- Semantic Main Content Wrapper -->
+    <main id="main-content">
 
     <section class="min-h-[100svh] flex items-center justify-center text-center hero-bg text-white px-4 sm:px-6 pt-24 pb-16">
         <div class="max-w-4xl mx-auto">
@@ -177,8 +227,8 @@
     <section class="py-16 md:py-32 px-4 sm:px-6 max-w-7xl mx-auto reveal" id="intro">
         <div class="grid md:grid-cols-2 gap-10 md:gap-20 items-center">
             <div class="relative group">
-                <img loading="lazy" src="gallery/pre-wedding/sangeet-01.webp" class="rounded-2xl shadow-2xl protect-media w-full"
-                    alt="Wedding Couple Capture">
+                <img loading="lazy" decoding="async" src="gallery/pre-wedding/sangeet-01.webp" class="rounded-2xl shadow-2xl protect-media w-full"
+                    alt="Luxury Indian wedding couple portrait during royal palace celebration in Udaipur">
                 <!-- Desktop Floating Badge -->
                 <div class="absolute -bottom-6 -right-6 bg-orange-700 text-white p-8 rounded-2xl hidden md:block">
                     <p class="text-3xl font-serif italic">100+</p>
@@ -260,7 +310,7 @@
                 <div class="bg-white p-6 sm:p-10 rounded-2xl md:rounded-3xl shadow-sm border border-stone-100 text-center flex flex-col justify-between">
                     <div>
                         <div class="w-28 h-28 sm:w-32 sm:h-32 bg-stone-200 rounded-full mx-auto mb-6 overflow-hidden">
-                            <img loading="lazy" src="gallery/pre-wedding/sangeet-01.webp" alt="Karan Kumar Founder"
+                            <img loading="lazy" decoding="async" src="gallery/pre-wedding/sangeet-01.webp" alt="Karan Kumar, Lead Photographer and Visionary at Kumar Video &amp; Photography"
                                 class="object-cover w-full h-full protect-media">
                         </div>
                         <h3 class="text-2xl mb-2 font-bold">Karan Kumar</h3>
@@ -271,10 +321,10 @@
                         </p>
                     </div>
                     <div class="flex justify-center space-x-6 text-sm pt-6 border-t border-stone-100">
-                        <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-orange-700 transition flex items-center space-x-1" aria-label="WhatsApp">
+                        <a href="https://wa.me/1234" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-orange-700 transition flex items-center space-x-1" aria-label="WhatsApp">
                             <i class="fab fa-whatsapp text-lg text-orange-700"></i><span>WhatsApp</span>
                         </a>
-                        <a href="tel:+910000000000" class="text-gray-500 hover:text-orange-700 transition flex items-center space-x-1" aria-label="Call">
+                        <a href="tel:1234" class="text-gray-500 hover:text-orange-700 transition flex items-center space-x-1" aria-label="Call">
                             <i class="fas fa-phone-alt text-sm text-orange-700"></i><span>Call</span>
                         </a>
                         <a href="mailto:contact@kumarphotography.in" class="text-gray-500 hover:text-orange-700 transition flex items-center space-x-1" aria-label="Email">
@@ -309,20 +359,20 @@
                     </div>
 
                     <div class="pt-6 border-t border-stone-100 flex flex-col gap-3">
-                        <a href="https://wa.me/910000000000?text=Hi%20Karan%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services%20for%20our%20upcoming%20celebration."
+                        <a href="https://wa.me/1234?text=Hi%20Karan%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services%20for%20our%20upcoming%20celebration."
                            target="_blank" rel="noopener noreferrer"
                            class="w-full bg-orange-700 text-white py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-black transition text-center shadow-md flex items-center justify-center space-x-2">
                             <i class="fab fa-whatsapp text-base"></i>
                             <span>Chat on WhatsApp</span>
                         </a>
                         <div class="grid grid-cols-2 gap-3">
-                            <a href="tel:+910000000000"
-                               class="border border-stone-300 text-stone-700 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:border-black hover:text-black transition text-center flex items-center justify-center space-x-2">
+                            <a href="tel:1234"
+                                class="border border-stone-300 text-stone-700 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:border-black hover:text-black transition text-center flex items-center justify-center space-x-2">
                                 <i class="fas fa-phone-alt"></i>
                                 <span>Direct Call</span>
                             </a>
                             <a href="mailto:contact@kumarphotography.in?subject=Wedding%20Photography%20Inquiry"
-                               class="border border-stone-300 text-stone-700 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:border-black hover:text-black transition text-center flex items-center justify-center space-x-2">
+                                class="border border-stone-300 text-stone-700 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:border-black hover:text-black transition text-center flex items-center justify-center space-x-2">
                                 <i class="fas fa-envelope"></i>
                                 <span>Send Email</span>
                             </a>
@@ -332,6 +382,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <footer class="py-12 text-center text-gray-400 text-[10px] tracking-[0.3em] uppercase">
         &copy; <span id="current-year">2026</span> Kumar Video &amp; Photography | Preserving Eternal Bonds
