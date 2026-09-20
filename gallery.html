@@ -136,11 +136,26 @@
 
     <main class="max-w-7xl mx-auto px-4 md:px-6 pb-24 space-y-24">
 
-        <!-- Category Jump Bar -->
-        <div id="category-nav" class="flex flex-wrap justify-center gap-6 border-b border-stone-200 pb-6 text-xs uppercase tracking-[0.2em] font-bold text-stone-400 sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 pt-4">
-            <a href="#pre-wedding" class="hover:text-orange-700 transition">Pre-Wedding</a>
-            <a href="#wedding" class="hover:text-orange-700 transition">Wedding</a>
-            <a href="#birthdays" class="hover:text-orange-700 transition">Birthdays</a>
+        <!-- Category Filter Tabs -->
+        <div id="category-nav" class="sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 py-4 border-b border-stone-200">
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs uppercase tracking-[0.15em] font-semibold max-w-3xl mx-auto px-2">
+                <button type="button" onclick="selectCategory('all')" id="tab-all"
+                        class="category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold">
+                    All Collections
+                </button>
+                <button type="button" onclick="selectCategory('pre-wedding')" id="tab-pre-wedding"
+                        class="category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                    Pre-Wedding
+                </button>
+                <button type="button" onclick="selectCategory('wedding')" id="tab-wedding"
+                        class="category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                    Wedding
+                </button>
+                <button type="button" onclick="selectCategory('birthdays')" id="tab-birthdays"
+                        class="category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                    Birthdays
+                </button>
+            </div>
         </div>
 
         <!-- Pre-Wedding Section -->
@@ -210,16 +225,22 @@
     <script src="site.js"></script>
 
     <script>
-        // Global state for lightbox
+        // Global state for lightbox and filtering
         let allPhotos = [];
         let lbIndex = 0;
+        let activeCategory = 'all';
+        let rawPhotosByCategory = {
+            'pre-wedding': [],
+            'wedding': [],
+            'birthdays': []
+        };
 
         function renderGrid(containerId, photos, globalOffset) {
             const el = document.getElementById(containerId);
             if (!el) return;
 
             if (!photos || photos.length === 0) {
-                el.innerHTML = '<p class="text-gray-400 text-sm italic col-span-3">No photos published yet in this category.</p>';
+                el.innerHTML = '<p class="text-gray-400 text-sm italic col-span-3 py-8">No photos published yet in this category.</p>';
                 return;
             }
 
@@ -230,7 +251,7 @@
                 const location = photo.location ? ` • ${photo.location}` : '';
 
                 return `
-                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm mb-6 break-inside-avoid"
+                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm mb-6 break-inside-avoid transition-transform duration-300 hover:shadow-md"
                      onclick="openLightbox(${globalIdx})"
                      role="button"
                      tabindex="0"
@@ -245,6 +266,61 @@
                 </div>
                 `;
             }).join('');
+        }
+
+        function selectCategory(catId, shouldScroll = true) {
+            activeCategory = catId;
+
+            // 1. Update Tab active styles
+            document.querySelectorAll('.category-tab').forEach(btn => {
+                btn.className = 'category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200';
+            });
+            const activeBtn = document.getElementById(`tab-${catId}`);
+            if (activeBtn) {
+                activeBtn.className = 'category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold';
+            }
+
+            // 2. Show only the selected category section, hide others to prevent half-visible sections
+            const sections = ['pre-wedding', 'wedding', 'birthdays'];
+            sections.forEach(id => {
+                const sec = document.getElementById(id);
+                if (!sec) return;
+                if (catId === 'all' || catId === id) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
+            });
+
+            // 3. Update allPhotos array for Lightbox navigation so lightbox only cycles through visible photos
+            if (catId === 'all') {
+                allPhotos = [
+                    ...rawPhotosByCategory['pre-wedding'],
+                    ...rawPhotosByCategory['wedding'],
+                    ...rawPhotosByCategory['birthdays']
+                ];
+                renderGrid('grid-pre-wedding', rawPhotosByCategory['pre-wedding'], 0);
+                renderGrid('grid-wedding', rawPhotosByCategory['wedding'], rawPhotosByCategory['pre-wedding'].length);
+                renderGrid('grid-birthdays', rawPhotosByCategory['birthdays'], rawPhotosByCategory['pre-wedding'].length + rawPhotosByCategory['wedding'].length);
+            } else {
+                allPhotos = [...rawPhotosByCategory[catId]];
+                renderGrid(`grid-${catId}`, rawPhotosByCategory[catId], 0);
+            }
+
+            // 4. Smooth scroll to top of gallery area if user clicked
+            if (shouldScroll) {
+                const navEl = document.getElementById('category-nav');
+                if (navEl) {
+                    const topPos = navEl.getBoundingClientRect().top + window.pageYOffset - 75;
+                    window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
+                }
+            }
+
+            // 5. Update browser URL hash without page reload
+            if (window.history && window.history.replaceState) {
+                const newUrl = catId === 'all' ? window.location.pathname : `#${catId}`;
+                window.history.replaceState(null, '', newUrl);
+            }
         }
 
         function openLightbox(index) {
@@ -322,15 +398,17 @@
         // Initialize content using universal loader (works on both http and file://)
         loadSiteContent().then((data) => {
             const gallery = data.gallery || {};
-            const pre = (gallery['pre-wedding'] || []).filter(p => p.published !== false);
-            const wedding = (gallery['wedding'] || []).filter(p => p.published !== false);
-            const birthdays = (gallery['birthdays'] || []).filter(p => p.published !== false);
+            rawPhotosByCategory['pre-wedding'] = (gallery['pre-wedding'] || []).filter(p => p.published !== false);
+            rawPhotosByCategory['wedding']     = (gallery['wedding'] || []).filter(p => p.published !== false);
+            rawPhotosByCategory['birthdays']   = (gallery['birthdays'] || []).filter(p => p.published !== false);
 
-            allPhotos = [...pre, ...wedding, ...birthdays];
-
-            renderGrid('grid-pre-wedding', pre, 0);
-            renderGrid('grid-wedding', wedding, pre.length);
-            renderGrid('grid-birthdays', birthdays, pre.length + wedding.length);
+            // Check if URL has a valid hash like #wedding or #pre-wedding
+            const initialHash = window.location.hash.replace('#', '').toLowerCase();
+            if (['pre-wedding', 'wedding', 'birthdays'].includes(initialHash)) {
+                selectCategory(initialHash, false);
+            } else {
+                selectCategory('all', false);
+            }
         });
     </script>
 </body>

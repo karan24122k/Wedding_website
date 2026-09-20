@@ -168,11 +168,26 @@
 
     <main class="max-w-5xl mx-auto px-4 md:px-6 pb-24 space-y-24">
 
-        <!-- Category Navigation -->
-        <div class="flex flex-wrap justify-center gap-6 border-b border-white/10 pb-6 text-xs uppercase tracking-[0.2em] font-bold text-gray-500 sticky top-16 bg-[#0a0a0a]/95 backdrop-blur-md z-40 pt-4">
-            <a href="#pre-wedding" class="hover:text-orange-500 transition">Pre-Wedding</a>
-            <a href="#wedding"     class="hover:text-orange-500 transition">Wedding</a>
-            <a href="#birthdays"   class="hover:text-orange-500 transition">Birthdays</a>
+        <!-- Category Filter Tabs -->
+        <div id="category-nav" class="sticky top-16 bg-[#0a0a0a]/95 backdrop-blur-md z-40 py-4 border-b border-white/10">
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs uppercase tracking-[0.15em] font-semibold max-w-3xl mx-auto px-2">
+                <button type="button" onclick="selectFilmCategory('all')" id="tab-film-all"
+                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-600 text-white shadow-lg font-bold">
+                    All Films
+                </button>
+                <button type="button" onclick="selectFilmCategory('pre-wedding')" id="tab-film-pre-wedding"
+                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/10 text-gray-300 hover:text-white border border-white/15">
+                    Pre-Wedding
+                </button>
+                <button type="button" onclick="selectFilmCategory('wedding')" id="tab-film-wedding"
+                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/10 text-gray-300 hover:text-white border border-white/15">
+                    Wedding
+                </button>
+                <button type="button" onclick="selectFilmCategory('birthdays')" id="tab-film-birthdays"
+                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/10 text-gray-300 hover:text-white border border-white/15">
+                    Birthdays
+                </button>
+            </div>
         </div>
 
         <!-- Pre-Wedding Films -->
@@ -341,11 +356,49 @@
             vid.style.transform = `rotate(${deg}deg) ${scale}`;
         }
 
+        function selectFilmCategory(catId, shouldScroll = true) {
+            // 1. Update button styles
+            document.querySelectorAll('.film-category-tab').forEach(btn => {
+                btn.className = 'film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/10 text-gray-300 hover:text-white border border-white/15';
+            });
+            const activeBtn = document.getElementById(`tab-film-${catId}`);
+            if (activeBtn) {
+                activeBtn.className = 'film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-600 text-white shadow-lg font-bold';
+            }
+
+            // 2. Toggle sections to eliminate half-visible sections
+            const sections = ['pre-wedding', 'wedding', 'birthdays'];
+            sections.forEach(id => {
+                const sec = document.getElementById(id);
+                if (!sec) return;
+                if (catId === 'all' || catId === id) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
+            });
+
+            // 3. Smooth scroll to top of films container if user clicked
+            if (shouldScroll) {
+                const navEl = document.getElementById('category-nav');
+                if (navEl) {
+                    const topPos = navEl.getBoundingClientRect().top + window.pageYOffset - 75;
+                    window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
+                }
+            }
+
+            // 4. Update browser URL hash without page reload
+            if (window.history && window.history.replaceState) {
+                const newUrl = catId === 'all' ? window.location.pathname : `#${catId}`;
+                window.history.replaceState(null, '', newUrl);
+            }
+        }
+
         function renderFilms(containerId, films, offset) {
             const el = document.getElementById(containerId);
             if (!el) return;
             if (!films || films.length === 0) {
-                el.innerHTML = '<p class="text-gray-500 text-sm italic">No films currently published in this section.</p>';
+                el.innerHTML = '<p class="text-gray-500 text-sm italic py-8">No films currently published in this section.</p>';
                 return;
             }
             el.innerHTML = films.map((f, i) => buildFilmCard(f, offset + i)).join('');
@@ -364,6 +417,14 @@
             renderFilms('films-wedding', wedding, offset);
             offset += wedding.length;
             renderFilms('films-birthdays', birthdays, offset);
+
+            // Check if URL has a valid hash
+            const initialHash = window.location.hash.replace('#', '').toLowerCase();
+            if (['pre-wedding', 'wedding', 'birthdays'].includes(initialHash)) {
+                selectFilmCategory(initialHash, false);
+            } else {
+                selectFilmCategory('all', false);
+            }
         });
     </script>
 </body>
