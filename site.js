@@ -7,8 +7,8 @@
 const SITE_FALLBACK_DATA = {
   business: {
     name: "Kumar Video & Photography",
-    phone: "+91 98765 43210",
-    whatsappNumber: "919876543210",
+    phone: "+91 00000 00000",
+    whatsappNumber: "910000000000",
     whatsappMessage: "Hi Kumar Video & Photography, I would like to inquire about wedding photography and cinematography packages.",
     email: "contact@kumarphotography.in"
   },
