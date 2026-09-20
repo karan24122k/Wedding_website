@@ -9,90 +9,218 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        h1 { font-family: 'Playfair Display', serif; }
-        .gallery-item:hover img { transform: scale(1.05); transition: 0.6s ease; }
+        h1, h2 { font-family: 'Playfair Display', serif; }
+
+        .gallery-item { cursor: pointer; }
+        .gallery-item img { transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed; inset: 0; z-index: 999;
+            background: rgba(0,0,0,0.95);
+            align-items: center; justify-content: center;
+        }
+        #lightbox.open { display: flex; }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            user-select: none;
+        }
+        .lb-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white; width: 48px; height: 48px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .lb-btn:hover { background: rgba(255,255,255,0.25); }
+        #lb-prev { left: 16px; }
+        #lb-next { right: 16px; }
+        #lb-close {
+            position: absolute; top: 16px; right: 16px;
+            background: rgba(255,255,255,0.1); border: none;
+            color: white; width: 44px; height: 44px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; font-size: 1.2rem;
+        }
+        #lb-caption {
+            position: absolute; bottom: 20px; left: 0; right: 0;
+            text-align: center; color: rgba(255,255,255,0.7);
+            font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+        }
+        #lb-counter {
+            position: absolute; top: 20px; left: 20px;
+            color: rgba(255,255,255,0.4); font-size: 11px; letter-spacing: 0.15em;
+        }
     </style>
 </head>
 <body class="bg-stone-50">
 
-    <nav class="p-6 flex justify-between items-center border-b border-stone-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <a href="index.html" class="font-bold tracking-tighter uppercase text-sm">← Back to Home</a>
+    <nav class="p-4 md:p-6 flex justify-between items-center border-b border-stone-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <a href="index.html" class="flex items-center space-x-2 font-bold tracking-tighter uppercase text-sm">
+            <img src="Images/Kumar.png" alt="Logo" class="h-8 w-auto object-contain">
+            <span class="hidden sm:inline">← Back to Home</span>
+            <span class="sm:hidden">← Home</span>
+        </a>
         <span class="text-xs tracking-[0.3em] uppercase opacity-50">Portfolio 2025</span>
     </nav>
 
-    <header class="py-20 px-6 text-center">
+    <header class="py-16 md:py-20 px-6 text-center">
         <h1 class="text-5xl md:text-7xl mb-4">The <span class="italic">Anthology</span></h1>
         <p class="text-gray-500 uppercase tracking-widest text-xs">Curated moments from across India</p>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 pb-20 space-y-24">
-        
+    <main class="max-w-7xl mx-auto px-4 md:px-6 pb-20 space-y-24">
+
         <!-- Section Navigation -->
-        <div class="flex flex-wrap justify-center gap-6 border-b border-stone-200 pb-6 text-xs uppercase tracking-[0.2em] font-bold text-stone-400 sticky top-20 bg-stone-50/90 backdrop-blur-md z-40 pt-4">
+        <div class="flex flex-wrap justify-center gap-6 border-b border-stone-200 pb-6 text-xs uppercase tracking-[0.2em] font-bold text-stone-400 sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 pt-4">
             <a href="#pre-wedding" class="hover:text-orange-700 transition">Pre-Wedding</a>
             <a href="#wedding" class="hover:text-orange-700 transition">Wedding</a>
             <a href="#birthdays" class="hover:text-orange-700 transition">Birthdays</a>
         </div>
 
-        <!-- Pre-Wedding Section -->
-        <section id="pre-wedding" class="scroll-mt-40">
-            <div class="mb-10 text-center md:text-left border-l-4 border-orange-700 pl-4">
+        <!-- Pre-Wedding -->
+        <section id="pre-wedding" class="scroll-mt-36">
+            <div class="mb-10 border-l-4 border-orange-700 pl-4">
                 <h2 class="text-3xl md:text-4xl font-serif mb-2">Pre-Wedding Photoshoot</h2>
                 <p class="text-gray-500 uppercase tracking-widest text-xs">The Prelude to Forever</p>
             </div>
-            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm">
-                    <img loading="lazy" src="Images/_DSC4554 copy.webp" class="w-full">
-                    <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">The Royal Sangeet</div>
-                </div>
-                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm">
-                    <img loading="lazy" src="Images/_DSC4572 copy.webp" class="w-full">
-                    <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">Candid Moments</div>
-                </div>
+            <div id="grid-pre-wedding" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                <p class="text-gray-400 text-sm italic">Loading...</p>
             </div>
         </section>
 
-        <!-- Wedding Section -->
-        <section id="wedding" class="scroll-mt-40">
-            <div class="mb-10 text-center md:text-left border-l-4 border-orange-700 pl-4">
+        <!-- Wedding -->
+        <section id="wedding" class="scroll-mt-36">
+            <div class="mb-10 border-l-4 border-orange-700 pl-4">
                 <h2 class="text-3xl md:text-4xl font-serif mb-2">Wedding Photoshoot</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">Pledges & Traditions</p>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">Pledges &amp; Traditions</p>
             </div>
-            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm">
-                    <img loading="lazy" src="Images/_DSC4598 copy.webp" class="w-full">
-                    <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">The Wedding Vows</div>
-                </div>
-                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm">
-                    <img loading="lazy" src="Images/_DSC5341 copy.webp" class="w-full">
-                    <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">Wedding Moments</div>
-                </div>
-                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm">
-                    <img loading="lazy" src="Images/_DSC5462.webp" class="w-full">
-                    <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">Bridal Bliss</div>
-                </div>
-                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm">
-                    <img loading="lazy" src="Images/_DSC5454.webp" class="w-full">
-                    <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">The Grand Reception</div>
-                </div>
+            <div id="grid-wedding" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                <p class="text-gray-400 text-sm italic">Loading...</p>
             </div>
         </section>
 
-        <!-- Birthdays Section -->
-        <section id="birthdays" class="scroll-mt-40">
-            <div class="mb-10 text-center md:text-left border-l-4 border-orange-700 pl-4">
+        <!-- Birthdays -->
+        <section id="birthdays" class="scroll-mt-36">
+            <div class="mb-10 border-l-4 border-orange-700 pl-4">
                 <h2 class="text-3xl md:text-4xl font-serif mb-2">Birthdays</h2>
                 <p class="text-gray-500 uppercase tracking-widest text-xs">Joyful Milestones</p>
             </div>
-            <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm">
-                    <img loading="lazy" src="Images/_DSC5457.webp" class="w-full">
-                    <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">Festive Celebrations</div>
-                </div>
+            <div id="grid-birthdays" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                <p class="text-gray-400 text-sm italic">Loading...</p>
             </div>
         </section>
 
     </main>
 
+    <!-- Lightbox -->
+    <div id="lightbox" role="dialog" aria-modal="true">
+        <span id="lb-counter"></span>
+        <button id="lb-close" aria-label="Close"><i class="fas fa-times"></i></button>
+        <button class="lb-btn" id="lb-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <img id="lb-img" src="" alt="">
+        <button class="lb-btn" id="lb-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+        <div id="lb-caption"></div>
+    </div>
+
+    <footer class="py-10 text-center text-gray-400 text-[10px] tracking-[0.3em] uppercase">
+        &copy; 2025 Capture Stories | Preserving Eternal Bonds
+    </footer>
+
+    <script>
+        // ─── State ───────────────────────────────────────────────────────────
+        let allPhotos = [];   // flat list of all photos across every section for lightbox
+        let lbIndex   = 0;
+
+        // ─── Build a grid from a photo array ─────────────────────────────────
+        function buildGrid(containerId, photos, globalOffset) {
+            const el = document.getElementById(containerId);
+            if (!photos || photos.length === 0) {
+                el.innerHTML = '<p class="text-gray-400 text-sm italic col-span-3">No photos yet. Add images to this folder and update content.json.</p>';
+                return;
+            }
+            el.innerHTML = photos.map((photo, i) => `
+                <div class="gallery-item relative overflow-hidden rounded-xl bg-gray-200 shadow-sm mb-6 break-inside-avoid"
+                     onclick="openLightbox(${globalOffset + i})">
+                    <img loading="lazy" src="${photo.src}" alt="${photo.caption}" class="w-full block">
+                    <div class="p-4 bg-white text-[10px] tracking-widest uppercase font-bold text-orange-800">
+                        ${photo.caption}
+                        <span class="block mt-1 text-gray-400 font-normal normal-case tracking-normal text-[9px]">Click to enlarge</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ─── Lightbox controls ────────────────────────────────────────────────
+        function openLightbox(index) {
+            lbIndex = index;
+            updateLightbox();
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const photo = allPhotos[lbIndex];
+            document.getElementById('lb-img').src         = photo.src;
+            document.getElementById('lb-img').alt         = photo.caption;
+            document.getElementById('lb-caption').textContent = photo.caption;
+            document.getElementById('lb-counter').textContent  = `${lbIndex + 1} / ${allPhotos.length}`;
+        }
+
+        function prevPhoto() { lbIndex = (lbIndex - 1 + allPhotos.length) % allPhotos.length; updateLightbox(); }
+        function nextPhoto() { lbIndex = (lbIndex + 1) % allPhotos.length; updateLightbox(); }
+
+        document.getElementById('lb-close').addEventListener('click', closeLightbox);
+        document.getElementById('lb-prev').addEventListener('click', prevPhoto);
+        document.getElementById('lb-next').addEventListener('click', nextPhoto);
+        document.getElementById('lightbox').addEventListener('click', e => { if (e.target === e.currentTarget) closeLightbox(); });
+
+        // Keyboard nav
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('lightbox').classList.contains('open')) return;
+            if (e.key === 'ArrowLeft')  prevPhoto();
+            if (e.key === 'ArrowRight') nextPhoto();
+            if (e.key === 'Escape')     closeLightbox();
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        document.getElementById('lightbox').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        document.getElementById('lightbox').addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { diff > 0 ? nextPhoto() : prevPhoto(); }
+        });
+
+        // ─── Load content.json and render ────────────────────────────────────
+        fetch('content.json')
+            .then(r => r.json())
+            .then(data => {
+                const pre     = data.gallery['pre-wedding'] || [];
+                const wedding = data.gallery['wedding']     || [];
+                const bday    = data.gallery['birthdays']   || [];
+
+                allPhotos = [...pre, ...wedding, ...bday];
+
+                buildGrid('grid-pre-wedding', pre,     0);
+                buildGrid('grid-wedding',     wedding, pre.length);
+                buildGrid('grid-birthdays',   bday,    pre.length + wedding.length);
+            })
+            .catch(() => {
+                document.querySelectorAll('[id^="grid-"]').forEach(el => {
+                    el.innerHTML = '<p class="text-red-400 text-sm">Could not load content.json. Make sure it exists in the root folder.</p>';
+                });
+            });
+    </script>
 </body>
 </html>

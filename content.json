@@ -1,0 +1,46 @@
+{
+  "gallery": {
+    "pre-wedding": [
+      { "src": "gallery/pre-wedding/sangeet-01.webp", "caption": "The Royal Sangeet" },
+      { "src": "gallery/pre-wedding/candid-01.webp",  "caption": "Candid Moments" }
+    ],
+    "wedding": [
+      { "src": "gallery/wedding/vows-01.webp",       "caption": "The Wedding Vows" },
+      { "src": "gallery/wedding/moments-01.webp",    "caption": "Wedding Moments" },
+      { "src": "gallery/wedding/bridal-01.webp",     "caption": "Bridal Bliss" },
+      { "src": "gallery/wedding/reception-01.webp",  "caption": "The Grand Reception" }
+    ],
+    "birthdays": [
+      { "src": "gallery/birthdays/celebration-01.webp", "caption": "Festive Celebrations" }
+    ]
+  },
+  "films": {
+    "pre-wedding": [
+      {
+        "src":      "videos/pre-wedding/",
+        "poster":   "gallery/pre-wedding/sangeet-01.webp",
+        "title":    "Add your pre-wedding film here",
+        "location": "Drop a .mp4 into videos/pre-wedding/ and update this file",
+        "tag":      "Coming Soon"
+      }
+    ],
+    "wedding": [
+      {
+        "src":      "videos/wedding/reel-01.mp4",
+        "poster":   "gallery/wedding/reception-01.webp",
+        "title":    "Aditya & Anjali",
+        "location": "Leela Palace, Bengaluru",
+        "tag":      "Highlight Reel"
+      }
+    ],
+    "birthdays": [
+      {
+        "src":      "videos/birthdays/",
+        "poster":   "gallery/birthdays/celebration-01.webp",
+        "title":    "Add your birthday film here",
+        "location": "Drop a .mp4 into videos/birthdays/ and update this file",
+        "tag":      "Coming Soon"
+      }
+    ]
+  }
+}

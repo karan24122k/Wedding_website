@@ -1,0 +1,11 @@
+# Ignore the heavy original video — only the optimized version is needed on the web
+Images/REEL.mp4
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore temporary optimizer scripts
+optimizer.py
+optimize_video.py

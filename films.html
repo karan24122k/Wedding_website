@@ -9,191 +9,281 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
         body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: white; }
-        h1 { font-family: 'Playfair Display', serif; }
-        
-        /* Video Player Styling */
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* ── Video card ─────────────────────────────────────────── */
+        .video-card { position: relative; }
+
         .video-container {
             position: relative;
-            background: #000;
-            border-radius: 1.5rem;
+            background: #111;
+            border-radius: 1.25rem;
             overflow: hidden;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transition: all 0.5s ease;
         }
-        
+
+        /* Auto-size: video element dictates height */
         .video-container video {
             display: block;
             width: 100%;
-            height: 100%;
             background: #000;
         }
-        
-        /* Custom controls for better UX */
-        .video-container video::-webkit-media-controls {
-            display: flex;
+
+        /* Portrait mode: centered narrow column */
+        .video-container.is-portrait {
+            max-width: 360px;
+            margin: 0 auto;
         }
-        
-        .video-container video::-moz-media-controls {
-            display: flex;
+
+        /* Orientation control toolbar */
+        .orient-toolbar {
+            position: absolute;
+            top: 12px; right: 12px;
+            display: flex; gap: 6px;
+            z-index: 10;
+            opacity: 1;
+            transition: opacity 0.3s;
         }
-        
-        /* Fullscreen styling */
-        video:fullscreen {
-            max-width: 100%;
-            width: 100%;
-            height: 100%;
+        .orient-btn {
+            padding: 5px 10px;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+            transition: background 0.2s;
         }
-        
-        video:-webkit-full-screen {
-            width: 100%;
-            height: 100%;
+        .orient-btn:hover { background: rgba(255,255,255,0.15); }
+        .orient-btn.active { border-color: #f97316; color: #f97316; }
+
+        /* Coming-soon placeholder */
+        .coming-soon-card {
+            border: 1px dashed rgba(255,255,255,0.15);
+            border-radius: 1.25rem;
+            padding: 48px 24px;
+            text-align: center;
         }
-        
-        /* Orientation is now managed dynamically via object-contain and max-height */
+
+        /* Fullscreen fix */
+        video:fullscreen      { width: 100%; height: 100%; }
+        video:-webkit-full-screen { width: 100%; height: 100%; }
     </style>
 </head>
 <body>
 
-    <nav class="p-6 flex justify-between items-center border-b border-white/10 bg-black/80 backdrop-blur-md sticky top-0 z-50">
-        <a href="index.html" class="font-bold tracking-tighter uppercase text-sm">← Back</a>
-        <span class="text-xs tracking-[0.3em] uppercase opacity-50 font-bold">Cinematography</span>
+    <nav class="p-4 md:p-6 flex justify-between items-center border-b border-white/10 bg-black/80 backdrop-blur-md sticky top-0 z-50">
+        <a href="index.html" class="flex items-center space-x-2 font-bold tracking-tighter uppercase text-sm">
+            <img src="Images/Kumar.png" alt="Logo" class="h-8 w-auto object-contain">
+            <span class="hidden sm:inline">← Back to Home</span>
+            <span class="sm:hidden">← Home</span>
+        </a>
+        <span class="text-xs tracking-[0.3em] uppercase opacity-40 font-bold">Cinematography</span>
     </nav>
 
-    <header class="py-24 px-6 text-center">
+    <header class="py-20 md:py-24 px-6 text-center">
         <h1 class="text-5xl md:text-7xl mb-4 italic font-light">Motion Pictures</h1>
-        <p class="text-orange-500 uppercase tracking-[0.4em] text-[10px]">Documentary & Cinematic Style</p>
+        <p class="text-orange-500 uppercase tracking-[0.4em] text-[10px]">Documentary &amp; Cinematic Style</p>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 pb-20 space-y-24">
-        
+    <main class="max-w-5xl mx-auto px-4 md:px-6 pb-20 space-y-24">
+
         <!-- Section Navigation -->
-        <div class="flex flex-wrap justify-center gap-6 border-b border-white/10 pb-6 text-xs uppercase tracking-[0.2em] font-bold text-gray-500 sticky top-20 bg-black/90 backdrop-blur-md z-40 pt-4">
+        <div class="flex flex-wrap justify-center gap-6 border-b border-white/10 pb-6 text-xs uppercase tracking-[0.2em] font-bold text-gray-500 sticky top-16 bg-[#0a0a0a]/95 backdrop-blur-md z-40 pt-4">
             <a href="#pre-wedding" class="hover:text-orange-500 transition">Pre-Wedding</a>
-            <a href="#wedding" class="hover:text-orange-500 transition">Wedding</a>
-            <a href="#birthdays" class="hover:text-orange-500 transition">Birthdays</a>
+            <a href="#wedding"     class="hover:text-orange-500 transition">Wedding</a>
+            <a href="#birthdays"   class="hover:text-orange-500 transition">Birthdays</a>
         </div>
 
-        <!-- Pre-Wedding Section -->
-        <section id="pre-wedding" class="scroll-mt-40 space-y-12">
-            <div class="text-center md:text-left border-l-4 border-orange-500 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-2">Pre-Wedding Films</h2>
+        <!-- Pre-Wedding Films -->
+        <section id="pre-wedding" class="scroll-mt-36 space-y-8">
+            <div class="border-l-4 border-orange-500 pl-4">
+                <h2 class="text-3xl md:text-4xl font-serif mb-1">Pre-Wedding Films</h2>
                 <p class="text-gray-500 uppercase tracking-widest text-xs">The Prelude to Forever</p>
             </div>
-            
-            <div class="space-y-6">
-                <div class="video-container group">
-                    <div class="absolute top-4 right-4 z-10 flex flex-col items-end space-y-2">
-                        <div class="flex space-x-2 bg-black/70 p-1 rounded-lg backdrop-blur text-white shadow-xl opacity-90 transition">
-                            <button onclick="setOrientation(this, 'landscape')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-desktop mr-1"></i> Desktop Grid</button>
-                            <button onclick="setOrientation(this, 'portrait')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-mobile-alt mr-1"></i> Phone Layout</button>
-                            <button onclick="rotateVideo(this)" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-orange-500 text-orange-400"><i class="fas fa-sync-alt mr-1"></i> Rotate</button>
-                        </div>
-                    </div>
-                    <video class="w-full max-h-[80vh] object-contain transition-all duration-500" controls preload="none" playsinline poster="Images/_DSC4554 copy.webp">
-                        <source src="Images/REEL_opt.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="flex justify-between items-end">
-                    <div>
-                        <h3 class="text-2xl font-serif italic">Aditya & Anjali</h3>
-                        <p class="text-xs opacity-50 uppercase tracking-widest">Leela Palace, Bengaluru</p>
-                    </div>
-                    <div class="text-[10px] border border-white/20 px-4 py-1 rounded-full uppercase">Trailer</div>
-                </div>
+            <div id="films-pre-wedding" class="space-y-16">
+                <p class="text-gray-600 text-sm italic">Loading…</p>
             </div>
         </section>
 
-        <!-- Wedding Section -->
-        <section id="wedding" class="scroll-mt-40 space-y-12">
-            <div class="text-center md:text-left border-l-4 border-orange-500 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-2">Wedding Films</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">Pledges & Traditions</p>
+        <!-- Wedding Films -->
+        <section id="wedding" class="scroll-mt-36 space-y-8">
+            <div class="border-l-4 border-orange-500 pl-4">
+                <h2 class="text-3xl md:text-4xl font-serif mb-1">Wedding Films</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">Pledges &amp; Traditions</p>
             </div>
-            
-            <div class="space-y-6">
-                <div class="video-container group">
-                    <div class="absolute top-4 right-4 z-10 flex flex-col items-end space-y-2">
-                        <div class="flex space-x-2 bg-black/70 p-1 rounded-lg backdrop-blur text-white shadow-xl opacity-90 transition">
-                            <button onclick="setOrientation(this, 'landscape')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-desktop mr-1"></i> Desktop Grid</button>
-                            <button onclick="setOrientation(this, 'portrait')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-mobile-alt mr-1"></i> Phone Layout</button>
-                            <button onclick="rotateVideo(this)" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-orange-500 text-orange-400"><i class="fas fa-sync-alt mr-1"></i> Rotate</button>
-                        </div>
-                    </div>
-                    <video class="w-full max-h-[80vh] object-contain transition-all duration-500" controls preload="none" playsinline poster="Images/_DSC4572 copy.webp">
-                        <source src="Images/REEL_opt.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-serif italic">The Summer Palace Wedding</h3>
-                    <p class="text-xs opacity-50 uppercase tracking-widest">Hyderabad | 2024</p>
-                </div>
+            <div id="films-wedding" class="space-y-16">
+                <p class="text-gray-600 text-sm italic">Loading…</p>
             </div>
         </section>
 
-        <!-- Birthdays Section -->
-        <section id="birthdays" class="scroll-mt-40 space-y-12">
-            <div class="text-center md:text-left border-l-4 border-orange-500 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-2">Birthdays</h2>
+        <!-- Birthday Films -->
+        <section id="birthdays" class="scroll-mt-36 space-y-8">
+            <div class="border-l-4 border-orange-500 pl-4">
+                <h2 class="text-3xl md:text-4xl font-serif mb-1">Birthdays</h2>
                 <p class="text-gray-500 uppercase tracking-widest text-xs">Joyful Milestones</p>
             </div>
-            
-            <div class="space-y-6">
-                <div class="video-container group">
-                    <div class="absolute top-4 right-4 z-10 flex flex-col items-end space-y-2">
-                        <div class="flex space-x-2 bg-black/70 p-1 rounded-lg backdrop-blur text-white shadow-xl opacity-90 transition">
-                            <button onclick="setOrientation(this, 'landscape')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-desktop mr-1"></i> Desktop Grid</button>
-                            <button onclick="setOrientation(this, 'portrait')" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-white/20"><i class="fas fa-mobile-alt mr-1"></i> Phone Layout</button>
-                            <button onclick="rotateVideo(this)" class="px-3 py-1 text-[10px] rounded hover:bg-white/20 uppercase tracking-widest border border-orange-500 text-orange-400"><i class="fas fa-sync-alt mr-1"></i> Rotate</button>
-                        </div>
-                    </div>
-                    <video class="w-full max-h-[80vh] object-contain transition-all duration-500" controls preload="none" playsinline poster="Images/_DSC4598 copy.webp">
-                        <source src="Images/REEL_opt.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="flex justify-between items-end">
-                    <div>
-                        <h3 class="text-2xl font-serif italic">Birthday Highlights</h3>
-                        <p class="text-xs opacity-50 uppercase tracking-widest">Celebrations</p>
-                    </div>
-                    <div class="text-[10px] border border-white/20 px-4 py-1 rounded-full uppercase">Reel</div>
-                </div>
+            <div id="films-birthdays" class="space-y-16">
+                <p class="text-gray-600 text-sm italic">Loading…</p>
             </div>
         </section>
 
     </main>
 
+    <footer class="py-10 text-center text-gray-600 text-[10px] tracking-[0.3em] uppercase">
+        &copy; 2025 Capture Stories | Preserving Eternal Bonds
+    </footer>
+
     <script>
-        function setOrientation(btn, format) {
-            const container = btn.closest('.video-container');
-            const video = container.querySelector('video');
-            
-            if (format === 'portrait') {
-                container.classList.add('max-w-[400px]', 'mx-auto');
-                video.classList.replace('object-contain', 'object-cover');
-                video.classList.replace('max-h-[80vh]', 'h-[80vh]');
-                video.style.transform = 'none';
-                video.dataset.rot = '0';
+        // ─── Build video card HTML ────────────────────────────────────────────
+        function buildFilmCard(film, index) {
+            // "Coming soon" placeholder if src ends with /
+            if (!film.src || film.src.endsWith('/')) {
+                return `
+                <div class="coming-soon-card">
+                    <i class="fas fa-film text-gray-700 text-4xl mb-4 block"></i>
+                    <h3 class="text-xl font-serif italic text-gray-400 mb-2">${film.title}</h3>
+                    <p class="text-gray-600 text-xs uppercase tracking-widest">${film.location}</p>
+                    <span class="mt-4 inline-block text-[9px] border border-white/10 px-4 py-1 rounded-full uppercase tracking-widest text-gray-600">${film.tag}</span>
+                </div>`;
+            }
+
+            return `
+            <div class="video-card" id="card-${index}">
+                <div class="video-container" id="vc-${index}">
+                    <!-- Orientation toolbar -->
+                    <div class="orient-toolbar">
+                        <button class="orient-btn active" id="btn-land-${index}"
+                                onclick="setMode(${index},'landscape')"
+                                title="Landscape">
+                            <i class="fas fa-desktop"></i> Wide
+                        </button>
+                        <button class="orient-btn" id="btn-port-${index}"
+                                onclick="setMode(${index},'portrait')"
+                                title="Portrait">
+                            <i class="fas fa-mobile-alt"></i> Portrait
+                        </button>
+                        <button class="orient-btn" id="btn-rot-${index}"
+                                onclick="rotateVideo(${index})"
+                                title="Rotate 90°">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+
+                    <video id="vid-${index}"
+                           controls
+                           preload="none"
+                           playsinline
+                           poster="${film.poster || ''}"
+                           data-rot="0"
+                           style="max-height:80vh; object-fit:contain;">
+                        <source src="${film.src}" type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                </div>
+
+                <!-- Card footer -->
+                <div class="flex justify-between items-end mt-5 px-1">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-serif italic">${film.title}</h3>
+                        <p class="text-xs opacity-40 uppercase tracking-widest mt-1">${film.location}</p>
+                    </div>
+                    <span class="text-[9px] border border-white/15 px-4 py-1 rounded-full uppercase tracking-widest shrink-0 ml-4">
+                        ${film.tag}
+                    </span>
+                </div>
+            </div>`;
+        }
+
+        // ─── Render a section ─────────────────────────────────────────────────
+        function renderSection(containerId, films, offset) {
+            const el = document.getElementById(containerId);
+            if (!films || films.length === 0) {
+                el.innerHTML = '<p class="text-gray-600 text-sm italic">No films yet.</p>';
+                return;
+            }
+            el.innerHTML = films.map((f, i) => buildFilmCard(f, offset + i)).join('');
+
+            // After DOM is ready, auto-detect orientation for each real video
+            films.forEach((f, i) => {
+                if (!f.src || f.src.endsWith('/')) return;
+                const vid = document.getElementById(`vid-${offset + i}`);
+                if (vid) {
+                    vid.addEventListener('loadedmetadata', () => {
+                        autoDetectOrientation(offset + i);
+                    });
+                }
+            });
+        }
+
+        // ─── Auto orientation detection ───────────────────────────────────────
+        function autoDetectOrientation(index) {
+            const vid = document.getElementById(`vid-${index}`);
+            if (!vid || !vid.videoWidth) return;
+            const isPortrait = vid.videoHeight > vid.videoWidth;
+            setMode(index, isPortrait ? 'portrait' : 'landscape', /* auto */ true);
+        }
+
+        // ─── Manual orientation control ───────────────────────────────────────
+        function setMode(index, mode, auto = false) {
+            const vc  = document.getElementById(`vc-${index}`);
+            const vid = document.getElementById(`vid-${index}`);
+            const btnL = document.getElementById(`btn-land-${index}`);
+            const btnP = document.getElementById(`btn-port-${index}`);
+            if (!vc || !vid) return;
+
+            // Reset rotation
+            vid.style.transform = 'none';
+            vid.dataset.rot = '0';
+
+            if (mode === 'portrait') {
+                vc.classList.add('is-portrait');
+                vid.style.maxHeight = '80vh';
+                vid.style.objectFit = 'contain';
+                if (btnL) btnL.classList.remove('active');
+                if (btnP) btnP.classList.add('active');
             } else {
-                container.classList.remove('max-w-[400px]', 'mx-auto');
-                video.classList.replace('object-cover', 'object-contain');
-                video.classList.replace('h-[80vh]', 'max-h-[80vh]');
-                video.style.transform = 'none';
-                video.dataset.rot = '0';
+                vc.classList.remove('is-portrait');
+                vid.style.maxHeight = '80vh';
+                vid.style.objectFit = 'contain';
+                if (btnP) btnP.classList.remove('active');
+                if (btnL) btnL.classList.add('active');
             }
         }
 
-        function rotateVideo(btn) {
-            const video = btn.closest('.video-container').querySelector('video');
-            let deg = parseInt(video.dataset.rot || '0') + 90;
-            if (deg >= 360) deg = 0;
-            video.dataset.rot = deg;
-            
-            // Adjust scale slightly when rotated vertically in a horizontal box, to prevent heavy cropping
-            let scale = (deg === 90 || deg === 270) ? 'scale(0.6)' : 'scale(1)';
-            video.style.transform = `rotate(${deg}deg) ${scale}`;
+        // ─── Rotate button ────────────────────────────────────────────────────
+        function rotateVideo(index) {
+            const vid = document.getElementById(`vid-${index}`);
+            if (!vid) return;
+            let deg = (parseInt(vid.dataset.rot || '0') + 90) % 360;
+            vid.dataset.rot = deg;
+            const scale = (deg === 90 || deg === 270) ? 'scale(0.56)' : 'scale(1)';
+            vid.style.transform = `rotate(${deg}deg) ${scale}`;
         }
+
+        // ─── Load content.json ────────────────────────────────────────────────
+        let filmIndex = 0;
+
+        fetch('content.json')
+            .then(r => r.json())
+            .then(data => {
+                const pre     = data.films['pre-wedding'] || [];
+                const wedding = data.films['wedding']     || [];
+                const bday    = data.films['birthdays']   || [];
+
+                renderSection('films-pre-wedding', pre,     filmIndex);  filmIndex += pre.length;
+                renderSection('films-wedding',     wedding, filmIndex);  filmIndex += wedding.length;
+                renderSection('films-birthdays',   bday,    filmIndex);
+            })
+            .catch(() => {
+                document.querySelectorAll('[id^="films-"]').forEach(el => {
+                    el.innerHTML = '<p class="text-red-500 text-sm">Could not load content.json.</p>';
+                });
+            });
     </script>
 </body>
 </html>
