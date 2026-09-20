@@ -1,45 +1,191 @@
 {
+  "business": {
+    "name": "Kumar Video & Photography",
+    "shortName": "Kumar Photography",
+    "tagline": "Luxury Indian Wedding Photography & Cinematography",
+    "founder": "Karan Kumar",
+    "founderRole": "Lead Photographer & Cinematographer",
+    "quote": "I believe that a wedding isn't just an event; it's a heritage. I personally oversee every shoot to ensure your memories are preserved with cinematic perfection.",
+    "phone": "+91 98765 43210",
+    "whatsappNumber": "919876543210",
+    "whatsappMessage": "Hi Kumar Video & Photography, I would like to inquire about wedding photography and cinematography packages.",
+    "email": "contact@kumarphotography.in",
+    "locations": "Bengaluru | Hyderabad | Destination Weddings Across India",
+    "weddingsCount": "100+",
+    "instagram": "https://instagram.com",
+    "linkedin": "https://linkedin.com"
+  },
+  "categories": [
+    { "id": "pre-wedding", "name": "Pre-Wedding", "subtitle": "The Prelude to Forever" },
+    { "id": "wedding",     "name": "Wedding",     "subtitle": "Pledges & Sacred Traditions" },
+    { "id": "birthdays",   "name": "Birthdays",   "subtitle": "Joyful Milestones & Celebrations" }
+  ],
   "gallery": {
     "pre-wedding": [
-      { "src": "gallery/pre-wedding/sangeet-01.webp", "caption": "The Royal Sangeet" },
-      { "src": "gallery/pre-wedding/candid-01.webp",  "caption": "Candid Moments" }
+      {
+        "id": "pw-01",
+        "couple": "Vikram & Ananya",
+        "title": "The Royal Sangeet",
+        "caption": "The Royal Sangeet",
+        "eventType": "Pre-Wedding Celebration",
+        "location": "Udaipur, Rajasthan",
+        "year": "2025",
+        "src": "gallery/pre-wedding/sangeet-01.webp",
+        "aspect": "4/5",
+        "tags": ["Pre-Wedding", "Sangeet", "Royal"],
+        "featured": true,
+        "order": 1,
+        "published": true
+      },
+      {
+        "id": "pw-02",
+        "couple": "Rohit & Meera",
+        "title": "Candid Moments",
+        "caption": "Candid Moments",
+        "eventType": "Couple Portraits",
+        "location": "Bengaluru",
+        "year": "2025",
+        "src": "gallery/pre-wedding/candid-01.webp",
+        "aspect": "3/2",
+        "tags": ["Pre-Wedding", "Candid", "Golden Hour"],
+        "featured": true,
+        "order": 2,
+        "published": true
+      }
     ],
     "wedding": [
-      { "src": "gallery/wedding/vows-01.webp",       "caption": "The Wedding Vows" },
-      { "src": "gallery/wedding/moments-01.webp",    "caption": "Wedding Moments" },
-      { "src": "gallery/wedding/bridal-01.webp",     "caption": "Bridal Bliss" },
-      { "src": "gallery/wedding/reception-01.webp",  "caption": "The Grand Reception" }
+      {
+        "id": "wed-01",
+        "couple": "Aditya & Anjali",
+        "title": "The Wedding Vows",
+        "caption": "The Wedding Vows",
+        "eventType": "Pheras Ceremony",
+        "location": "Leela Palace, Bengaluru",
+        "year": "2025",
+        "src": "gallery/wedding/vows-01.webp",
+        "aspect": "3/2",
+        "tags": ["Wedding", "Rituals", "Pheras"],
+        "featured": true,
+        "order": 1,
+        "published": true
+      },
+      {
+        "id": "wed-02",
+        "couple": "Aditya & Anjali",
+        "title": "Wedding Moments",
+        "caption": "Wedding Moments",
+        "eventType": "Candid Vidaai",
+        "location": "Leela Palace, Bengaluru",
+        "year": "2025",
+        "src": "gallery/wedding/moments-01.webp",
+        "aspect": "3/2",
+        "tags": ["Wedding", "Emotional", "Vidaai"],
+        "featured": true,
+        "order": 2,
+        "published": true
+      },
+      {
+        "id": "wed-03",
+        "couple": "Ananya Sharma",
+        "title": "Bridal Bliss",
+        "caption": "Bridal Bliss",
+        "eventType": "Bridal Portrait",
+        "location": "Hyderabad",
+        "year": "2025",
+        "src": "gallery/wedding/bridal-01.webp",
+        "aspect": "4/5",
+        "tags": ["Wedding", "Bridal", "Jewellery"],
+        "featured": true,
+        "order": 3,
+        "published": true
+      },
+      {
+        "id": "wed-04",
+        "couple": "Karan & Simran",
+        "title": "The Grand Reception",
+        "caption": "The Grand Reception",
+        "eventType": "Grand Reception",
+        "location": "Taj West End, Bengaluru",
+        "year": "2025",
+        "src": "gallery/wedding/reception-01.webp",
+        "aspect": "16/9",
+        "tags": ["Wedding", "Reception", "Luxury"],
+        "featured": true,
+        "order": 4,
+        "published": true
+      }
     ],
     "birthdays": [
-      { "src": "gallery/birthdays/celebration-01.webp", "caption": "Festive Celebrations" }
+      {
+        "id": "bday-01",
+        "couple": "Aarav's 1st Birthday",
+        "title": "Festive Celebrations",
+        "caption": "Festive Celebrations",
+        "eventType": "Milestone Birthday",
+        "location": "Bengaluru",
+        "year": "2025",
+        "src": "gallery/birthdays/celebration-01.webp",
+        "aspect": "3/2",
+        "tags": ["Birthday", "Milestone", "Family"],
+        "featured": true,
+        "order": 1,
+        "published": true
+      }
     ]
   },
   "films": {
     "pre-wedding": [
       {
-        "src":      "videos/pre-wedding/",
-        "poster":   "gallery/pre-wedding/sangeet-01.webp",
-        "title":    "Add your pre-wedding film here",
-        "location": "Drop a .mp4 into videos/pre-wedding/ and update this file",
-        "tag":      "Coming Soon"
+        "id": "film-pw-01",
+        "couple": "Kabir & Tara",
+        "title": "A Tuscan Romance in Udaipur",
+        "eventType": "Pre-Wedding Cinema",
+        "location": "Oberoi Udaivilas, Udaipur",
+        "year": "2025",
+        "src": "videos/pre-wedding/",
+        "poster": "gallery/pre-wedding/sangeet-01.webp",
+        "tag": "Coming Soon",
+        "orientation": "landscape",
+        "aspectRatio": "16/9",
+        "featured": false,
+        "order": 1,
+        "published": true
       }
     ],
     "wedding": [
       {
-        "src":      "videos/wedding/reel-01.mp4",
-        "poster":   "gallery/wedding/reception-01.webp",
-        "title":    "Aditya & Anjali",
+        "id": "film-wed-01",
+        "couple": "Aditya & Anjali",
+        "title": "The Summer Palace Wedding",
+        "eventType": "Wedding Highlight Film",
         "location": "Leela Palace, Bengaluru",
-        "tag":      "Highlight Reel"
+        "year": "2024",
+        "src": "videos/wedding/reel-01.mp4",
+        "poster": "gallery/wedding/reception-01.webp",
+        "tag": "Highlight Reel",
+        "orientation": "portrait",
+        "aspectRatio": "9/16",
+        "featured": true,
+        "order": 1,
+        "published": true
       }
     ],
     "birthdays": [
       {
-        "src":      "videos/birthdays/",
-        "poster":   "gallery/birthdays/celebration-01.webp",
-        "title":    "Add your birthday film here",
-        "location": "Drop a .mp4 into videos/birthdays/ and update this file",
-        "tag":      "Coming Soon"
+        "id": "film-bday-01",
+        "couple": "Aarav's 1st Birthday",
+        "title": "One Year of Joy",
+        "eventType": "Birthday Celebration Film",
+        "location": "Bengaluru",
+        "year": "2025",
+        "src": "videos/birthdays/",
+        "poster": "gallery/birthdays/celebration-01.webp",
+        "tag": "Coming Soon",
+        "orientation": "landscape",
+        "aspectRatio": "16/9",
+        "featured": false,
+        "order": 1,
+        "published": true
       }
     ]
   }

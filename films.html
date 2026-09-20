@@ -3,15 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Films | Capture Stories</title>
+    <title>Wedding Films & Cinematography | Kumar Video & Photography</title>
+    <meta name="description" content="Cinematic Indian wedding films, teasers, and highlight reels capturing authentic emotions, sacred rituals, and monumental celebrations across India.">
+    <meta name="keywords" content="wedding films, Indian wedding cinematographer, wedding highlight reel, cinematic wedding video, luxury wedding teaser">
+    <meta name="author" content="Kumar Video & Photography">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://karan24122k.github.io/Wedding_website/films.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="video.other">
+    <meta property="og:url" content="https://karan24122k.github.io/Wedding_website/films.html">
+    <meta property="og:title" content="Wedding Films | Kumar Video & Photography">
+    <meta property="og:description" content="Cinematic wedding documentaries and emotional storytelling.">
+    <meta property="og:image" content="https://karan24122k.github.io/Wedding_website/gallery/wedding/reception-01.webp">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cinematography | Kumar Video & Photography">
+    <meta name="twitter:description" content="Cinematic wedding documentaries and emotional storytelling.">
+    <meta name="twitter:image" content="https://karan24122k.github.io/Wedding_website/gallery/wedding/reception-01.webp">
+
+    <!-- Stylesheets & CDNs -->
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGallery",
+      "name": "Kumar Video & Photography Wedding Films",
+      "description": "Portfolio of cinematic Indian wedding films and teasers.",
+      "provider": {
+        "@type": "PhotographyBusiness",
+        "name": "Kumar Video & Photography"
+      }
+    }
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
         body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: white; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-        /* ── Video card ─────────────────────────────────────────── */
+        /* Video card wrapper */
         .video-card { position: relative; }
 
         .video-container {
@@ -19,31 +58,31 @@
             background: #111;
             border-radius: 1.25rem;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            transition: all 0.5s ease;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Auto-size: video element dictates height */
         .video-container video {
             display: block;
             width: 100%;
             background: #000;
+            max-height: 80vh;
+            object-fit: contain;
+            transition: transform 0.4s ease;
         }
 
-        /* Portrait mode: centered narrow column */
+        /* Portrait Reels: Centered narrow column */
         .video-container.is-portrait {
-            max-width: 360px;
+            max-width: 380px;
             margin: 0 auto;
         }
 
-        /* Orientation control toolbar */
+        /* Orientation toolbar */
         .orient-toolbar {
             position: absolute;
-            top: 12px; right: 12px;
+            top: 14px; right: 14px;
             display: flex; gap: 6px;
-            z-index: 10;
-            opacity: 1;
-            transition: opacity 0.3s;
+            z-index: 20;
         }
         .orient-btn {
             padding: 5px 10px;
@@ -52,47 +91,84 @@
             text-transform: uppercase;
             border-radius: 6px;
             border: 1px solid rgba(255,255,255,0.25);
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.65);
             color: white;
             cursor: pointer;
-            backdrop-filter: blur(6px);
-            transition: background 0.2s;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
         }
-        .orient-btn:hover { background: rgba(255,255,255,0.15); }
-        .orient-btn.active { border-color: #f97316; color: #f97316; }
+        .orient-btn:hover { background: rgba(255,255,255,0.2); }
+        .orient-btn.active { border-color: #ea580c; color: #f97316; background: rgba(234, 88, 12, 0.15); }
+
+        /* Custom Play Overlay */
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 15;
+            transition: opacity 0.3s ease;
+        }
+        .play-overlay.hidden { display: none; }
+        .play-button-icon {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: rgba(234, 88, 12, 0.9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            padding-left: 4px;
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.5);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .play-overlay:hover .play-button-icon {
+            transform: scale(1.1);
+            background: #f97316;
+        }
 
         /* Coming-soon placeholder */
         .coming-soon-card {
-            border: 1px dashed rgba(255,255,255,0.15);
+            border: 1px dashed rgba(255,255,255,0.18);
             border-radius: 1.25rem;
             padding: 48px 24px;
             text-align: center;
+            background: rgba(255,255,255,0.02);
         }
 
         /* Fullscreen fix */
-        video:fullscreen      { width: 100%; height: 100%; }
+        video:fullscreen { width: 100%; height: 100%; }
         video:-webkit-full-screen { width: 100%; height: 100%; }
     </style>
 </head>
-<body>
+<body class="bg-[#0a0a0a] text-white">
 
     <nav class="p-4 md:p-6 flex justify-between items-center border-b border-white/10 bg-black/80 backdrop-blur-md sticky top-0 z-50">
         <a href="index.html" class="flex items-center space-x-2 font-bold tracking-tighter uppercase text-sm">
-            <img src="Images/Kumar.png" alt="Logo" class="h-8 w-auto object-contain">
-            <span class="hidden sm:inline">← Back to Home</span>
-            <span class="sm:hidden">← Home</span>
+            <img src="Images/Kumar.png" alt="Logo" class="h-8 sm:h-9 w-auto object-contain">
+            <span>Kumar Video <span class="text-orange-500 font-light">& Photography</span></span>
         </a>
-        <span class="text-xs tracking-[0.3em] uppercase opacity-40 font-bold">Cinematography</span>
+        <div class="flex items-center space-x-6 text-xs uppercase tracking-widest">
+            <a href="index.html" class="hover:text-orange-500 transition hidden sm:inline-block">Home</a>
+            <a href="gallery.html" class="hover:text-orange-500 transition">Gallery</a>
+            <a href="index.html#contact" class="bg-orange-600 text-white px-5 py-2 rounded-full font-bold hover:bg-white hover:text-black transition">Inquire</a>
+        </div>
     </nav>
 
     <header class="py-20 md:py-24 px-6 text-center">
+        <span class="text-xs tracking-[0.4em] uppercase text-orange-500 font-bold block mb-2">Cinematography</span>
         <h1 class="text-5xl md:text-7xl mb-4 italic font-light">Motion Pictures</h1>
-        <p class="text-orange-500 uppercase tracking-[0.4em] text-[10px]">Documentary &amp; Cinematic Style</p>
+        <p class="text-gray-400 uppercase tracking-[0.3em] text-[11px] max-w-md mx-auto">Documentary &amp; Cinematic Wedding Films Preserving Heritage and Emotion</p>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 md:px-6 pb-20 space-y-24">
+    <main class="max-w-5xl mx-auto px-4 md:px-6 pb-24 space-y-24">
 
-        <!-- Section Navigation -->
+        <!-- Category Navigation -->
         <div class="flex flex-wrap justify-center gap-6 border-b border-white/10 pb-6 text-xs uppercase tracking-[0.2em] font-bold text-gray-500 sticky top-16 bg-[#0a0a0a]/95 backdrop-blur-md z-40 pt-4">
             <a href="#pre-wedding" class="hover:text-orange-500 transition">Pre-Wedding</a>
             <a href="#wedding"     class="hover:text-orange-500 transition">Wedding</a>
@@ -103,10 +179,10 @@
         <section id="pre-wedding" class="scroll-mt-36 space-y-8">
             <div class="border-l-4 border-orange-500 pl-4">
                 <h2 class="text-3xl md:text-4xl font-serif mb-1">Pre-Wedding Films</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">The Prelude to Forever</p>
+                <p class="text-gray-400 uppercase tracking-widest text-xs">The Prelude to Forever</p>
             </div>
             <div id="films-pre-wedding" class="space-y-16">
-                <p class="text-gray-600 text-sm italic">Loading…</p>
+                <!-- Dynamically rendered -->
             </div>
         </section>
 
@@ -114,64 +190,85 @@
         <section id="wedding" class="scroll-mt-36 space-y-8">
             <div class="border-l-4 border-orange-500 pl-4">
                 <h2 class="text-3xl md:text-4xl font-serif mb-1">Wedding Films</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">Pledges &amp; Traditions</p>
+                <p class="text-gray-400 uppercase tracking-widest text-xs">Pledges &amp; Sacred Traditions</p>
             </div>
             <div id="films-wedding" class="space-y-16">
-                <p class="text-gray-600 text-sm italic">Loading…</p>
+                <!-- Dynamically rendered -->
             </div>
         </section>
 
         <!-- Birthday Films -->
         <section id="birthdays" class="scroll-mt-36 space-y-8">
             <div class="border-l-4 border-orange-500 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-1">Birthdays</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">Joyful Milestones</p>
+                <h2 class="text-3xl md:text-4xl font-serif mb-1">Birthdays &amp; Milestones</h2>
+                <p class="text-gray-400 uppercase tracking-widest text-xs">Joyful Milestones &amp; Celebrations</p>
             </div>
             <div id="films-birthdays" class="space-y-16">
-                <p class="text-gray-600 text-sm italic">Loading…</p>
+                <!-- Dynamically rendered -->
             </div>
         </section>
 
     </main>
 
-    <footer class="py-10 text-center text-gray-600 text-[10px] tracking-[0.3em] uppercase">
-        &copy; 2025 Capture Stories | Preserving Eternal Bonds
+    <!-- Inquiry CTA Banner -->
+    <section class="bg-[#121212] py-16 px-6 text-center border-t border-white/10">
+        <h3 class="text-2xl md:text-3xl font-serif mb-3">Commission Your Wedding Film</h3>
+        <p class="text-gray-400 text-xs uppercase tracking-widest max-w-md mx-auto mb-6">Each film is custom-graded, orchestrated, and edited personally by the founder.</p>
+        <a href="index.html#contact" class="inline-block bg-orange-600 text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition shadow-lg">
+            Inquire for Packages
+        </a>
+    </section>
+
+    <footer class="py-10 text-center text-gray-500 text-[10px] tracking-[0.3em] uppercase">
+        &copy; <span id="current-year">2026</span> Kumar Video &amp; Photography | Preserving Eternal Bonds
     </footer>
 
+    <!-- Core Utilities & Fallback Data -->
+    <script src="site.js"></script>
+
     <script>
-        // ─── Build video card HTML ────────────────────────────────────────────
         function buildFilmCard(film, index) {
-            // "Coming soon" placeholder if src ends with /
+            // Placeholder card for empty/coming-soon items
             if (!film.src || film.src.endsWith('/')) {
                 return `
                 <div class="coming-soon-card">
-                    <i class="fas fa-film text-gray-700 text-4xl mb-4 block"></i>
-                    <h3 class="text-xl font-serif italic text-gray-400 mb-2">${film.title}</h3>
-                    <p class="text-gray-600 text-xs uppercase tracking-widest">${film.location}</p>
-                    <span class="mt-4 inline-block text-[9px] border border-white/10 px-4 py-1 rounded-full uppercase tracking-widest text-gray-600">${film.tag}</span>
+                    <i class="fas fa-film text-orange-500/60 text-4xl mb-4 block"></i>
+                    <h3 class="text-xl font-serif italic text-gray-200 mb-2">${film.title}</h3>
+                    <p class="text-gray-400 text-xs uppercase tracking-widest">${film.location || 'Location upon release'}</p>
+                    <span class="mt-4 inline-block text-[9px] border border-orange-500/30 text-orange-400 px-4 py-1 rounded-full uppercase tracking-widest">${film.tag || 'Coming Soon'}</span>
                 </div>`;
             }
 
+            const isPortrait = film.orientation === 'portrait';
+            const portraitClass = isPortrait ? 'is-portrait' : '';
+
             return `
             <div class="video-card" id="card-${index}">
-                <div class="video-container" id="vc-${index}">
-                    <!-- Orientation toolbar -->
+                <div class="video-container ${portraitClass}" id="vc-${index}">
+                    <!-- Controls Toolbar -->
                     <div class="orient-toolbar">
-                        <button class="orient-btn active" id="btn-land-${index}"
-                                onclick="setMode(${index},'landscape')"
-                                title="Landscape">
-                            <i class="fas fa-desktop"></i> Wide
+                        <button class="orient-btn ${!isPortrait ? 'active' : ''}" id="btn-land-${index}"
+                                onclick="setMode(${index}, 'landscape')"
+                                title="Cinematic Wide View">
+                            <i class="fas fa-desktop mr-1"></i> Wide
                         </button>
-                        <button class="orient-btn" id="btn-port-${index}"
-                                onclick="setMode(${index},'portrait')"
-                                title="Portrait">
-                            <i class="fas fa-mobile-alt"></i> Portrait
+                        <button class="orient-btn ${isPortrait ? 'active' : ''}" id="btn-port-${index}"
+                                onclick="setMode(${index}, 'portrait')"
+                                title="Vertical Reel Format">
+                            <i class="fas fa-mobile-alt mr-1"></i> Reel
                         </button>
                         <button class="orient-btn" id="btn-rot-${index}"
                                 onclick="rotateVideo(${index})"
-                                title="Rotate 90°">
+                                title="Rotate 90 Degrees">
                             <i class="fas fa-sync-alt"></i>
                         </button>
+                    </div>
+
+                    <!-- Custom Play Button Overlay -->
+                    <div class="play-overlay" id="play-overlay-${index}" onclick="playVideo(${index})">
+                        <div class="play-button-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
                     </div>
 
                     <video id="vid-${index}"
@@ -180,110 +277,94 @@
                            playsinline
                            poster="${film.poster || ''}"
                            data-rot="0"
-                           style="max-height:80vh; object-fit:contain;">
+                           class="protect-media"
+                           onplay="handleVideoPlay(${index})">
                         <source src="${film.src}" type="video/mp4">
                         Your browser does not support video playback.
                     </video>
                 </div>
 
-                <!-- Card footer -->
-                <div class="flex justify-between items-end mt-5 px-1">
+                <!-- Video Details -->
+                <div class="flex justify-between items-end mt-5 px-1 max-w-full">
                     <div>
                         <h3 class="text-xl md:text-2xl font-serif italic">${film.title}</h3>
-                        <p class="text-xs opacity-40 uppercase tracking-widest mt-1">${film.location}</p>
+                        <p class="text-xs opacity-50 uppercase tracking-widest mt-1">${film.location || ''} ${film.year ? `• ${film.year}` : ''}</p>
                     </div>
-                    <span class="text-[9px] border border-white/15 px-4 py-1 rounded-full uppercase tracking-widest shrink-0 ml-4">
-                        ${film.tag}
+                    <span class="text-[9px] border border-white/20 text-orange-400 px-4 py-1 rounded-full uppercase tracking-widest shrink-0 ml-4">
+                        ${film.tag || 'Film'}
                     </span>
                 </div>
             </div>`;
         }
 
-        // ─── Render a section ─────────────────────────────────────────────────
-        function renderSection(containerId, films, offset) {
-            const el = document.getElementById(containerId);
-            if (!films || films.length === 0) {
-                el.innerHTML = '<p class="text-gray-600 text-sm italic">No films yet.</p>';
-                return;
-            }
-            el.innerHTML = films.map((f, i) => buildFilmCard(f, offset + i)).join('');
-
-            // After DOM is ready, auto-detect orientation for each real video
-            films.forEach((f, i) => {
-                if (!f.src || f.src.endsWith('/')) return;
-                const vid = document.getElementById(`vid-${offset + i}`);
-                if (vid) {
-                    vid.addEventListener('loadedmetadata', () => {
-                        autoDetectOrientation(offset + i);
-                    });
-                }
-            });
-        }
-
-        // ─── Auto orientation detection ───────────────────────────────────────
-        function autoDetectOrientation(index) {
+        function playVideo(index) {
             const vid = document.getElementById(`vid-${index}`);
-            if (!vid || !vid.videoWidth) return;
-            const isPortrait = vid.videoHeight > vid.videoWidth;
-            setMode(index, isPortrait ? 'portrait' : 'landscape', /* auto */ true);
+            const overlay = document.getElementById(`play-overlay-${index}`);
+            if (vid) {
+                vid.play();
+                if (overlay) overlay.classList.add('hidden');
+            }
         }
 
-        // ─── Manual orientation control ───────────────────────────────────────
-        function setMode(index, mode, auto = false) {
-            const vc  = document.getElementById(`vc-${index}`);
+        function handleVideoPlay(index) {
+            const overlay = document.getElementById(`play-overlay-${index}`);
+            if (overlay) overlay.classList.add('hidden');
+        }
+
+        function setMode(index, mode) {
+            const vc = document.getElementById(`vc-${index}`);
             const vid = document.getElementById(`vid-${index}`);
             const btnL = document.getElementById(`btn-land-${index}`);
             const btnP = document.getElementById(`btn-port-${index}`);
             if (!vc || !vid) return;
 
-            // Reset rotation
             vid.style.transform = 'none';
             vid.dataset.rot = '0';
 
             if (mode === 'portrait') {
                 vc.classList.add('is-portrait');
-                vid.style.maxHeight = '80vh';
-                vid.style.objectFit = 'contain';
                 if (btnL) btnL.classList.remove('active');
                 if (btnP) btnP.classList.add('active');
             } else {
                 vc.classList.remove('is-portrait');
-                vid.style.maxHeight = '80vh';
-                vid.style.objectFit = 'contain';
                 if (btnP) btnP.classList.remove('active');
                 if (btnL) btnL.classList.add('active');
             }
         }
 
-        // ─── Rotate button ────────────────────────────────────────────────────
         function rotateVideo(index) {
             const vid = document.getElementById(`vid-${index}`);
             if (!vid) return;
             let deg = (parseInt(vid.dataset.rot || '0') + 90) % 360;
             vid.dataset.rot = deg;
-            const scale = (deg === 90 || deg === 270) ? 'scale(0.56)' : 'scale(1)';
+            const scale = (deg === 90 || deg === 270) ? 'scale(0.6)' : 'scale(1)';
             vid.style.transform = `rotate(${deg}deg) ${scale}`;
         }
 
-        // ─── Load content.json ────────────────────────────────────────────────
-        let filmIndex = 0;
+        function renderFilms(containerId, films, offset) {
+            const el = document.getElementById(containerId);
+            if (!el) return;
+            if (!films || films.length === 0) {
+                el.innerHTML = '<p class="text-gray-500 text-sm italic">No films currently published in this section.</p>';
+                return;
+            }
+            el.innerHTML = films.map((f, i) => buildFilmCard(f, offset + i)).join('');
+        }
 
-        fetch('content.json')
-            .then(r => r.json())
-            .then(data => {
-                const pre     = data.films['pre-wedding'] || [];
-                const wedding = data.films['wedding']     || [];
-                const bday    = data.films['birthdays']   || [];
+        // Initialize films with universal content loader
+        loadSiteContent().then((data) => {
+            const filmsData = data.films || {};
+            const pre = (filmsData['pre-wedding'] || []).filter(f => f.published !== false);
+            const wedding = (filmsData['wedding'] || []).filter(f => f.published !== false);
+            const birthdays = (filmsData['birthdays'] || []).filter(f => f.published !== false);
 
-                renderSection('films-pre-wedding', pre,     filmIndex);  filmIndex += pre.length;
-                renderSection('films-wedding',     wedding, filmIndex);  filmIndex += wedding.length;
-                renderSection('films-birthdays',   bday,    filmIndex);
-            })
-            .catch(() => {
-                document.querySelectorAll('[id^="films-"]').forEach(el => {
-                    el.innerHTML = '<p class="text-red-500 text-sm">Could not load content.json.</p>';
-                });
-            });
+            let offset = 0;
+            renderFilms('films-pre-wedding', pre, offset);
+            offset += pre.length;
+            renderFilms('films-wedding', wedding, offset);
+            offset += wedding.length;
+            renderFilms('films-birthdays', birthdays, offset);
+        });
     </script>
 </body>
 </html>
