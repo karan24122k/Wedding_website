@@ -66,15 +66,15 @@
         #lightbox.open { display: flex; }
         #lightbox-image-wrap {
             position: relative;
-            max-width: 92vw;
-            max-height: 84vh;
+            max-width: 96vw;
+            max-height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         #lightbox img {
-            max-width: 90vw;
-            max-height: 80vh;
+            max-width: 94vw;
+            max-height: 74vh;
             object-fit: contain;
             border-radius: 8px;
             user-select: none;
@@ -83,34 +83,46 @@
         }
         .lb-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white; width: 46px; height: 46px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: white; width: 44px; height: 44px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: all 0.2s ease;
             backdrop-filter: blur(4px);
+            z-index: 20;
         }
-        .lb-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-50%) scale(1.08); }
+        .lb-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-50%) scale(1.08); }
         #lb-prev { left: 16px; }
         #lb-next { right: 16px; }
         #lb-close {
             position: absolute; top: 16px; right: 16px;
-            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
-            color: white; width: 42px; height: 42px;
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+            color: white; width: 44px; height: 44px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-size: 1.1rem; transition: background 0.2s;
+            cursor: pointer; font-size: 1.15rem; transition: background 0.2s;
+            z-index: 25;
         }
-        #lb-close:hover { background: rgba(255,255,255,0.28); }
+        #lb-close:hover { background: rgba(255,255,255,0.3); }
         #lb-info {
-            position: absolute; bottom: 16px; left: 0; right: 0;
+            position: absolute; bottom: 14px; left: 0; right: 0;
             text-align: center; color: rgba(255,255,255,0.85);
-            font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
-            padding: 0 20px;
+            font-size: 11px; sm:font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+            padding: 0 16px;
         }
         #lb-counter {
             position: absolute; top: 20px; left: 20px;
             color: rgba(255,255,255,0.5); font-size: 11px; letter-spacing: 0.15em;
             text-transform: uppercase;
+        }
+        @media (max-width: 640px) {
+            .lb-btn {
+                background: rgba(0,0,0,0.5);
+                width: 36px; height: 36px;
+                font-size: 12px;
+            }
+            #lb-prev { left: 8px; }
+            #lb-next { right: 8px; }
+            #lb-close { top: 12px; right: 12px; width: 40px; height: 40px; }
         }
     </style>
 </head>
@@ -146,31 +158,31 @@
         </div>
     </nav>
 
-    <header class="pt-32 pb-16 md:py-24 px-6 text-center">
+    <header class="pt-28 pb-10 md:pt-32 md:pb-24 px-4 md:px-6 text-center">
         <span class="text-xs tracking-[0.3em] uppercase text-orange-700 font-bold block mb-2">Portfolio</span>
-        <h1 class="text-5xl md:text-7xl mb-4">The <span class="italic">Anthology</span></h1>
-        <p class="text-gray-500 uppercase tracking-widest text-xs max-w-xl mx-auto">Curated moments of sacred traditions, candid emotions, and royal celebrations across India</p>
+        <h1 class="text-4xl sm:text-5xl md:text-7xl mb-3 md:mb-4">The <span class="italic">Anthology</span></h1>
+        <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs max-w-xl mx-auto">Curated moments of sacred traditions, candid emotions, and royal celebrations across India</p>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 md:px-6 pb-24 space-y-24">
+    <main class="max-w-7xl mx-auto px-4 md:px-6 pb-24 space-y-16 md:space-y-24">
 
         <!-- Category Filter Tabs -->
-        <div id="category-nav" class="sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 py-4 border-b border-stone-200">
-            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs uppercase tracking-[0.15em] font-semibold max-w-3xl mx-auto px-2">
+        <div id="category-nav" class="sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 py-3 md:py-4 border-b border-stone-200">
+            <div class="overflow-x-auto no-scrollbar flex sm:flex-wrap justify-start sm:justify-center items-center gap-2 sm:gap-3 text-xs uppercase tracking-[0.12em] md:tracking-[0.15em] font-semibold max-w-3xl mx-auto px-4">
                 <button type="button" onclick="selectCategory('all')" id="tab-all"
-                        class="category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold">
+                        class="category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold">
                     All Collections
                 </button>
                 <button type="button" onclick="selectCategory('pre-wedding')" id="tab-pre-wedding"
-                        class="category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                        class="category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
                     Pre-Wedding
                 </button>
                 <button type="button" onclick="selectCategory('wedding')" id="tab-wedding"
-                        class="category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                        class="category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
                     Wedding
                 </button>
                 <button type="button" onclick="selectCategory('birthdays')" id="tab-birthdays"
-                        class="category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                        class="category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
                     Birthdays
                 </button>
             </div>
@@ -178,33 +190,33 @@
 
         <!-- Pre-Wedding Section -->
         <section id="pre-wedding" class="scroll-mt-36">
-            <div class="mb-10 border-l-4 border-orange-700 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-2">Pre-Wedding Photoshoot</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">The Prelude to Forever</p>
+            <div class="mb-8 md:mb-10 border-l-4 border-orange-700 pl-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 md:mb-2">Pre-Wedding Photoshoot</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">The Prelude to Forever</p>
             </div>
-            <div id="grid-pre-wedding" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            <div id="grid-pre-wedding" class="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
                 <!-- Dynamically rendered -->
             </div>
         </section>
 
         <!-- Wedding Section -->
         <section id="wedding" class="scroll-mt-36">
-            <div class="mb-10 border-l-4 border-orange-700 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-2">Wedding Photoshoot</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">Pledges &amp; Sacred Traditions</p>
+            <div class="mb-8 md:mb-10 border-l-4 border-orange-700 pl-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 md:mb-2">Wedding Photoshoot</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">Pledges &amp; Sacred Traditions</p>
             </div>
-            <div id="grid-wedding" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            <div id="grid-wedding" class="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
                 <!-- Dynamically rendered -->
             </div>
         </section>
 
         <!-- Birthdays Section -->
         <section id="birthdays" class="scroll-mt-36">
-            <div class="mb-10 border-l-4 border-orange-700 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-2">Birthdays &amp; Milestones</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">Joyful Milestones</p>
+            <div class="mb-8 md:mb-10 border-l-4 border-orange-700 pl-4">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 md:mb-2">Birthdays &amp; Milestones</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">Joyful Milestones</p>
             </div>
-            <div id="grid-birthdays" class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+            <div id="grid-birthdays" class="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6">
                 <!-- Dynamically rendered -->
             </div>
         </section>
@@ -291,11 +303,11 @@
 
             // 1. Update Tab active styles
             document.querySelectorAll('.category-tab').forEach(btn => {
-                btn.className = 'category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200';
+                btn.className = 'category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200';
             });
             const activeBtn = document.getElementById(`tab-${catId}`);
             if (activeBtn) {
-                activeBtn.className = 'category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold';
+                activeBtn.className = 'category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold';
             }
 
             // 2. Show only the selected category section, hide others to prevent half-visible sections
@@ -346,12 +358,12 @@
             lbIndex = index;
             updateLightbox();
             document.getElementById('lightbox').classList.add('open');
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('lb-locked');
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('open');
-            document.body.style.overflow = '';
+            document.body.classList.remove('lb-locked');
         }
 
         function updateLightbox() {
@@ -414,14 +426,43 @@
         });
 
         // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            var menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileIcon = mobileBtn ? mobileBtn.querySelector('i') : null;
+
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+                if (mobileIcon) {
+                    const isOpen = !mobileMenu.classList.contains('hidden');
+                    mobileIcon.classList.toggle('fa-bars', !isOpen);
+                    mobileIcon.classList.toggle('fa-times', isOpen);
+                }
+            });
+        }
+        
         document.querySelectorAll('#mobile-menu a').forEach(function(link) {
             link.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.add('hidden');
+                if (mobileMenu) mobileMenu.classList.add('hidden');
+                if (mobileIcon) {
+                    mobileIcon.classList.remove('fa-times');
+                    mobileIcon.classList.add('fa-bars');
+                }
             });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                const nav = document.querySelector('nav');
+                if (nav && !nav.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    if (mobileIcon) {
+                        mobileIcon.classList.remove('fa-times');
+                        mobileIcon.classList.add('fa-bars');
+                    }
+                }
+            }
         });
 
         // Initialize content using universal loader (works on both http and file://)

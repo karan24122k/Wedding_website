@@ -116,33 +116,41 @@
         </div>
     </nav>
 
-    <section class="min-h-[100svh] flex items-center justify-center text-center hero-bg text-white px-6 pt-24 pb-16">
-        <div class="max-w-4xl">
-            <span class="uppercase tracking-[0.5em] text-xs md:text-sm mb-4 block opacity-80">Bengaluru | Hyderabad |
-                Destination</span>
-            <h1 class="text-4xl md:text-8xl mb-8 leading-tight">Every Wedding Has a <br><span
+    <section class="min-h-[100svh] flex items-center justify-center text-center hero-bg text-white px-4 sm:px-6 pt-24 pb-16">
+        <div class="max-w-4xl mx-auto">
+            <span class="uppercase tracking-[0.3em] sm:tracking-[0.5em] text-[10px] sm:text-xs md:text-sm mb-4 block opacity-80">Bengaluru | Hyderabad | Destination</span>
+            <h1 class="text-3xl sm:text-5xl md:text-8xl mb-8 leading-tight">Every Wedding Has a <br><span
                     class="italic font-light">Unique Soul</span></h1>
             <a href="gallery.html"
-                class="inline-block border border-white px-8 md:px-12 py-3 md:py-4 hover:bg-white hover:text-black transition uppercase font-bold tracking-widest text-[10px] md:text-xs shadow-lg">Explore
+                class="inline-block border border-white px-8 md:px-12 py-3.5 md:py-4 hover:bg-white hover:text-black transition uppercase font-bold tracking-widest text-[11px] md:text-xs shadow-lg rounded-full sm:rounded-none">Explore
                 the Gallery</a>
         </div>
     </section>
 
-    <section class="py-32 px-6 max-w-7xl mx-auto reveal" id="intro">
-        <div class="grid md:grid-cols-2 gap-20 items-center">
+    <section class="py-16 md:py-32 px-4 sm:px-6 max-w-7xl mx-auto reveal" id="intro">
+        <div class="grid md:grid-cols-2 gap-10 md:gap-20 items-center">
             <div class="relative group">
-                <img loading="lazy" src="gallery/pre-wedding/sangeet-01.webp" class="rounded-2xl shadow-2xl protect-media"
+                <img loading="lazy" src="gallery/pre-wedding/sangeet-01.webp" class="rounded-2xl shadow-2xl protect-media w-full"
                     alt="Wedding Couple Capture">
+                <!-- Desktop Floating Badge -->
                 <div class="absolute -bottom-6 -right-6 bg-orange-700 text-white p-8 rounded-2xl hidden md:block">
                     <p class="text-3xl font-serif italic">100+</p>
                     <p class="text-xs uppercase tracking-widest">Weddings Captured</p>
                 </div>
+                <!-- Mobile Compact Badge -->
+                <div class="md:hidden mt-4 bg-orange-50 border border-orange-200 text-orange-900 p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-2xl font-serif font-bold text-orange-700 italic">100+</span>
+                        <span class="text-[11px] uppercase tracking-widest ml-2 font-semibold text-stone-700">Weddings Captured</span>
+                    </div>
+                    <i class="fas fa-heart text-orange-700"></i>
+                </div>
             </div>
             <div>
-                <h2 class="text-4xl md:text-5xl mb-8">Crafting Cinematic <br>Family Legacies</h2>
-                <p class="text-gray-500 text-lg leading-relaxed mb-8">We don't just take pictures; we document emotions.
+                <h2 class="text-3xl md:text-5xl mb-6 md:mb-8">Crafting Cinematic <br class="hidden sm:inline">Family Legacies</h2>
+                <p class="text-gray-500 text-base md:text-lg leading-relaxed mb-6 md:mb-8">We don't just take pictures; we document emotions.
                     From the grand entry to the silent tears during the vidaai, our lens captures it all.</p>
-                <div class="flex space-x-4">
+                <div class="flex items-center space-x-4">
                     <a href="gallery.html"
                         class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1 uppercase tracking-widest text-xs">View
                         Pictures</a>
@@ -156,18 +164,18 @@
     </section>
 
     <!-- Featured Motion Picture Section -->
-    <section class="py-28 bg-[#faf8f5] border-y border-stone-200 text-gray-900 reveal" id="featured-films">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16">
+    <section class="py-16 md:py-28 bg-[#faf8f5] border-y border-stone-200 text-gray-900 reveal" id="featured-films">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-10 md:mb-16">
                 <span class="text-xs uppercase tracking-[0.4em] text-orange-700 font-bold block mb-3">Cinematography</span>
-                <h2 class="text-4xl md:text-5xl font-serif mb-4 text-gray-900">Motion Pictures That Live Forever</h2>
-                <p class="text-gray-500 text-base leading-relaxed">
+                <h2 class="text-3xl md:text-5xl font-serif mb-4 text-gray-900">Motion Pictures That Live Forever</h2>
+                <p class="text-gray-500 text-sm md:text-base leading-relaxed">
                     We direct intimate cinematic documentaries that preserve spoken vows, joyful tears, and monumental traditions with timeless brilliance.
                 </p>
             </div>
 
             <!-- Video Player Card In Cohesive White Luxury Theme -->
-            <div class="max-w-4xl mx-auto bg-white rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-stone-200">
                 <div class="relative aspect-video max-h-[70vh] bg-black flex items-center justify-center">
                     <video id="featured-wedding-reel"
                            controls
@@ -179,14 +187,14 @@
                         Your browser does not support video playback.
                     </video>
                 </div>
-                <div class="p-6 md:p-8 bg-white border-t border-stone-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div class="p-5 md:p-8 bg-white border-t border-stone-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
                         <span class="text-[10px] uppercase tracking-[0.25em] text-orange-700 font-bold">Featured Wedding Film</span>
-                        <h3 class="text-2xl font-serif text-gray-900 mt-1">Aditya &amp; Anjali</h3>
+                        <h3 class="text-xl md:text-2xl font-serif text-gray-900 mt-1">Aditya &amp; Anjali</h3>
                         <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">The Leela Palace, Bengaluru • 2024</p>
                     </div>
                     <a href="films.html"
-                       class="inline-block bg-orange-700 text-white px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-black transition shadow-md shrink-0">
+                       class="w-full sm:w-auto text-center inline-block bg-orange-700 text-white px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-black transition shadow-md shrink-0">
                         Explore All Films <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
@@ -194,16 +202,16 @@
         </div>
     </section>
 
-    <section id="contact" class="bg-stone-50 py-32 px-6">
+    <section id="contact" class="bg-stone-50 py-16 md:py-32 px-4 md:px-6">
         <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl mb-4">Let's Tell Your Story</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-sm">Personalized Experience with the Founder</p>
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl md:text-5xl mb-2 md:mb-4">Let's Tell Your Story</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs md:text-sm">Personalized Experience with the Founder</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-16 items-start">
-                <div class="bg-white p-10 rounded-3xl shadow-sm border border-stone-100 text-center">
-                    <div class="w-32 h-32 bg-stone-200 rounded-full mx-auto mb-6 overflow-hidden">
+            <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+                <div class="bg-white p-6 sm:p-10 rounded-2xl md:rounded-3xl shadow-sm border border-stone-100 text-center">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 bg-stone-200 rounded-full mx-auto mb-6 overflow-hidden">
                         <img loading="lazy" src="gallery/pre-wedding/sangeet-01.webp" alt="Karan Kumar Founder"
                             class="object-cover w-full h-full protect-media">
                     </div>
@@ -318,15 +326,43 @@
         window.addEventListener("scroll", reveal);
         reveal();
         
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            var menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileIcon = mobileBtn ? mobileBtn.querySelector('i') : null;
+
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+                if (mobileIcon) {
+                    const isOpen = !mobileMenu.classList.contains('hidden');
+                    mobileIcon.classList.toggle('fa-bars', !isOpen);
+                    mobileIcon.classList.toggle('fa-times', isOpen);
+                }
+            });
+        }
         
         document.querySelectorAll('#mobile-menu a').forEach(function(link) {
             link.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.add('hidden');
+                if (mobileMenu) mobileMenu.classList.add('hidden');
+                if (mobileIcon) {
+                    mobileIcon.classList.remove('fa-times');
+                    mobileIcon.classList.add('fa-bars');
+                }
             });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                const nav = document.querySelector('nav');
+                if (nav && !nav.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    if (mobileIcon) {
+                        mobileIcon.classList.remove('fa-times');
+                        mobileIcon.classList.add('fa-bars');
+                    }
+                }
+            }
         });
 
         // Contact Form Processing

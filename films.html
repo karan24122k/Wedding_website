@@ -80,25 +80,29 @@
         /* Orientation toolbar */
         .orient-toolbar {
             position: absolute;
-            top: 14px; right: 14px;
+            top: 12px; right: 12px;
             display: flex; gap: 6px;
             z-index: 20;
         }
         .orient-btn {
-            padding: 5px 10px;
-            font-size: 9px;
+            padding: 6px 12px;
+            min-height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.3);
-            background: rgba(0,0,0,0.65);
+            border-radius: 9999px;
+            border: 1px solid rgba(255,255,255,0.35);
+            background: rgba(0,0,0,0.7);
             color: white;
             cursor: pointer;
             backdrop-filter: blur(8px);
             transition: all 0.2s ease;
         }
-        .orient-btn:hover { background: rgba(255,255,255,0.25); }
-        .orient-btn.active { border-color: #ea580c; color: #ea580c; background: rgba(0,0,0,0.85); font-weight: bold; }
+        .orient-btn:hover { background: rgba(255,255,255,0.3); }
+        .orient-btn.active { border-color: #c2410c; color: #ffffff; background: #c2410c; font-weight: bold; }
 
         /* Custom Play Overlay */
         .play-overlay {
@@ -114,22 +118,22 @@
         }
         .play-overlay.hidden { display: none; }
         .play-button-icon {
-            width: 68px;
-            height: 68px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
             background: rgba(194, 65, 12, 0.95);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
             padding-left: 4px;
             box-shadow: 0 10px 30px rgba(194, 65, 12, 0.5);
             transition: transform 0.2s ease, background 0.2s ease;
         }
         .play-overlay:hover .play-button-icon {
             transform: scale(1.1);
-            background: #ea580c;
+            background: #c2410c;
         }
 
         /* Coming-soon placeholder */
@@ -178,65 +182,65 @@
         </div>
     </nav>
 
-    <header class="pt-32 pb-16 md:py-24 px-6 text-center">
+    <header class="pt-28 pb-10 md:pt-32 md:pb-24 px-4 md:px-6 text-center">
         <span class="text-xs tracking-[0.3em] uppercase text-orange-700 font-bold block mb-2">Cinematography</span>
-        <h1 class="text-5xl md:text-7xl mb-4">Motion <span class="italic">Pictures</span></h1>
-        <p class="text-gray-500 uppercase tracking-widest text-xs max-w-xl mx-auto">Documentary &amp; cinematic wedding films preserving sacred rituals, authentic emotion, and eternal bonds</p>
+        <h1 class="text-4xl sm:text-5xl md:text-7xl mb-3 md:mb-4">Motion <span class="italic">Pictures</span></h1>
+        <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs max-w-xl mx-auto">Documentary &amp; cinematic wedding films preserving sacred rituals, authentic emotion, and eternal bonds</p>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 md:px-6 pb-24 space-y-24">
+    <main class="max-w-5xl mx-auto px-4 md:px-6 pb-24 space-y-16 md:space-y-24">
 
         <!-- Category Filter Tabs Matching Gallery -->
-        <div id="category-nav" class="sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 py-4 border-b border-stone-200">
-            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs uppercase tracking-[0.15em] font-semibold max-w-3xl mx-auto px-2">
+        <div id="category-nav" class="sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 py-3 md:py-4 border-b border-stone-200">
+            <div class="overflow-x-auto no-scrollbar flex sm:flex-wrap justify-start sm:justify-center items-center gap-2 sm:gap-3 text-xs uppercase tracking-[0.12em] md:tracking-[0.15em] font-semibold max-w-3xl mx-auto px-4">
                 <button type="button" onclick="selectFilmCategory('all')" id="tab-film-all"
-                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold">
+                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold">
                     All Films
                 </button>
                 <button type="button" onclick="selectFilmCategory('pre-wedding')" id="tab-film-pre-wedding"
-                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
                     Pre-Wedding
                 </button>
                 <button type="button" onclick="selectFilmCategory('wedding')" id="tab-film-wedding"
-                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
                     Wedding
                 </button>
                 <button type="button" onclick="selectFilmCategory('birthdays')" id="tab-film-birthdays"
-                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
                     Birthdays
                 </button>
             </div>
         </div>
 
         <!-- Pre-Wedding Films -->
-        <section id="pre-wedding" class="scroll-mt-36 space-y-8">
+        <section id="pre-wedding" class="scroll-mt-36 space-y-6 md:space-y-8">
             <div class="border-l-4 border-orange-700 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-1 text-gray-900">Pre-Wedding Films</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">The Prelude to Forever</p>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 text-gray-900">Pre-Wedding Films</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">The Prelude to Forever</p>
             </div>
-            <div id="films-pre-wedding" class="space-y-16">
+            <div id="films-pre-wedding" class="space-y-8 md:space-y-16">
                 <!-- Dynamically rendered -->
             </div>
         </section>
 
         <!-- Wedding Films -->
-        <section id="wedding" class="scroll-mt-36 space-y-8">
+        <section id="wedding" class="scroll-mt-36 space-y-6 md:space-y-8">
             <div class="border-l-4 border-orange-700 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-1 text-gray-900">Wedding Films</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">Pledges &amp; Sacred Traditions</p>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 text-gray-900">Wedding Films</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">Pledges &amp; Sacred Traditions</p>
             </div>
-            <div id="films-wedding" class="space-y-16">
+            <div id="films-wedding" class="space-y-8 md:space-y-16">
                 <!-- Dynamically rendered -->
             </div>
         </section>
 
         <!-- Birthday Films -->
-        <section id="birthdays" class="scroll-mt-36 space-y-8">
+        <section id="birthdays" class="scroll-mt-36 space-y-6 md:space-y-8">
             <div class="border-l-4 border-orange-700 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-1 text-gray-900">Birthdays &amp; Milestones</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs">Joyful Milestones &amp; Celebrations</p>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 text-gray-900">Birthdays &amp; Milestones</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">Joyful Milestones &amp; Celebrations</p>
             </div>
-            <div id="films-birthdays" class="space-y-16">
+            <div id="films-birthdays" class="space-y-8 md:space-y-16">
                 <!-- Dynamically rendered -->
             </div>
         </section>
@@ -318,7 +322,7 @@
                 </div>
 
                 <!-- Video Details In Clean White Card Footer -->
-                <div class="p-6 bg-white border-t border-stone-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div class="p-4 sm:p-6 bg-white border-t border-stone-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
                     <div>
                         <div class="text-[10px] text-orange-700 font-bold uppercase tracking-widest">${film.eventType || 'Wedding Film'}</div>
                         <h3 class="text-xl md:text-2xl font-serif text-gray-900 mt-1">${film.title}</h3>
@@ -378,11 +382,11 @@
         function selectFilmCategory(catId, shouldScroll = true) {
             // 1. Update button styles
             document.querySelectorAll('.film-category-tab').forEach(btn => {
-                btn.className = 'film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200';
+                btn.className = 'film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200';
             });
             const activeBtn = document.getElementById(`tab-film-${catId}`);
             if (activeBtn) {
-                activeBtn.className = 'film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold';
+                activeBtn.className = 'film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold';
             }
 
             // 2. Toggle sections to eliminate half-visible sections
@@ -424,14 +428,43 @@
         }
 
         // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            var menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileIcon = mobileBtn ? mobileBtn.querySelector('i') : null;
+
+        if (mobileBtn && mobileMenu) {
+            mobileBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+                if (mobileIcon) {
+                    const isOpen = !mobileMenu.classList.contains('hidden');
+                    mobileIcon.classList.toggle('fa-bars', !isOpen);
+                    mobileIcon.classList.toggle('fa-times', isOpen);
+                }
+            });
+        }
+        
         document.querySelectorAll('#mobile-menu a').forEach(function(link) {
             link.addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.add('hidden');
+                if (mobileMenu) mobileMenu.classList.add('hidden');
+                if (mobileIcon) {
+                    mobileIcon.classList.remove('fa-times');
+                    mobileIcon.classList.add('fa-bars');
+                }
             });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                const nav = document.querySelector('nav');
+                if (nav && !nav.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    if (mobileIcon) {
+                        mobileIcon.classList.remove('fa-times');
+                        mobileIcon.classList.add('fa-bars');
+                    }
+                }
+            }
         });
 
         // Initialize films with universal content loader
