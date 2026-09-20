@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Films & Cinematography | Kumar Video & Photography</title>
+    <title>Wedding Films &amp; Cinematography | Kumar Video &amp; Photography</title>
     <meta name="description" content="Cinematic Indian wedding films, teasers, and highlight reels capturing authentic emotions, sacred rituals, and monumental celebrations across India.">
     <meta name="keywords" content="wedding films, Indian wedding cinematographer, wedding highlight reel, cinematic wedding video, luxury wedding teaser">
     <meta name="author" content="Kumar Video & Photography">
@@ -47,7 +47,7 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
-        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: white; }
+        body { font-family: 'Inter', sans-serif; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
         /* Video card wrapper */
@@ -55,10 +55,9 @@
 
         .video-container {
             position: relative;
-            background: #111;
-            border-radius: 1.25rem;
+            background: #000;
+            border-radius: 1.25rem 1.25rem 0 0;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -75,6 +74,7 @@
         .video-container.is-portrait {
             max-width: 380px;
             margin: 0 auto;
+            border-radius: 1.25rem;
         }
 
         /* Orientation toolbar */
@@ -90,15 +90,15 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
             border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.25);
+            border: 1px solid rgba(255,255,255,0.3);
             background: rgba(0,0,0,0.65);
             color: white;
             cursor: pointer;
             backdrop-filter: blur(8px);
             transition: all 0.2s ease;
         }
-        .orient-btn:hover { background: rgba(255,255,255,0.2); }
-        .orient-btn.active { border-color: #ea580c; color: #f97316; background: rgba(234, 88, 12, 0.15); }
+        .orient-btn:hover { background: rgba(255,255,255,0.25); }
+        .orient-btn.active { border-color: #ea580c; color: #ea580c; background: rgba(0,0,0,0.85); font-weight: bold; }
 
         /* Custom Play Overlay */
         .play-overlay {
@@ -107,7 +107,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.35);
             cursor: pointer;
             z-index: 15;
             transition: opacity 0.3s ease;
@@ -117,28 +117,28 @@
             width: 68px;
             height: 68px;
             border-radius: 50%;
-            background: rgba(234, 88, 12, 0.9);
+            background: rgba(194, 65, 12, 0.95);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 22px;
             padding-left: 4px;
-            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.5);
+            box-shadow: 0 10px 30px rgba(194, 65, 12, 0.5);
             transition: transform 0.2s ease, background 0.2s ease;
         }
         .play-overlay:hover .play-button-icon {
             transform: scale(1.1);
-            background: #f97316;
+            background: #ea580c;
         }
 
         /* Coming-soon placeholder */
         .coming-soon-card {
-            border: 1px dashed rgba(255,255,255,0.18);
+            border: 2px dashed #d6d3d1;
             border-radius: 1.25rem;
             padding: 48px 24px;
             text-align: center;
-            background: rgba(255,255,255,0.02);
+            background: #ffffff;
         }
 
         /* Fullscreen fix */
@@ -146,45 +146,63 @@
         video:-webkit-full-screen { width: 100%; height: 100%; }
     </style>
 </head>
-<body class="bg-[#0a0a0a] text-white">
+<body class="bg-stone-50 text-gray-900">
 
-    <nav class="p-4 md:p-6 flex justify-between items-center border-b border-white/10 bg-black/80 backdrop-blur-md sticky top-0 z-50">
-        <a href="index.html" class="flex items-center space-x-2 font-bold tracking-tighter uppercase text-sm">
-            <img src="Images/Kumar.png" alt="Logo" class="h-8 sm:h-9 w-auto object-contain">
-            <span>Kumar Video <span class="text-orange-500 font-light">& Photography</span></span>
-        </a>
-        <div class="flex items-center space-x-6 text-xs uppercase tracking-widest">
-            <a href="index.html" class="hover:text-orange-500 transition hidden sm:inline-block">Home</a>
-            <a href="gallery.html" class="hover:text-orange-500 transition">Gallery</a>
-            <a href="index.html#contact" class="bg-orange-600 text-white px-5 py-2 rounded-full font-bold hover:bg-white hover:text-black transition">Inquire</a>
+    <!-- Cohesive Navigation Matching Index and Gallery -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-lg md:text-2xl font-bold tracking-tighter uppercase whitespace-normal">
+                <img src="Images/Kumar.png" alt="Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
+                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">& Photography</span></span>
+            </a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-xl p-2 ml-auto text-gray-800 flex-shrink-0" aria-label="Toggle Navigation Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="hidden md:flex items-center space-x-10 font-medium text-xs tracking-[0.2em] uppercase">
+                <a href="index.html" class="hover:text-orange-700 transition">Home</a>
+                <a href="gallery.html" class="hover:text-orange-700 transition">Gallery</a>
+                <a href="films.html" class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1">Films</a>
+                <a href="index.html#contact" class="hover:text-orange-700 transition">Inquire</a>
+                <a href="https://wa.me/919876543210?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20films." target="_blank" rel="noopener noreferrer" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-6 flex flex-col space-y-6 font-medium text-xs tracking-[0.2em] uppercase shadow-xl">
+            <a href="index.html" class="hover:text-orange-700 transition w-full">Home</a>
+            <a href="gallery.html" class="hover:text-orange-700 transition w-full">Gallery</a>
+            <a href="films.html" class="text-orange-700 font-bold w-full">Films</a>
+            <a href="index.html#contact" class="hover:text-orange-700 transition w-full">Inquire</a>
+            <a href="https://wa.me/919876543210?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20films." target="_blank" rel="noopener noreferrer" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
         </div>
     </nav>
 
-    <header class="py-20 md:py-24 px-6 text-center">
-        <span class="text-xs tracking-[0.4em] uppercase text-orange-500 font-bold block mb-2">Cinematography</span>
-        <h1 class="text-5xl md:text-7xl mb-4 italic font-light">Motion Pictures</h1>
-        <p class="text-gray-400 uppercase tracking-[0.3em] text-[11px] max-w-md mx-auto">Documentary &amp; Cinematic Wedding Films Preserving Heritage and Emotion</p>
+    <header class="pt-32 pb-16 md:py-24 px-6 text-center">
+        <span class="text-xs tracking-[0.3em] uppercase text-orange-700 font-bold block mb-2">Cinematography</span>
+        <h1 class="text-5xl md:text-7xl mb-4">Motion <span class="italic">Pictures</span></h1>
+        <p class="text-gray-500 uppercase tracking-widest text-xs max-w-xl mx-auto">Documentary &amp; cinematic wedding films preserving sacred rituals, authentic emotion, and eternal bonds</p>
     </header>
 
     <main class="max-w-5xl mx-auto px-4 md:px-6 pb-24 space-y-24">
 
-        <!-- Category Filter Tabs -->
-        <div id="category-nav" class="sticky top-16 bg-[#0a0a0a]/95 backdrop-blur-md z-40 py-4 border-b border-white/10">
+        <!-- Category Filter Tabs Matching Gallery -->
+        <div id="category-nav" class="sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 py-4 border-b border-stone-200">
             <div class="flex flex-wrap justify-center gap-2 sm:gap-3 text-xs uppercase tracking-[0.15em] font-semibold max-w-3xl mx-auto px-2">
                 <button type="button" onclick="selectFilmCategory('all')" id="tab-film-all"
-                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-600 text-white shadow-lg font-bold">
+                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold">
                     All Films
                 </button>
                 <button type="button" onclick="selectFilmCategory('pre-wedding')" id="tab-film-pre-wedding"
-                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/10 text-gray-300 hover:text-white border border-white/15">
+                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
                     Pre-Wedding
                 </button>
                 <button type="button" onclick="selectFilmCategory('wedding')" id="tab-film-wedding"
-                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/10 text-gray-300 hover:text-white border border-white/15">
+                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
                     Wedding
                 </button>
                 <button type="button" onclick="selectFilmCategory('birthdays')" id="tab-film-birthdays"
-                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/10 text-gray-300 hover:text-white border border-white/15">
+                        class="film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
                     Birthdays
                 </button>
             </div>
@@ -192,9 +210,9 @@
 
         <!-- Pre-Wedding Films -->
         <section id="pre-wedding" class="scroll-mt-36 space-y-8">
-            <div class="border-l-4 border-orange-500 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-1">Pre-Wedding Films</h2>
-                <p class="text-gray-400 uppercase tracking-widest text-xs">The Prelude to Forever</p>
+            <div class="border-l-4 border-orange-700 pl-4">
+                <h2 class="text-3xl md:text-4xl font-serif mb-1 text-gray-900">Pre-Wedding Films</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">The Prelude to Forever</p>
             </div>
             <div id="films-pre-wedding" class="space-y-16">
                 <!-- Dynamically rendered -->
@@ -203,9 +221,9 @@
 
         <!-- Wedding Films -->
         <section id="wedding" class="scroll-mt-36 space-y-8">
-            <div class="border-l-4 border-orange-500 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-1">Wedding Films</h2>
-                <p class="text-gray-400 uppercase tracking-widest text-xs">Pledges &amp; Sacred Traditions</p>
+            <div class="border-l-4 border-orange-700 pl-4">
+                <h2 class="text-3xl md:text-4xl font-serif mb-1 text-gray-900">Wedding Films</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">Pledges &amp; Sacred Traditions</p>
             </div>
             <div id="films-wedding" class="space-y-16">
                 <!-- Dynamically rendered -->
@@ -214,9 +232,9 @@
 
         <!-- Birthday Films -->
         <section id="birthdays" class="scroll-mt-36 space-y-8">
-            <div class="border-l-4 border-orange-500 pl-4">
-                <h2 class="text-3xl md:text-4xl font-serif mb-1">Birthdays &amp; Milestones</h2>
-                <p class="text-gray-400 uppercase tracking-widest text-xs">Joyful Milestones &amp; Celebrations</p>
+            <div class="border-l-4 border-orange-700 pl-4">
+                <h2 class="text-3xl md:text-4xl font-serif mb-1 text-gray-900">Birthdays &amp; Milestones</h2>
+                <p class="text-gray-500 uppercase tracking-widest text-xs">Joyful Milestones &amp; Celebrations</p>
             </div>
             <div id="films-birthdays" class="space-y-16">
                 <!-- Dynamically rendered -->
@@ -225,16 +243,16 @@
 
     </main>
 
-    <!-- Inquiry CTA Banner -->
-    <section class="bg-[#121212] py-16 px-6 text-center border-t border-white/10">
-        <h3 class="text-2xl md:text-3xl font-serif mb-3">Commission Your Wedding Film</h3>
-        <p class="text-gray-400 text-xs uppercase tracking-widest max-w-md mx-auto mb-6">Each film is custom-graded, orchestrated, and edited personally by the founder.</p>
-        <a href="index.html#contact" class="inline-block bg-orange-600 text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition shadow-lg">
+    <!-- Inquiry CTA Banner Matching Gallery -->
+    <section class="bg-stone-100 py-16 px-6 text-center border-t border-stone-200">
+        <h3 class="text-2xl md:text-3xl font-serif mb-3 text-gray-900">Commission Your Wedding Film</h3>
+        <p class="text-gray-500 text-xs uppercase tracking-widest max-w-md mx-auto mb-6">Each film is custom-graded, orchestrated, and edited personally by the founder.</p>
+        <a href="index.html#contact" class="inline-block bg-orange-700 text-white px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-black transition shadow-md">
             Inquire for Packages
         </a>
     </section>
 
-    <footer class="py-10 text-center text-gray-500 text-[10px] tracking-[0.3em] uppercase">
+    <footer class="py-12 text-center text-gray-400 text-[10px] tracking-[0.3em] uppercase">
         &copy; <span id="current-year">2026</span> Kumar Video &amp; Photography | Preserving Eternal Bonds
     </footer>
 
@@ -247,10 +265,10 @@
             if (!film.src || film.src.endsWith('/')) {
                 return `
                 <div class="coming-soon-card">
-                    <i class="fas fa-film text-orange-500/60 text-4xl mb-4 block"></i>
-                    <h3 class="text-xl font-serif italic text-gray-200 mb-2">${film.title}</h3>
-                    <p class="text-gray-400 text-xs uppercase tracking-widest">${film.location || 'Location upon release'}</p>
-                    <span class="mt-4 inline-block text-[9px] border border-orange-500/30 text-orange-400 px-4 py-1 rounded-full uppercase tracking-widest">${film.tag || 'Coming Soon'}</span>
+                    <i class="fas fa-film text-orange-700/60 text-4xl mb-4 block"></i>
+                    <h3 class="text-xl font-serif italic text-gray-800 mb-2">${film.title}</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-widest">${film.location || 'Location upon release'}</p>
+                    <span class="mt-4 inline-block text-[10px] border border-stone-300 bg-stone-100 text-stone-600 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold">${film.tag || 'Coming Soon'}</span>
                 </div>`;
             }
 
@@ -258,7 +276,7 @@
             const portraitClass = isPortrait ? 'is-portrait' : '';
 
             return `
-            <div class="video-card" id="card-${index}">
+            <div class="video-card bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden" id="card-${index}">
                 <div class="video-container ${portraitClass}" id="vc-${index}">
                     <!-- Controls Toolbar -->
                     <div class="orient-toolbar">
@@ -299,13 +317,14 @@
                     </video>
                 </div>
 
-                <!-- Video Details -->
-                <div class="flex justify-between items-end mt-5 px-1 max-w-full">
+                <!-- Video Details In Clean White Card Footer -->
+                <div class="p-6 bg-white border-t border-stone-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <h3 class="text-xl md:text-2xl font-serif italic">${film.title}</h3>
-                        <p class="text-xs opacity-50 uppercase tracking-widest mt-1">${film.location || ''} ${film.year ? `• ${film.year}` : ''}</p>
+                        <div class="text-[10px] text-orange-700 font-bold uppercase tracking-widest">${film.eventType || 'Wedding Film'}</div>
+                        <h3 class="text-xl md:text-2xl font-serif text-gray-900 mt-1">${film.title}</h3>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">${film.location || ''} ${film.year ? `• ${film.year}` : ''}</p>
                     </div>
-                    <span class="text-[9px] border border-white/20 text-orange-400 px-4 py-1 rounded-full uppercase tracking-widest shrink-0 ml-4">
+                    <span class="text-[10px] border border-orange-700/30 text-orange-700 bg-orange-50 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold shrink-0">
                         ${film.tag || 'Film'}
                     </span>
                 </div>
@@ -359,11 +378,11 @@
         function selectFilmCategory(catId, shouldScroll = true) {
             // 1. Update button styles
             document.querySelectorAll('.film-category-tab').forEach(btn => {
-                btn.className = 'film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/10 text-gray-300 hover:text-white border border-white/15';
+                btn.className = 'film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200';
             });
             const activeBtn = document.getElementById(`tab-film-${catId}`);
             if (activeBtn) {
-                activeBtn.className = 'film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-600 text-white shadow-lg font-bold';
+                activeBtn.className = 'film-category-tab px-5 py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold';
             }
 
             // 2. Toggle sections to eliminate half-visible sections
@@ -403,6 +422,17 @@
             }
             el.innerHTML = films.map((f, i) => buildFilmCard(f, offset + i)).join('');
         }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
 
         // Initialize films with universal content loader
         loadSiteContent().then((data) => {
