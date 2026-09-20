@@ -116,19 +116,37 @@
 </head>
 <body class="bg-stone-50 text-gray-900">
 
-    <nav class="p-4 md:p-6 flex justify-between items-center border-b border-stone-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <a href="index.html" class="flex items-center space-x-2 font-bold tracking-tighter uppercase text-sm">
-            <img src="Images/Kumar.png" alt="Logo" class="h-8 sm:h-9 w-auto object-contain">
-            <span>Kumar Video <span class="text-orange-700 font-light">& Photography</span></span>
-        </a>
-        <div class="flex items-center space-x-6 text-xs uppercase tracking-widest">
-            <a href="index.html" class="hover:text-orange-700 transition hidden sm:inline-block">Home</a>
-            <a href="films.html" class="hover:text-orange-700 transition">Films</a>
-            <a href="index.html#contact" class="bg-orange-700 text-white px-5 py-2 rounded-full font-bold hover:bg-black transition">Inquire</a>
+    <!-- Cohesive Navigation Matching Index and Films -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-lg md:text-2xl font-bold tracking-tighter uppercase whitespace-normal">
+                <img src="Images/Kumar.png" alt="Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
+                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">& Photography</span></span>
+            </a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-xl p-2 ml-auto text-gray-800 flex-shrink-0" aria-label="Toggle Navigation Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="hidden md:flex items-center space-x-10 font-medium text-xs tracking-[0.2em] uppercase">
+                <a href="index.html" class="hover:text-orange-700 transition">Home</a>
+                <a href="gallery.html" class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1">Gallery</a>
+                <a href="films.html" class="hover:text-orange-700 transition">Films</a>
+                <a href="index.html#contact" class="hover:text-orange-700 transition">Inquire</a>
+                <a href="https://wa.me/919876543210?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-6 flex flex-col space-y-6 font-medium text-xs tracking-[0.2em] uppercase shadow-xl">
+            <a href="index.html" class="hover:text-orange-700 transition w-full">Home</a>
+            <a href="gallery.html" class="text-orange-700 font-bold w-full">Gallery</a>
+            <a href="films.html" class="hover:text-orange-700 transition w-full">Films</a>
+            <a href="index.html#contact" class="hover:text-orange-700 transition w-full">Inquire</a>
+            <a href="https://wa.me/919876543210?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
         </div>
     </nav>
 
-    <header class="py-16 md:py-20 px-6 text-center">
+    <header class="pt-32 pb-16 md:py-24 px-6 text-center">
         <span class="text-xs tracking-[0.3em] uppercase text-orange-700 font-bold block mb-2">Portfolio</span>
         <h1 class="text-5xl md:text-7xl mb-4">The <span class="italic">Anthology</span></h1>
         <p class="text-gray-500 uppercase tracking-widest text-xs max-w-xl mx-auto">Curated moments of sacred traditions, candid emotions, and royal celebrations across India</p>
@@ -393,6 +411,17 @@
             if (Math.abs(diff) > 45) {
                 diff > 0 ? nextPhoto() : prevPhoto();
             }
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
         });
 
         // Initialize content using universal loader (works on both http and file://)
