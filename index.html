@@ -209,96 +209,78 @@
                 <p class="text-gray-500 uppercase tracking-widest text-xs md:text-sm">Personalized Experience with the Founder</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
-                <div class="bg-white p-6 sm:p-10 rounded-2xl md:rounded-3xl shadow-sm border border-stone-100 text-center">
-                    <div class="w-28 h-28 sm:w-32 sm:h-32 bg-stone-200 rounded-full mx-auto mb-6 overflow-hidden">
-                        <img loading="lazy" src="gallery/pre-wedding/sangeet-01.webp" alt="Karan Kumar Founder"
-                            class="object-cover w-full h-full protect-media">
+            <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-stretch">
+                <div class="bg-white p-6 sm:p-10 rounded-2xl md:rounded-3xl shadow-sm border border-stone-100 text-center flex flex-col justify-between">
+                    <div>
+                        <div class="w-28 h-28 sm:w-32 sm:h-32 bg-stone-200 rounded-full mx-auto mb-6 overflow-hidden">
+                            <img loading="lazy" src="gallery/pre-wedding/sangeet-01.webp" alt="Karan Kumar Founder"
+                                class="object-cover w-full h-full protect-media">
+                        </div>
+                        <h3 class="text-2xl mb-2 font-bold">Karan Kumar</h3>
+                        <p class="text-orange-700 italic mb-6">Lead Photographer &amp; Visionary</p>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-8">
+                            "I believe that a wedding isn't just an event; it's a heritage. I personally oversee every shoot
+                            to ensure your memories are preserved with perfection."
+                        </p>
                     </div>
-                    <h3 class="text-2xl mb-2 font-bold">Karan Kumar</h3>
-                    <p class="text-orange-700 italic mb-6">Lead Photographer & Visionary</p>
-                    <p class="text-gray-500 text-sm leading-relaxed mb-8">
-                        "I believe that a wedding isn't just an event; it's a heritage. I personally oversee every shoot
-                        to ensure your memories are preserved with perfection."
-                    </p>
-                    <div class="flex justify-center space-x-6 text-sm">
+                    <div class="flex justify-center space-x-6 text-sm pt-6 border-t border-stone-100">
                         <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-orange-700 transition flex items-center space-x-1" aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp text-lg"></i><span>WhatsApp</span>
+                            <i class="fab fa-whatsapp text-lg text-orange-700"></i><span>WhatsApp</span>
                         </a>
                         <a href="tel:+919876543210" class="text-gray-500 hover:text-orange-700 transition flex items-center space-x-1" aria-label="Call">
-                            <i class="fas fa-phone-alt text-sm"></i><span>Call</span>
+                            <i class="fas fa-phone-alt text-sm text-orange-700"></i><span>Call</span>
                         </a>
                         <a href="mailto:contact@kumarphotography.in" class="text-gray-500 hover:text-orange-700 transition flex items-center space-x-1" aria-label="Email">
-                            <i class="fas fa-envelope text-sm"></i><span>Email</span>
+                            <i class="fas fa-envelope text-sm text-orange-700"></i><span>Email</span>
                         </a>
                     </div>
                 </div>
 
-                <div>
-                    <form id="inquiry-form" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="client-name" class="block text-xs uppercase tracking-widest text-gray-500 mb-1">Your Name *</label>
-                                <input id="client-name" name="name" type="text" required placeholder="Priya & Rahul"
-                                    class="bg-transparent border-b border-gray-300 w-full py-3 outline-none focus:border-orange-700 transition text-sm">
+                <!-- Direct Inquiries & Booking Concierge Card (100% Static & Direct) -->
+                <div class="bg-white p-6 sm:p-10 rounded-2xl md:rounded-3xl shadow-sm border border-stone-100 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-[0.3em] text-orange-700 font-bold block mb-2">Direct Inquiries</span>
+                        <h3 class="text-2xl sm:text-3xl font-serif mb-4 text-gray-900">Start a Conversation</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                            Every celebration is bespoke. Connect with us directly for date availability, tailored photography &amp; cinematography packages, and creative consultations.
+                        </p>
+                        
+                        <div class="space-y-4 mb-6 text-sm text-gray-600">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-map-marker-alt text-orange-700 mt-1 w-5 text-center shrink-0"></i>
+                                <span><strong>Primary Studios:</strong> Bengaluru &amp; Hyderabad<br><span class="text-xs text-gray-400">Available for Destination Weddings Worldwide</span></span>
                             </div>
-                            <div>
-                                <label for="client-phone" class="block text-xs uppercase tracking-widest text-gray-500 mb-1">Phone / WhatsApp *</label>
-                                <input id="client-phone" name="phone" type="tel" required placeholder="+91 98765 43210"
-                                    class="bg-transparent border-b border-gray-300 w-full py-3 outline-none focus:border-orange-700 transition text-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-calendar-check text-orange-700 w-5 text-center shrink-0"></i>
+                                <span><strong>Booking Status:</strong> Now reserving dates for 2026 – 2027</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-bolt text-orange-700 w-5 text-center shrink-0"></i>
+                                <span><strong>Fastest Response:</strong> Instant via WhatsApp (Within 2–4 hours)</span>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="client-email" class="block text-xs uppercase tracking-widest text-gray-500 mb-1">Email Address *</label>
-                                <input id="client-email" name="email" type="email" required placeholder="priya@example.com"
-                                    class="bg-transparent border-b border-gray-300 w-full py-3 outline-none focus:border-orange-700 transition text-sm">
-                            </div>
-                            <div>
-                                <label for="event-location" class="block text-xs uppercase tracking-widest text-gray-500 mb-1">Wedding / Event Location *</label>
-                                <input id="event-location" name="location" type="text" required placeholder="Udaipur, Rajasthan"
-                                    class="bg-transparent border-b border-gray-300 w-full py-3 outline-none focus:border-orange-700 transition text-sm">
-                            </div>
+                    <div class="pt-6 border-t border-stone-100 flex flex-col gap-3">
+                        <a href="https://wa.me/919876543210?text=Hi%20Karan%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services%20for%20our%20upcoming%20celebration."
+                           target="_blank" rel="noopener noreferrer"
+                           class="w-full bg-orange-700 text-white py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-black transition text-center shadow-md flex items-center justify-center space-x-2">
+                            <i class="fab fa-whatsapp text-base"></i>
+                            <span>Chat on WhatsApp</span>
+                        </a>
+                        <div class="grid grid-cols-2 gap-3">
+                            <a href="tel:+919876543210"
+                               class="border border-stone-300 text-stone-700 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:border-black hover:text-black transition text-center flex items-center justify-center space-x-2">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>Direct Call</span>
+                            </a>
+                            <a href="mailto:contact@kumarphotography.in?subject=Wedding%20Photography%20Inquiry"
+                               class="border border-stone-300 text-stone-700 py-3.5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:border-black hover:text-black transition text-center flex items-center justify-center space-x-2">
+                                <i class="fas fa-envelope"></i>
+                                <span>Send Email</span>
+                            </a>
                         </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="event-date" class="block text-xs uppercase tracking-widest text-gray-500 mb-1">Approximate Date</label>
-                                <input id="event-date" name="date" type="text" placeholder="e.g. December 2026"
-                                    class="bg-transparent border-b border-gray-300 w-full py-3 outline-none focus:border-orange-700 transition text-sm">
-                            </div>
-                            <div>
-                                <label for="service-type" class="block text-xs uppercase tracking-widest text-gray-500 mb-1">Services Needed</label>
-                                <select id="service-type" name="service"
-                                    class="bg-transparent border-b border-gray-300 w-full py-3 outline-none focus:border-orange-700 transition text-sm text-gray-700">
-                                    <option value="Complete Wedding & Cinematography">Photography & Cinematography (Both)</option>
-                                    <option value="Wedding Photography Only">Wedding Photography Only</option>
-                                    <option value="Cinematography Only">Cinematography / Wedding Films Only</option>
-                                    <option value="Pre-Wedding Photoshoot">Pre-Wedding Photoshoot</option>
-                                    <option value="Milestone Birthday / Private Event">Birthday / Private Celebration</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="event-notes" class="block text-xs uppercase tracking-widest text-gray-500 mb-1">Tell us about your celebration</label>
-                            <textarea id="event-notes" name="notes" rows="3" placeholder="Expected guest count, venues, specific traditions, or your vision..."
-                                class="bg-transparent border-b border-gray-300 w-full py-3 outline-none focus:border-orange-700 transition text-sm"></textarea>
-                        </div>
-
-                        <div class="pt-2 flex flex-col sm:flex-row gap-4">
-                            <button type="submit"
-                                class="flex-1 bg-black text-white py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-orange-700 transition text-center shadow-lg">
-                                Send via WhatsApp <i class="fab fa-whatsapp ml-2"></i>
-                            </button>
-                            <button type="button" id="btn-email-inquiry"
-                                class="border border-stone-300 text-stone-700 py-4 px-8 rounded-full font-bold uppercase tracking-widest text-xs hover:border-black transition text-center">
-                                Send via Email <i class="fas fa-envelope ml-2"></i>
-                            </button>
-                        </div>
-                        <p class="text-[11px] text-gray-400 text-center tracking-wide">Direct inquiries are answered personally within 24 hours.</p>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -365,54 +347,6 @@
             }
         });
 
-        // Contact Form Processing
-        function getInquiryData() {
-            return {
-                name: document.getElementById('client-name').value.trim(),
-                phone: document.getElementById('client-phone').value.trim(),
-                email: document.getElementById('client-email').value.trim(),
-                location: document.getElementById('event-location').value.trim(),
-                date: document.getElementById('event-date').value.trim() || 'TBD',
-                service: document.getElementById('service-type').value,
-                notes: document.getElementById('event-notes').value.trim()
-            };
-        }
-
-        function formatInquiryMessage(data) {
-            return `*New Wedding / Event Inquiry*\n\n` +
-                   `• *Name:* ${data.name}\n` +
-                   `• *Phone:* ${data.phone}\n` +
-                   `• *Email:* ${data.email}\n` +
-                   `• *Location:* ${data.location}\n` +
-                   `• *Date:* ${data.date}\n` +
-                   `• *Services:* ${data.service}\n` +
-                   (data.notes ? `• *Notes:* ${data.notes}\n` : '');
-        }
-
-        document.getElementById('inquiry-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const data = getInquiryData();
-            if (!data.name || !data.phone || !data.email || !data.location) {
-                showToast('Please fill in the required fields marked with *');
-                return;
-            }
-            const message = encodeURIComponent(formatInquiryMessage(data));
-            showToast('Opening WhatsApp with your inquiry details...');
-            setTimeout(function() {
-                window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
-            }, 500);
-        });
-
-        document.getElementById('btn-email-inquiry').addEventListener('click', function() {
-            const data = getInquiryData();
-            if (!data.name || !data.email) {
-                showToast('Please enter your name and email first.');
-                return;
-            }
-            const subject = encodeURIComponent(`Wedding Inquiry - ${data.name} (${data.location})`);
-            const body = encodeURIComponent(formatInquiryMessage(data));
-            window.location.href = `mailto:contact@kumarphotography.in?subject=${subject}&body=${body}`;
-        });
     </script>
 </body>
 

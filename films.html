@@ -219,7 +219,12 @@
                 <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">The Prelude to Forever</p>
             </div>
             <div id="films-pre-wedding" class="space-y-8 md:space-y-16">
-                <!-- Dynamically rendered -->
+            <div class="coming-soon-card p-6 sm:p-12">
+                <i class="fas fa-film text-orange-700/60 text-4xl mb-4 block"></i>
+                <h3 class="text-xl font-serif italic text-gray-800 mb-2">A Tuscan Romance in Udaipur</h3>
+                <p class="text-gray-500 text-xs uppercase tracking-widest">Oberoi Udaivilas, Udaipur</p>
+                <span class="mt-4 inline-block text-[10px] border border-stone-300 bg-stone-100 text-stone-600 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold">Coming Soon</span>
+            </div>
             </div>
         </section>
 
@@ -230,7 +235,59 @@
                 <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">Pledges &amp; Sacred Traditions</p>
             </div>
             <div id="films-wedding" class="space-y-8 md:space-y-16">
-                <!-- Dynamically rendered -->
+            <div class="video-card bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden" id="card-1">
+                <div class="video-container is-portrait" id="vc-1">
+                    <!-- Controls Toolbar -->
+                    <div class="orient-toolbar">
+                        <button class="orient-btn " id="btn-land-1"
+                                onclick="setMode(1, 'landscape')"
+                                title="Cinematic Wide View">
+                            <i class="fas fa-desktop mr-1"></i> Wide
+                        </button>
+                        <button class="orient-btn active" id="btn-port-1"
+                                onclick="setMode(1, 'portrait')"
+                                title="Vertical Reel Format">
+                            <i class="fas fa-mobile-alt mr-1"></i> Reel
+                        </button>
+                        <button class="orient-btn" id="btn-rot-1"
+                                onclick="rotateVideo(1)"
+                                title="Rotate 90 Degrees">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+
+                    <!-- Custom Play Overlay -->
+                    <div class="play-overlay" id="play-overlay-1" onclick="playVideo(1)">
+                        <div class="play-button-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+
+                    <video id="vid-1"
+                           controls
+                           preload="none"
+                           playsinline
+                           poster="gallery/wedding/reception-01.webp"
+                           data-rot="0"
+                           class="protect-media"
+                           onplay="handleVideoPlay(1)">
+                        <source src="videos/wedding/reel-01.mp4" type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                </div>
+
+                <!-- Video Details In Clean White Card Footer -->
+                <div class="p-4 sm:p-6 bg-white border-t border-stone-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+                    <div>
+                        <div class="text-[10px] text-orange-700 font-bold uppercase tracking-widest">Wedding Highlight Film</div>
+                        <h3 class="text-xl md:text-2xl font-serif text-gray-900 mt-1">The Summer Palace Wedding</h3>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">Leela Palace, Bengaluru • 2024</p>
+                    </div>
+                    <span class="text-[10px] border border-orange-700/30 text-orange-700 bg-orange-50 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold shrink-0">
+                        Highlight Reel
+                    </span>
+                </div>
+            </div>
             </div>
         </section>
 
@@ -241,7 +298,12 @@
                 <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">Joyful Milestones &amp; Celebrations</p>
             </div>
             <div id="films-birthdays" class="space-y-8 md:space-y-16">
-                <!-- Dynamically rendered -->
+            <div class="coming-soon-card p-6 sm:p-12">
+                <i class="fas fa-film text-orange-700/60 text-4xl mb-4 block"></i>
+                <h3 class="text-xl font-serif italic text-gray-800 mb-2">One Year of Joy</h3>
+                <p class="text-gray-500 text-xs uppercase tracking-widest">Bengaluru</p>
+                <span class="mt-4 inline-block text-[10px] border border-stone-300 bg-stone-100 text-stone-600 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold">Coming Soon</span>
+            </div>
             </div>
         </section>
 
