@@ -16,10 +16,11 @@ let manifestExpiresAt = 0;
  * Converts a PEM-formatted PKCS#8 private key into a CryptoKey using Web Crypto
  */
 async function importPrivateKey(pem) {
-  // Clean PEM delimiters, headers, line breaks, and whitespace
+  // Clean PEM delimiters, headers, line breaks, literal \n, and whitespace
   const cleanPem = pem
     .replace(/-----BEGIN (?:RSA )?PRIVATE KEY-----/g, '')
     .replace(/-----END (?:RSA )?PRIVATE KEY-----/g, '')
+    .replace(/\\n/g, '')
     .replace(/\s+/g, '');
 
   const binaryDerString = atob(cleanPem);

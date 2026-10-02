@@ -46,6 +46,7 @@ export async function onRequestGet(context) {
       JSON.stringify({
         error: 'Media Gateway Unavailable',
         message: 'Unable to synchronize with private media storage.',
+        details: err.message,
         fallback: true
       }),
       {
