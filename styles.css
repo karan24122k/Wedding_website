@@ -371,116 +371,52 @@ body.lb-locked {
   outline-offset: 4px;
 }
 
-/* Custom Editorial Cursor (Phase 7) */
-@media (hover: hover) and (pointer: fine) {
-  html.has-custom-cursor,
-  html.has-custom-cursor body,
-  html.has-custom-cursor a,
-  html.has-custom-cursor button,
-  html.has-custom-cursor [role="button"] {
-    cursor: none !important;
-  }
-}
-
+/* Media Hover Indicator (Soft Floating Badge on Photo/Video Only) */
 .custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: 99999;
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
 .cursor-dot {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  background-color: #c2410c;
-  border-radius: 50%;
-  margin-top: -3px;
-  margin-left: -3px;
-  will-change: transform;
-  transition: opacity 0.2s ease, transform 0.15s ease;
+  display: none !important;
 }
 
 .cursor-ring {
   position: absolute;
   top: 0;
   left: 0;
-  width: 32px;
-  height: 32px;
-  border: 1.5px solid rgba(194, 65, 12, 0.45);
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  margin-top: -16px;
-  margin-left: -16px;
+  margin-top: -26px;
+  margin-left: -26px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgba(194, 65, 12, 0.9);
+  box-shadow: 0 6px 20px rgba(194, 65, 12, 0.4);
+  backdrop-filter: blur(4px);
   will-change: transform;
-  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.2s ease,
-              background-color 0.2s ease;
+  pointer-events: none;
+  transition: transform 0.15s ease-out;
 }
 
 .cursor-label {
-  display: none;
+  display: inline-block;
   font-size: 8px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #ffffff;
+  pointer-events: none;
 }
 
-/* Cursor Context States */
-.cursor-state-link .cursor-ring {
-  width: 44px;
-  height: 44px;
-  margin-top: -22px;
-  margin-left: -22px;
-  background-color: rgba(194, 65, 12, 0.12);
-  border-color: #c2410c;
-}
-
-.cursor-state-image .cursor-ring {
-  width: 58px;
-  height: 58px;
-  margin-top: -29px;
-  margin-left: -29px;
-  background-color: rgba(194, 65, 12, 0.9);
-  border-color: transparent;
-  box-shadow: 0 4px 15px rgba(194, 65, 12, 0.35);
-}
-
-.cursor-state-image .cursor-dot {
-  opacity: 0;
-}
-
-.cursor-state-image .cursor-label {
-  display: inline-block;
-}
-
-.cursor-state-video .cursor-ring {
-  width: 58px;
-  height: 58px;
-  margin-top: -29px;
-  margin-left: -29px;
-  background-color: rgba(194, 65, 12, 0.9);
-  border-color: transparent;
-  box-shadow: 0 4px 15px rgba(194, 65, 12, 0.35);
-}
-
-.cursor-state-video .cursor-dot {
-  opacity: 0;
-}
-
-.cursor-state-video .cursor-label {
-  display: inline-block;
-}
-
-/* Click Active State */
+/* Click Active Feedback */
 .cursor-active .cursor-ring {
   transform: scale(0.85) !important;
 }

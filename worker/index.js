@@ -99,7 +99,10 @@ export default {
         return new Response('Not found', { status: 404, headers: { 'Access-Control-Allow-Origin': allowedOrigin } });
       }
 
-      // Adaptive streaming preview player redirect
+      // Adaptive streaming preview player / direct cinema redirect
+      if (url.searchParams.get('view') === '1') {
+        return Response.redirect(`https://drive.google.com/file/d/${meta.fileId}/view?usp=sharing`, 302);
+      }
       if (url.searchParams.get('embed') === '1' || !env.GOOGLE_CLIENT_EMAIL) {
         return Response.redirect(`https://drive.google.com/file/d/${meta.fileId}/preview`, 302);
       }

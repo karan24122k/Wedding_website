@@ -96,78 +96,56 @@
       targetX = e.clientX;
       targetY = e.clientY;
 
-      if (!isVisible) {
-        isVisible = true;
-        cursorContainer.classList.remove('opacity-0');
-        cursorContainer.classList.add('opacity-100');
-        document.documentElement.classList.add('has-custom-cursor');
-        ringX = targetX;
-        ringY = targetY;
-      }
-
       scheduleUpdate();
     }, { passive: true });
 
     // 4. Mouse Leave / Enter Window
     document.addEventListener('mouseleave', () => {
-      cursorContainer.classList.remove('opacity-100');
-      cursorContainer.classList.add('opacity-0');
-      isVisible = false;
+      hideMediaIndicator();
     });
 
-    document.addEventListener('mouseenter', () => {
-      cursorContainer.classList.remove('opacity-0');
-      cursorContainer.classList.add('opacity-100');
-      isVisible = true;
-    });
-
-    // 5. Contextual State Handling (Delegated)
+    // 5. Contextual Media Hover Handling (Photos & Videos Only)
     document.addEventListener('mouseover', (e) => {
       const target = e.target;
       if (!target) return;
 
-      // Video elements or video overlays
-      const isVideo = target.closest('video, .video-container, .play-overlay, #featured-wedding-reel');
+      // Video elements, preview wrappers, or screening stages
+      const isVideo = target.closest('video, .video-container, .screening-viewport, .video-preview-wrapper, .screening-theater, #featured-wedding-reel');
       if (isVideo) {
-        setContext('video', 'PLAY');
+        showMediaIndicator('PLAY');
         return;
       }
 
       // Photography items / story stage / gallery cards
       const isImage = target.closest('.gallery-item, #story-visual-stage, .story-photo-layer, #story-stage-container img');
       if (isImage) {
-        setContext('image', 'VIEW');
+        showMediaIndicator('VIEW');
         return;
       }
 
-      // Interactive links and buttons
-      const isInteractive = target.closest('a, button, .category-tab, .story-tab-btn, .orient-btn, input, select, textarea');
-      if (isInteractive) {
-        setContext('link', '');
-        return;
-      }
-
-      // Default state
-      resetContext();
+      // Any other element: immediately hide custom indicator
+      hideMediaIndicator();
     }, { passive: true });
 
-    function setContext(type, text) {
-      cursorContainer.classList.remove('cursor-state-image', 'cursor-state-video', 'cursor-state-link');
-      cursorContainer.classList.add(`cursor-state-${type}`);
-
-      if (text) {
-        label.textContent = text;
-        label.style.display = 'inline-block';
-      } else {
-        label.textContent = '';
-        label.style.display = 'none';
+    function showMediaIndicator(text) {
+      if (!isVisible) {
+        isVisible = true;
+        ringX = targetX;
+        ringY = targetY;
+        cursorContainer.classList.remove('opacity-0');
+        cursorContainer.classList.add('opacity-100');
       }
+      label.textContent = text;
+      scheduleUpdate();
     }
 
-    function resetContext() {
-      cursorContainer.classList.remove('cursor-state-image', 'cursor-state-video', 'cursor-state-link');
-      label.textContent = '';
-      label.style.display = 'none';
+    function hideMediaIndicator() {
+      if (isVisible) {
+        isVisible = false;
+        cursorContainer.classList.remove('opacity-100');
+        cursorContainer.classList.add('opacity-0');
+        label.textContent = '';
+      }
     }
 
     // 6. Click Feedback

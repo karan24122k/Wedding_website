@@ -412,6 +412,11 @@
                         <p class="text-xs text-stone-400 uppercase tracking-widest mt-1">${locFull}</p>
                     </div>
                     <div class="flex items-center gap-3 shrink-0">
+                        ${film.src ? `
+                        <a href="${film.src}?view=1" target="_blank" rel="noopener" class="text-[10px] uppercase tracking-[0.18em] font-medium text-stone-300 hover:text-white bg-stone-900 border border-stone-800 hover:border-stone-700 px-3 py-1.5 rounded-full transition flex items-center gap-1.5" title="Open master film in cinema player">
+                            <i class="fas fa-arrow-up-right-from-square text-[9px] text-orange-500"></i> Cinema View
+                        </a>
+                        ` : ''}
                         <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-stone-300 bg-stone-900 border border-stone-800 px-3.5 py-1.5 rounded-full">
                             ${tag}
                         </span>
@@ -430,14 +435,25 @@
             const vp = document.getElementById(`vp-${index}`);
             if (!vp) return;
 
-            // Target embed: prefer direct preview player URL, then fallback to API proxy
-            const targetEmbed = (film && film.embedUrl)
-                ? film.embedUrl
-                : (film && film.src && film.src.startsWith('/api/video/') ? `${film.src}?embed=1` : null);
+            // Target embed: secure gateway stream with adaptive preview player
+            const targetEmbed = (film && film.src && film.src.startsWith('/api/video/'))
+                ? `${film.src}?embed=1`
+                : (film && film.embedUrl ? film.embedUrl : null);
 
             if (targetEmbed) {
-                // Instantly inject Google Drive adaptive transcode streaming player
-                vp.innerHTML = `<iframe src="${targetEmbed}" class="w-full h-full border-0 rounded-xl" allow="autoplay; encrypted-media; fullscreen" allowfullscreen style="width:100%; height:100%; min-height:360px; background:#000;"></iframe>`;
+                // Instantly inject Google Drive adaptive transcode streaming player with cinema fallback
+                vp.innerHTML = `
+                    <div class="relative w-full h-full flex flex-col">
+                        <iframe src="${targetEmbed}" class="w-full h-full border-0 rounded-xl" allow="autoplay; encrypted-media; fullscreen" allowfullscreen style="width:100%; height:100%; min-height:360px; background:#000;"></iframe>
+                        ${film.src ? `
+                        <div class="absolute bottom-3 right-3 z-20">
+                            <a href="${film.src}?view=1" target="_blank" rel="noopener" class="text-[10px] uppercase tracking-wider bg-black/85 hover:bg-orange-700 text-stone-300 hover:text-white px-3 py-1.5 rounded-lg transition backdrop-blur-md border border-stone-700/60 flex items-center gap-1.5 shadow-lg">
+                                <i class="fas fa-external-link-alt text-[9px]"></i> Cinema Window
+                            </a>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
                 return;
             }
 
