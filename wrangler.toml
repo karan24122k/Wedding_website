@@ -9,10 +9,5 @@ directory = "."
 # Runtime variables
 [vars]
 GDRIVE_ROOT_FOLDER_ID = "1_JX_WEdxdiBUZ4S1QavDEiqVZJGezPUj"
+GDRIVE_FEED_URL = "https://script.google.com/macros/s/AKfycbwfWfy-sgAPreot7OFY1JvRCD-WpfVT_4i7mbuwcJyE5ZDTeZodX5pzH61n4zVLMB3v/exec"
 ALLOWED_ORIGIN = "*"
-
-# Secrets required in Cloudflare Dashboard (Settings > Variables and Secrets)
-# or via: npx wrangler secret put <NAME>
-# - GOOGLE_CLIENT_EMAIL
-# - GOOGLE_PRIVATE_KEY
-# - MEDIA_SYNC_SECRET
