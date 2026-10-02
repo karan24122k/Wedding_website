@@ -203,7 +203,98 @@ async function listFilesInFolder(folderId, accessToken) {
 }
 
 /**
- * Builds full media manifest from Google Drive structure
+ * Parses Google Apps Script Web App JSON output into structured manifest
+ */
+function parseAppsScriptFeed(data) {
+  const manifest = {
+    generatedAt: new Date().toISOString(),
+    categories: [
+      { id: 'pre-wedding', name: 'Pre-Wedding', subtitle: 'The Prelude to Forever' },
+      { id: 'wedding', name: 'Wedding', subtitle: 'Pledges & Sacred Traditions' },
+      { id: 'reception', name: 'Reception', subtitle: 'Grand Evenings & Celebrations' },
+      { id: 'ring-ceremony', name: 'Ring Ceremony', subtitle: 'Engagement & Sangeet Rituals' },
+      { id: 'birthdays', name: 'Birthdays & Milestones', subtitle: 'Joyful Family Milestones' }
+    ],
+    gallery: {
+      'pre-wedding': [],
+      'wedding': [],
+      'reception': [],
+      'ring-ceremony': [],
+      'birthdays': []
+    },
+    films: {
+      'wedding': [],
+      'pre-wedding': [],
+      'birthdays': []
+    },
+    opaqueIndex: {}
+  };
+
+  const folderMap = {
+    'PRE WEDDING': 'pre-wedding',
+    'WEDDING PHOTO': 'wedding',
+    'RECEPTION': 'reception',
+    'RING CEREMONY': 'ring-ceremony',
+    'BABY PHOTO': 'birthdays'
+  };
+
+  const gallerySource = data.gallery || {};
+  for (const [folderName, items] of Object.entries(gallerySource)) {
+    const fUpper = folderName.toUpperCase().trim();
+    const isVideoFolder = fUpper.includes('VIDEO') || fUpper.includes('TEASER');
+    const cat = folderMap[fUpper] || 'wedding';
+
+    (items || []).forEach((item, idx) => {
+      const isVideo = isVideoFolder || (item.mimeType && item.mimeType.startsWith('video/')) || (item.title && item.title.toLowerCase().endsWith('.mp4'));
+      const opaqueId = generateOpaqueId(folderName, item.title || `item-${idx}`, item.id);
+
+      manifest.opaqueIndex[opaqueId] = {
+        fileId: item.id,
+        name: item.title,
+        folder: folderName,
+        mimeType: item.mimeType || (isVideo ? 'video/mp4' : 'image/jpeg')
+      };
+
+      if (isVideo) {
+        let vCat = 'wedding';
+        const tUpper = (item.title || '').toUpperCase();
+        if (tUpper.includes('BIRTHDAY') || tUpper.includes('PREHAN')) vCat = 'birthdays';
+        else if (tUpper.includes('PRE WEDDING')) vCat = 'pre-wedding';
+
+        const isReel = tUpper.includes('REEL');
+        manifest.films[vCat] = manifest.films[vCat] || [];
+        manifest.films[vCat].push({
+          id: opaqueId,
+          title: cleanDisplayTitle(item.title || 'Wedding Film'),
+          tag: isReel ? 'Vertical Reel' : 'Teaser Film',
+          orientation: isReel ? 'portrait' : 'landscape',
+          aspectRatio: isReel ? '9/16' : '16/9',
+          src: `/api/video/${opaqueId}`,
+          poster: `/api/media/${opaqueId}?size=card`,
+          order: idx + 1,
+          published: true
+        });
+      } else {
+        manifest.gallery[cat] = manifest.gallery[cat] || [];
+        manifest.gallery[cat].push({
+          id: opaqueId,
+          title: cleanDisplayTitle(item.title || 'Wedding Capture'),
+          caption: cleanDisplayTitle(item.title || 'Wedding Capture'),
+          src: `/api/media/${opaqueId}?size=card`,
+          thumb: `/api/media/${opaqueId}?size=thumb`,
+          full: `/api/media/${opaqueId}?size=lightbox`,
+          order: idx + 1,
+          published: true
+        });
+      }
+    });
+  }
+
+  return manifest;
+}
+
+/**
+ * Builds full media manifest from Google Drive structure or Apps Script feed
  */
 export async function getDriveManifest(env, forceRefresh = false) {
   const now = Date.now();
@@ -211,9 +302,23 @@ export async function getDriveManifest(env, forceRefresh = false) {
     return cachedManifest;
   }
 
+  // Path 1: Google Apps Script Web App Feed (Zero Google Cloud credentials needed)
+  if (env.GDRIVE_FEED_URL) {
+    const feedRes = await fetch(env.GDRIVE_FEED_URL, { redirect: 'follow' });
+    if (!feedRes.ok) {
+      throw new Error(`Google Apps Script feed returned HTTP ${feedRes.status}`);
+    }
+    const rawData = await feedRes.json();
+    const manifest = parseAppsScriptFeed(rawData);
+    cachedManifest = manifest;
+    manifestExpiresAt = now + (3600 * 1000); // 1 hour TTL
+    return manifest;
+  }
+
+  // Path 2: Direct Google Drive API via Service Account
   const rootFolderId = env.GDRIVE_ROOT_FOLDER_ID;
   if (!rootFolderId) {
-    throw new Error('GDRIVE_ROOT_FOLDER_ID is not configured');
+    throw new Error('GDRIVE_ROOT_FOLDER_ID or GDRIVE_FEED_URL is not configured');
   }
 
   const accessToken = await getAccessToken(env);
@@ -257,7 +362,7 @@ export async function getDriveManifest(env, forceRefresh = false) {
       'pre-wedding': [],
       'birthdays': []
     },
-    opaqueIndex: {} // Maps opaqueId -> { fileId, folder, name, mimeType }
+    opaqueIndex: {}
   };
 
   const folderCategoryMap = {
@@ -282,7 +387,6 @@ export async function getDriveManifest(env, forceRefresh = false) {
 
       const opaqueId = generateOpaqueId(folder.name, file.name, file.id);
 
-      // Register in secure lookup table (never exposes file.id to public)
       manifest.opaqueIndex[opaqueId] = {
         fileId: file.id,
         name: file.name,
@@ -292,7 +396,6 @@ export async function getDriveManifest(env, forceRefresh = false) {
       };
 
       if (isVideo) {
-        // Categorize video
         let targetCat = 'wedding';
         const nameUpper = file.name.toUpperCase();
         if (nameUpper.includes('BIRTHDAY') || nameUpper.includes('PREHAN')) targetCat = 'birthdays';
@@ -321,7 +424,6 @@ export async function getDriveManifest(env, forceRefresh = false) {
           src: `/api/media/${opaqueId}?size=card`,
           thumb: `/api/media/${opaqueId}?size=thumb`,
           full: `/api/media/${opaqueId}?size=lightbox`,
-          aspect: file.imageMediaMetadata && file.imageMediaMetadata.height > file.imageMediaMetadata.width ? '4/5' : '3/2',
           order: i + 1,
           published: true
         });
@@ -344,7 +446,6 @@ function cleanDisplayTitle(filename) {
     .replace(/[-_]+/g, ' ')
     .trim();
 
-  // If title was like "Moment #0006", format nicely
   if (title.startsWith('Moment #')) {
     const num = title.replace(/\D/g, '');
     return `Royal Ceremony • Shot ${num || '01'}`;
@@ -365,8 +466,6 @@ export async function resolveOpaqueId(opaqueId, env) {
  * Uses size tokens: thumb (400px), card (1200px), lightbox (1920px)
  */
 export async function fetchDriveImage(fileId, size = 'card', env) {
-  const accessToken = await getAccessToken(env);
-
   const sizeMap = {
     thumb: 400,
     card: 1200,
@@ -374,42 +473,48 @@ export async function fetchDriveImage(fileId, size = 'card', env) {
   };
   const width = sizeMap[size] || 1200;
 
-  // Google Drive provides high-performance resized renditions via internal thumbnail API
-  const thumbUrl = `https://drive.google.com/thumbnail?id=${encodeURIComponent(fileId)}&sz=w${width}`;
-
-  const res = await fetch(thumbUrl, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`
+  // Path A: Authenticated Service Account
+  if (env.GOOGLE_CLIENT_EMAIL && env.GOOGLE_PRIVATE_KEY) {
+    try {
+      const accessToken = await getAccessToken(env);
+      const thumbUrl = `https://drive.google.com/thumbnail?id=${encodeURIComponent(fileId)}&sz=w${width}`;
+      const authRes = await fetch(thumbUrl, { headers: { Authorization: `Bearer ${accessToken}` } });
+      if (authRes.ok) return authRes;
+    } catch (e) {
+      // Fallback to direct public thumbnail
     }
-  });
-
-  // If thumbnail API fails, fallback to full media stream
-  if (!res.ok) {
-    return await fetch(`https://www.googleapis.com/drive/v3/files/${encodeURIComponent(fileId)}?alt=media`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
   }
 
-  return res;
+  // Path B: Direct High-Performance Resized Rendition (Shared Link / Apps Script)
+  const directUrl = `https://lh3.googleusercontent.com/d/${encodeURIComponent(fileId)}=w${width}`;
+  const res = await fetch(directUrl);
+  if (res.ok) return res;
+
+  // Fallback to drive thumbnail
+  return await fetch(`https://drive.google.com/thumbnail?id=${encodeURIComponent(fileId)}&sz=w${width}`);
 }
 
 /**
  * Fetches video stream from Google Drive supporting HTTP Range requests
  */
 export async function fetchDriveVideo(fileId, rangeHeader, env) {
-  const accessToken = await getAccessToken(env);
-
-  const headers = {
-    Authorization: `Bearer ${accessToken}`
-  };
-
+  const headers = {};
   if (rangeHeader) {
     headers['Range'] = rangeHeader;
   }
 
-  return await fetch(`https://www.googleapis.com/drive/v3/files/${encodeURIComponent(fileId)}?alt=media`, {
-    headers
-  });
+  // Path A: Authenticated Service Account
+  if (env.GOOGLE_CLIENT_EMAIL && env.GOOGLE_PRIVATE_KEY) {
+    try {
+      const accessToken = await getAccessToken(env);
+      headers['Authorization'] = `Bearer ${accessToken}`;
+      return await fetch(`https://www.googleapis.com/drive/v3/files/${encodeURIComponent(fileId)}?alt=media`, { headers });
+    } catch (e) {
+      // Fallback
+    }
+  }
+
+  // Path B: Public Google Drive stream
+  return await fetch(`https://drive.google.com/uc?export=download&id=${encodeURIComponent(fileId)}`, { headers });
 }
+
