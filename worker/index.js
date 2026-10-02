@@ -28,13 +28,17 @@ export default {
 
     // Route: GET /api/manifest
     if (path === '/api/manifest') {
+      const forceRefresh = url.searchParams.has('refresh');
       const cache = caches.default;
       const cacheKey = new Request(request.url, request);
-      const cached = await cache.match(cacheKey);
-      if (cached) return cached;
+
+      if (!forceRefresh) {
+        const cached = await cache.match(cacheKey);
+        if (cached) return cached;
+      }
 
       try {
-        const manifest = await getDriveManifest(env);
+        const manifest = await getDriveManifest(env, forceRefresh);
         const res = new Response(
           JSON.stringify({
             generatedAt: manifest.generatedAt,
@@ -93,6 +97,11 @@ export default {
       const meta = await resolveOpaqueId(opaqueId, env);
       if (!meta) {
         return new Response('Not found', { status: 404, headers: { 'Access-Control-Allow-Origin': allowedOrigin } });
+      }
+
+      // Adaptive streaming preview player redirect
+      if (url.searchParams.get('embed') === '1') {
+        return Response.redirect(`https://drive.google.com/file/d/${meta.fileId}/preview`, 302);
       }
 
       const range = request.headers.get('Range');

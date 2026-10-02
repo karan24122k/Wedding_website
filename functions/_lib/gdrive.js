@@ -408,6 +408,8 @@ export async function getDriveManifest(env, forceRefresh = false) {
         manifest.films[targetCat] = manifest.films[targetCat] || [];
         manifest.films[targetCat].push({
           id: opaqueId,
+          driveId: file.id,
+          embedUrl: `https://drive.google.com/file/d/${file.id}/preview`,
           title: cleanDisplayTitle(file.name),
           tag: isReel ? 'Vertical Reel' : 'Teaser Film',
           orientation: isReel ? 'portrait' : 'landscape',

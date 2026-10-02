@@ -418,17 +418,28 @@
             if (overlay) overlay.classList.add('hidden');
 
             const film = allFilmsList[index];
-            if (film && film.embedUrl) {
-                const vp = document.getElementById(`vp-${index}`);
+            const vp = document.getElementById(`vp-${index}`);
+            const vid = document.getElementById(`vid-${index}`);
+
+            // 1. If film is from Google Drive API gateway, load secure embed endpoint
+            if (film && film.src && film.src.startsWith('/api/video/')) {
                 if (vp) {
-                    vp.innerHTML = `<iframe src="${film.embedUrl}?autoplay=1" class="w-full h-full border-0 rounded-xl" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+                    vp.innerHTML = `<iframe src="${film.src}?embed=1" class="w-full h-full border-0 rounded-xl" allow="autoplay; encrypted-media; fullscreen" allowfullscreen style="width:100%; height:100%; min-height:360px;"></iframe>`;
                     return;
                 }
             }
 
-            const vid = document.getElementById(`vid-${index}`);
+            // 2. Otherwise play local HTML5 video
             if (vid) {
-                vid.play();
+                const playPromise = vid.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(err => {
+                        console.warn('Native HTML5 video playback stalled:', err);
+                        if (film && film.src && vp) {
+                            vp.innerHTML = `<iframe src="${film.src}?embed=1" class="w-full h-full border-0 rounded-xl" allow="autoplay; encrypted-media; fullscreen" allowfullscreen style="width:100%; height:100%; min-height:360px;"></iframe>`;
+                        }
+                    });
+                }
             }
         }
 
