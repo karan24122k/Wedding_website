@@ -265,6 +265,8 @@ function parseAppsScriptFeed(data) {
         manifest.films[vCat] = manifest.films[vCat] || [];
         manifest.films[vCat].push({
           id: opaqueId,
+          driveId: item.id,
+          embedUrl: `https://drive.google.com/file/d/${item.id}/preview`,
           title: cleanDisplayTitle(item.title || 'Wedding Film'),
           tag: isReel ? 'Vertical Reel' : 'Teaser Film',
           orientation: isReel ? 'portrait' : 'landscape',

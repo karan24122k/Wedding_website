@@ -411,12 +411,24 @@
             </article>`;
         }
 
+        let allFilmsList = [];
+
         function playVideo(index) {
-            const vid = document.getElementById(`vid-${index}`);
             const overlay = document.getElementById(`play-overlay-${index}`);
+            if (overlay) overlay.classList.add('hidden');
+
+            const film = allFilmsList[index];
+            if (film && film.embedUrl) {
+                const vp = document.getElementById(`vp-${index}`);
+                if (vp) {
+                    vp.innerHTML = `<iframe src="${film.embedUrl}?autoplay=1" class="w-full h-full border-0 rounded-xl" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+                    return;
+                }
+            }
+
+            const vid = document.getElementById(`vid-${index}`);
             if (vid) {
                 vid.play();
-                if (overlay) overlay.classList.add('hidden');
             }
         }
 
@@ -489,6 +501,7 @@
                 el.innerHTML = '<p class="text-gray-500 text-sm italic py-8">No films currently published in this section.</p>';
                 return;
             }
+            films.forEach((f, i) => { allFilmsList[offset + i] = f; });
             el.innerHTML = films.map((f, i) => buildFilmCard(f, offset + i)).join('');
         }
 

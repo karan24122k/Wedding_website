@@ -28,9 +28,14 @@ export default {
 
     // Route: GET /api/manifest
     if (path === '/api/manifest') {
+      const cache = caches.default;
+      const cacheKey = new Request(request.url, request);
+      const cached = await cache.match(cacheKey);
+      if (cached) return cached;
+
       try {
         const manifest = await getDriveManifest(env);
-        return new Response(
+        const res = new Response(
           JSON.stringify({
             generatedAt: manifest.generatedAt,
             categories: manifest.categories,
@@ -41,11 +46,13 @@ export default {
             headers: {
               'Content-Type': 'application/json',
               'Access-Control-Allow-Origin': allowedOrigin,
-              'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+              'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
               'X-Content-Type-Options': 'nosniff'
             }
           }
         );
+        ctx.waitUntil(cache.put(cacheKey, res.clone()));
+        return res;
       } catch (err) {
         return new Response(JSON.stringify({ error: err.message, fallback: true }), {
           status: 503,
@@ -57,6 +64,11 @@ export default {
     // Route: GET /api/media/:id
     const mediaMatch = path.match(/^\/api\/media\/([a-zA-Z0-9_-]+)/);
     if (mediaMatch) {
+      const cache = caches.default;
+      const cacheKey = new Request(request.url, request);
+      const cached = await cache.match(cacheKey);
+      if (cached) return cached;
+
       const opaqueId = mediaMatch[1];
       const size = url.searchParams.get('size') || 'card';
       const meta = await resolveOpaqueId(opaqueId, env);
@@ -69,7 +81,9 @@ export default {
       headers.set('Access-Control-Allow-Origin', allowedOrigin);
       headers.set('Cache-Control', 'public, max-age=2592000, immutable');
       headers.set('X-Content-Type-Options', 'nosniff');
-      return new Response(res.body, { status: res.status, headers });
+      const response = new Response(res.body, { status: res.status, headers });
+      ctx.waitUntil(cache.put(cacheKey, response.clone()));
+      return response;
     }
 
     // Route: GET /api/video/:id
