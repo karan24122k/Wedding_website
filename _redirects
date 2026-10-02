@@ -1,0 +1,7 @@
+# Cloudflare Pages Redirects & Canonical Routing
+
+# Example canonical apex domain redirect (uncomment when custom domain is active):
+# https://www.kumarphotography.in/* https://kumarphotography.in/:splat 301!
+
+# API Gateway fallback routing (ensures Pages Functions handle all /api/* requests)
+/api/*  /api/:splat  200

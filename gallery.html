@@ -173,38 +173,38 @@
         }
     </style>
 </head>
-<body class="bg-stone-50 text-gray-900">
+<body class="bg-[#faf8f5] text-[#1c1917]">
 
     <!-- Accessibility Skip Link -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-orange-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:text-xs focus:uppercase focus:tracking-widest">Skip to main content</a>
 
     <!-- Cohesive Navigation Matching Index and Films -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-lg md:text-2xl font-bold tracking-tighter uppercase whitespace-normal">
-                <img src="Images/Kumar.png" alt="Kumar Video &amp; Photography Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
-                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">&amp; Photography</span></span>
+    <nav class="site-nav nav-solid fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3.5 sm:py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-base md:text-xl font-bold tracking-tight uppercase whitespace-normal nav-brand-text">
+                <img src="Images/Kumar.png" alt="Kumar Video &amp; Photography Logo" class="nav-logo-img h-7 sm:h-9 md:h-10 w-auto object-contain flex-shrink-0">
+                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-600 font-light sm:ml-1">&amp; Photography</span></span>
             </a>
             
-            <button id="mobile-menu-btn" class="md:hidden text-xl p-2 ml-auto text-gray-800 flex-shrink-0" aria-label="Toggle Navigation Menu">
+            <button id="mobile-menu-btn" class="nav-toggle-btn md:hidden text-lg p-2 ml-auto flex-shrink-0 focus:outline-none" aria-label="Toggle Navigation Menu">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="hidden md:flex items-center space-x-10 font-medium text-xs tracking-[0.2em] uppercase">
-                <a href="index.html" class="hover:text-orange-700 transition">Home</a>
-                <a href="gallery.html" class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1">Gallery</a>
-                <a href="films.html" class="hover:text-orange-700 transition">Films</a>
-                <a href="index.html#contact" class="hover:text-orange-700 transition">Inquire</a>
-                <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
+            <div class="hidden md:flex items-center space-x-8 lg:space-x-10 font-medium text-xs tracking-editorial uppercase">
+                <a href="index.html" class="nav-link transition duration-200">Home</a>
+                <a href="gallery.html" class="nav-link text-orange-700 font-bold border-b-2 border-orange-700 pb-1">Gallery</a>
+                <a href="films.html" class="nav-link transition duration-200">Films</a>
+                <a href="index.html#contact" class="nav-link transition duration-200">Inquire</a>
+                <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="nav-cta px-5 py-2 rounded-full text-[11px] font-medium uppercase tracking-editorial transition duration-200">WhatsApp</a>
             </div>
         </div>
         
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-6 flex flex-col space-y-6 font-medium text-xs tracking-[0.2em] uppercase shadow-xl">
-            <a href="index.html" class="hover:text-orange-700 transition w-full">Home</a>
-            <a href="gallery.html" class="text-orange-700 font-bold w-full">Gallery</a>
-            <a href="films.html" class="hover:text-orange-700 transition w-full">Films</a>
-            <a href="index.html#contact" class="hover:text-orange-700 transition w-full">Inquire</a>
-            <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#faf8f5]/98 border-t border-stone-200/80 px-6 py-6 flex flex-col space-y-5 font-medium text-xs tracking-editorial uppercase shadow-xl text-[#1c1917] backdrop-blur-md">
+            <a href="index.html" class="hover:text-orange-700 transition w-full py-1">Home</a>
+            <a href="gallery.html" class="text-orange-700 font-bold w-full py-1">Gallery</a>
+            <a href="films.html" class="hover:text-orange-700 transition w-full py-1">Films</a>
+            <a href="index.html#contact" class="hover:text-orange-700 transition w-full py-1">Inquire</a>
+            <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography." target="_blank" rel="noopener noreferrer" class="mobile-nav-cta w-full border border-orange-700/60 text-orange-700 text-center py-3 rounded-full text-xs font-medium hover:bg-orange-700 hover:text-white transition uppercase tracking-editorial mt-2">WhatsApp</a>
         </div>
     </nav>
 
@@ -256,7 +256,6 @@
                              src="gallery/pre-wedding/sangeet-01.webp"
                              alt="The Royal Sangeet - Vikram & Ananya • Udaipur, Rajasthan | Kumar Video & Photography"
                              class="w-full h-auto object-cover protect-media block">
-                        <div class="media-shield" aria-hidden="true"></div>
                     </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
@@ -276,7 +275,6 @@
                              src="gallery/pre-wedding/candid-01.webp"
                              alt="Candid Moments - Rohit & Meera • Bengaluru | Kumar Video & Photography"
                              class="w-full h-auto object-cover protect-media block">
-                        <div class="media-shield" aria-hidden="true"></div>
                     </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
@@ -306,7 +304,6 @@
                              src="gallery/wedding/vows-01.webp"
                              alt="The Wedding Vows - Aditya & Anjali • Leela Palace, Bengaluru | Kumar Video & Photography"
                              class="w-full h-auto object-cover protect-media block">
-                        <div class="media-shield" aria-hidden="true"></div>
                     </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
@@ -326,7 +323,6 @@
                              src="gallery/wedding/moments-01.webp"
                              alt="Wedding Moments - Aditya & Anjali • Leela Palace, Bengaluru | Kumar Video & Photography"
                              class="w-full h-auto object-cover protect-media block">
-                        <div class="media-shield" aria-hidden="true"></div>
                     </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
@@ -346,7 +342,6 @@
                              src="gallery/wedding/bridal-01.webp"
                              alt="Bridal Bliss - Ananya Sharma • Hyderabad | Kumar Video & Photography"
                              class="w-full h-auto object-cover protect-media block">
-                        <div class="media-shield" aria-hidden="true"></div>
                     </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
@@ -366,7 +361,6 @@
                              src="gallery/wedding/reception-01.webp"
                              alt="The Grand Reception - Karan & Simran • Taj West End, Bengaluru | Kumar Video & Photography"
                              class="w-full h-auto object-cover protect-media block">
-                        <div class="media-shield" aria-hidden="true"></div>
                     </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
@@ -396,7 +390,6 @@
                              src="gallery/birthdays/celebration-01.webp"
                              alt="Festive Celebrations - Aarav's 1st Birthday • Bengaluru | Kumar Video & Photography"
                              class="w-full h-auto object-cover protect-media block">
-                        <div class="media-shield" aria-hidden="true"></div>
                     </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
@@ -442,6 +435,14 @@
     <!-- Core Utilities & Fallback Data -->
     <script src="site.js"></script>
 
+    <!-- Three.js (Pinned v0.160.0) & WebGL Architecture -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="js/webgl/webgl-core.js"></script>
+    <script src="js/webgl/scene-manager.js"></script>
+    <script src="js/webgl/webgl-gallery.js?v=2"></script>
+    <script src="js/ui/cursor.js"></script>
+    <script src="js/ui/page-transitions.js"></script>
+
     <script>
         // Global state for lightbox and filtering
         let allPhotos = [];
@@ -474,7 +475,7 @@
                      role="button"
                      tabindex="0"
                      aria-label="View ${caption}">
-                    <img loading="lazy" decoding="async" src="${photo.src}" alt="${caption} - ${couple}" class="w-full block protect-media">
+                    <img loading="lazy" decoding="async" src="${photo.card || photo.src}" alt="${caption} - ${couple}" class="w-full block protect-media" draggable="false">
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
                             ${caption}
@@ -559,7 +560,7 @@
             if (!photo) return;
             const imgEl = document.getElementById('lb-img');
             imgEl.style.opacity = '0.4';
-            imgEl.src = photo.src;
+            imgEl.src = photo.full || photo.src;
             imgEl.alt = photo.caption || 'Wedding Photo';
             imgEl.onload = () => { imgEl.style.opacity = '1'; };
 
@@ -653,11 +654,15 @@
             }
         });
 
-        // Initialize content using universal loader (works on both http and file://)
+        // Initialize content using universal loader (supports API gateway, content.json, and offline fallback)
         loadSiteContent().then((data) => {
             const gallery = data.gallery || {};
             rawPhotosByCategory['pre-wedding'] = (gallery['pre-wedding'] || []).filter(p => p.published !== false);
-            rawPhotosByCategory['wedding']     = (gallery['wedding'] || []).filter(p => p.published !== false);
+            rawPhotosByCategory['wedding']     = [
+                ...(gallery['wedding'] || []),
+                ...(gallery['reception'] || []),
+                ...(gallery['ring-ceremony'] || [])
+            ].filter(p => p.published !== false);
             rawPhotosByCategory['birthdays']   = (gallery['birthdays'] || []).filter(p => p.published !== false);
 
             // Check if URL has a valid hash like #wedding or #pre-wedding

@@ -101,57 +101,6 @@
         /* Video card wrapper */
         .video-card { position: relative; }
 
-        .video-container {
-            position: relative;
-            background: #000;
-            border-radius: 1.25rem 1.25rem 0 0;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .video-container video {
-            display: block;
-            width: 100%;
-            background: #000;
-            max-height: 80vh;
-            object-fit: contain;
-            transition: transform 0.4s ease;
-        }
-
-        /* Portrait Reels: Centered narrow column */
-        .video-container.is-portrait {
-            max-width: 380px;
-            margin: 0 auto;
-            border-radius: 1.25rem;
-        }
-
-        /* Orientation toolbar */
-        .orient-toolbar {
-            position: absolute;
-            top: 12px; right: 12px;
-            display: flex; gap: 6px;
-            z-index: 20;
-        }
-        .orient-btn {
-            padding: 6px 12px;
-            min-height: 36px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            border-radius: 9999px;
-            border: 1px solid rgba(255,255,255,0.35);
-            background: rgba(0,0,0,0.7);
-            color: white;
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            transition: all 0.2s ease;
-        }
-        .orient-btn:hover { background: rgba(255,255,255,0.3); }
-        .orient-btn.active { border-color: #c2410c; color: #ffffff; background: #c2410c; font-weight: bold; }
-
         /* Custom Play Overlay */
         .play-overlay {
             position: absolute;
@@ -159,37 +108,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.35);
+            background: rgba(0, 0, 0, 0.45);
             cursor: pointer;
             z-index: 15;
             transition: opacity 0.3s ease;
         }
         .play-overlay.hidden { display: none; }
-        .play-button-icon {
-            width: 68px; height: 68px;
-            border-radius: 50%;
-            background: rgba(194, 65, 12, 0.9);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            padding-left: 4px;
-            box-shadow: 0 10px 30px rgba(194, 65, 12, 0.5);
-            transition: transform 0.2s ease, background 0.2s ease;
-        }
-        .play-overlay:hover .play-button-icon {
-            transform: scale(1.1);
-            background: #c2410c;
-        }
-
-        /* Coming-soon placeholder */
-        .coming-soon-card {
-            border: 2px dashed #d6d3d1;
-            border-radius: 1.25rem;
-            padding: 48px 24px;
-            text-align: center;
-            background: #ffffff;
+        .play-overlay:focus-visible {
+            outline: 2px solid #c2410c;
+            outline-offset: -4px;
         }
 
         /* Fullscreen fix */
@@ -197,38 +124,38 @@
         video:-webkit-full-screen { width: 100%; height: 100%; }
     </style>
 </head>
-<body class="bg-stone-50 text-gray-900">
+<body class="bg-[#faf8f5] text-[#1c1917]">
 
     <!-- Accessibility Skip Link -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-orange-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:text-xs focus:uppercase focus:tracking-widest">Skip to main content</a>
 
     <!-- Cohesive Navigation Matching Index and Gallery -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-lg md:text-2xl font-bold tracking-tighter uppercase whitespace-normal">
-                <img src="Images/Kumar.png" alt="Kumar Video &amp; Photography Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
-                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">&amp; Photography</span></span>
+    <nav class="site-nav nav-solid fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3.5 sm:py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-base md:text-xl font-bold tracking-tight uppercase whitespace-normal nav-brand-text">
+                <img src="Images/Kumar.png" alt="Kumar Video &amp; Photography Logo" class="nav-logo-img h-7 sm:h-9 md:h-10 w-auto object-contain flex-shrink-0">
+                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-600 font-light sm:ml-1">&amp; Photography</span></span>
             </a>
             
-            <button id="mobile-menu-btn" class="md:hidden text-xl p-2 ml-auto text-gray-800 flex-shrink-0" aria-label="Toggle Navigation Menu">
+            <button id="mobile-menu-btn" class="nav-toggle-btn md:hidden text-lg p-2 ml-auto flex-shrink-0 focus:outline-none" aria-label="Toggle Navigation Menu">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="hidden md:flex items-center space-x-10 font-medium text-xs tracking-[0.2em] uppercase">
-                <a href="index.html" class="hover:text-orange-700 transition">Home</a>
-                <a href="gallery.html" class="hover:text-orange-700 transition">Gallery</a>
-                <a href="films.html" class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1">Films</a>
-                <a href="index.html#contact" class="hover:text-orange-700 transition">Inquire</a>
-                <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20films." target="_blank" rel="noopener noreferrer" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
+            <div class="hidden md:flex items-center space-x-8 lg:space-x-10 font-medium text-xs tracking-editorial uppercase">
+                <a href="index.html" class="nav-link transition duration-200">Home</a>
+                <a href="gallery.html" class="nav-link transition duration-200">Gallery</a>
+                <a href="films.html" class="nav-link text-orange-700 font-bold border-b-2 border-orange-700 pb-1">Films</a>
+                <a href="index.html#contact" class="nav-link transition duration-200">Inquire</a>
+                <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20films." target="_blank" rel="noopener noreferrer" class="nav-cta px-5 py-2 rounded-full text-[11px] font-medium uppercase tracking-editorial transition duration-200">WhatsApp</a>
             </div>
         </div>
         
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-6 flex flex-col space-y-6 font-medium text-xs tracking-[0.2em] uppercase shadow-xl">
-            <a href="index.html" class="hover:text-orange-700 transition w-full">Home</a>
-            <a href="gallery.html" class="hover:text-orange-700 transition w-full">Gallery</a>
-            <a href="films.html" class="text-orange-700 font-bold w-full">Films</a>
-            <a href="index.html#contact" class="hover:text-orange-700 transition w-full">Inquire</a>
-            <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20films." target="_blank" rel="noopener noreferrer" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#faf8f5]/98 border-t border-stone-200/80 px-6 py-6 flex flex-col space-y-5 font-medium text-xs tracking-editorial uppercase shadow-xl text-[#1c1917] backdrop-blur-md">
+            <a href="index.html" class="hover:text-orange-700 transition w-full py-1">Home</a>
+            <a href="gallery.html" class="hover:text-orange-700 transition w-full py-1">Gallery</a>
+            <a href="films.html" class="text-orange-700 font-bold w-full py-1">Films</a>
+            <a href="index.html#contact" class="hover:text-orange-700 transition w-full py-1">Inquire</a>
+            <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20films." target="_blank" rel="noopener noreferrer" class="mobile-nav-cta w-full border border-orange-700/60 text-orange-700 text-center py-3 rounded-full text-xs font-medium hover:bg-orange-700 hover:text-white transition uppercase tracking-editorial mt-2">WhatsApp</a>
         </div>
     </nav>
 
@@ -240,23 +167,23 @@
 
     <main id="main-content" class="max-w-5xl mx-auto px-4 md:px-6 pb-24 space-y-16 md:space-y-24">
 
-        <!-- Category Filter Tabs Matching Gallery -->
-        <div id="category-nav" class="sticky top-16 bg-stone-50/95 backdrop-blur-md z-40 py-3 md:py-4 border-b border-stone-200">
-            <div class="overflow-x-auto no-scrollbar flex sm:flex-wrap justify-start sm:justify-center items-center gap-2 sm:gap-3 text-xs uppercase tracking-[0.12em] md:tracking-[0.15em] font-semibold max-w-3xl mx-auto px-4">
+        <!-- Category Filter Tabs Matching Luxury Editorial System -->
+        <div id="category-nav" class="sticky top-16 bg-[#faf8f5]/95 backdrop-blur-md z-40 py-3 md:py-4 border-b border-stone-200/80">
+            <div class="overflow-x-auto no-scrollbar flex sm:flex-wrap justify-start sm:justify-center items-center gap-2 sm:gap-3 text-xs uppercase tracking-[0.14em] font-medium max-w-3xl mx-auto px-4">
                 <button type="button" onclick="selectFilmCategory('all')" id="tab-film-all"
-                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold">
+                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 bg-orange-700 text-white shadow-sm font-semibold">
                     All Films
                 </button>
                 <button type="button" onclick="selectFilmCategory('pre-wedding')" id="tab-film-pre-wedding"
-                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 bg-white/90 text-stone-700 hover:text-stone-900 border border-stone-300/80 hover:border-stone-400">
                     Pre-Wedding
                 </button>
                 <button type="button" onclick="selectFilmCategory('wedding')" id="tab-film-wedding"
-                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 bg-white/90 text-stone-700 hover:text-stone-900 border border-stone-300/80 hover:border-stone-400">
                     Wedding
                 </button>
                 <button type="button" onclick="selectFilmCategory('birthdays')" id="tab-film-birthdays"
-                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200">
+                        class="film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 bg-white/90 text-stone-700 hover:text-stone-900 border border-stone-300/80 hover:border-stone-400">
                     Birthdays
                 </button>
             </div>
@@ -264,96 +191,110 @@
 
         <!-- Pre-Wedding Films -->
         <section id="pre-wedding" class="scroll-mt-36 space-y-6 md:space-y-8">
-            <div class="border-l-4 border-orange-700 pl-4">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 text-gray-900">Pre-Wedding Films</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">The Prelude to Forever</p>
+            <div class="editorial-section-header">
+                <span class="text-[10px] tracking-[0.25em] uppercase text-orange-800 font-semibold block mb-1">Chapter I • Pre-Wedding</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900 mb-1">Pre-Wedding Films</h2>
+                <p class="text-stone-500 uppercase tracking-[0.18em] text-[11px] sm:text-xs">The Prelude to Forever</p>
+                <div class="h-px bg-stone-200/80 w-full mt-3"></div>
             </div>
             <div id="films-pre-wedding" class="space-y-8 md:space-y-16">
-            <div class="coming-soon-card p-6 sm:p-12">
-                <i class="fas fa-film text-orange-700/60 text-4xl mb-4 block"></i>
-                <h3 class="text-xl font-serif italic text-gray-800 mb-2">A Tuscan Romance in Udaipur</h3>
-                <p class="text-gray-500 text-xs uppercase tracking-widest">Oberoi Udaivilas, Udaipur</p>
-                <span class="mt-4 inline-block text-[10px] border border-stone-300 bg-stone-100 text-stone-600 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold">Coming Soon</span>
-            </div>
+            <article class="archival-plate bg-[#141210] rounded-2xl border border-stone-800/80 shadow-xl overflow-hidden p-8 sm:p-12 md:p-14 text-center max-w-2xl mx-auto">
+                <span class="text-[10px] tracking-[0.25em] uppercase text-orange-600 font-semibold block mb-2.5">Archival Preview • In Post-Production</span>
+                <h3 class="text-2xl sm:text-3xl font-serif text-[#faf8f5] mb-2">A Tuscan Romance in Udaipur</h3>
+                <p class="text-xs text-stone-400 uppercase tracking-widest mb-5">Oberoi Udaivilas, Udaipur • 2025</p>
+                <div class="w-10 h-px bg-stone-800 mx-auto mb-5"></div>
+                <p class="text-stone-400 text-xs tracking-wider max-w-md mx-auto mb-6 leading-relaxed">Master color grading and cinematic sound design in progress.</p>
+                <span class="inline-block text-[10px] tracking-[0.2em] uppercase font-semibold text-stone-300 bg-stone-900/90 border border-stone-800 px-4 py-1.5 rounded-full">Coming Soon</span>
+            </article>
             </div>
         </section>
 
         <!-- Wedding Films -->
         <section id="wedding" class="scroll-mt-36 space-y-6 md:space-y-8">
-            <div class="border-l-4 border-orange-700 pl-4">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 text-gray-900">Wedding Films</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">Pledges &amp; Sacred Traditions</p>
+            <div class="editorial-section-header">
+                <span class="text-[10px] tracking-[0.25em] uppercase text-orange-800 font-semibold block mb-1">Chapter II • Ceremonial</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900 mb-1">Wedding Films</h2>
+                <p class="text-stone-500 uppercase tracking-[0.18em] text-[11px] sm:text-xs">Pledges &amp; Sacred Traditions</p>
+                <div class="h-px bg-stone-200/80 w-full mt-3"></div>
             </div>
             <div id="films-wedding" class="space-y-8 md:space-y-16">
-            <div class="video-card bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden" id="card-1">
-                <div class="video-container is-portrait" id="vc-1">
-                    <!-- Controls Toolbar -->
-                    <div class="orient-toolbar">
-                        <button class="orient-btn " id="btn-land-1"
-                                onclick="setMode(1, 'landscape')"
-                                title="Cinematic Wide View">
-                            <i class="fas fa-desktop mr-1"></i> Wide
-                        </button>
-                        <button class="orient-btn active" id="btn-port-1"
-                                onclick="setMode(1, 'portrait')"
-                                title="Vertical Reel Format">
+            <article class="video-card screening-card bg-[#141210] rounded-2xl border border-stone-800/80 shadow-2xl overflow-hidden" id="card-1">
+                <!-- Screening Room Header with Presentation Mode Selector -->
+                <div class="screening-header px-4 py-3 sm:px-6 border-b border-stone-800/60 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-stone-400">
+                    <span class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                        <span class="font-medium text-stone-300">Screening Room</span>
+                    </span>
+                    <div class="presentation-mode-toggle flex items-center gap-1 bg-stone-900/90 p-1 rounded-full border border-stone-800 text-[10px]">
+                        <button type="button" class="mode-btn active px-3 py-1 rounded-full transition text-stone-400 hover:text-stone-200" id="btn-port-1" onclick="setMode(1, 'portrait')" title="Vertical Reel Format">
                             <i class="fas fa-mobile-alt mr-1"></i> Reel
                         </button>
-                        <button class="orient-btn" id="btn-rot-1"
-                                onclick="rotateVideo(1)"
-                                title="Rotate 90 Degrees">
-                            <i class="fas fa-sync-alt"></i>
+                        <button type="button" class="mode-btn  px-3 py-1 rounded-full transition text-stone-400 hover:text-stone-200" id="btn-land-1" onclick="setMode(1, 'theater')" title="Cinema Stage Presentation">
+                            <i class="fas fa-desktop mr-1"></i> Stage
                         </button>
                     </div>
+                </div>
 
-                    <!-- Custom Play Overlay -->
-                    <div class="play-overlay" id="play-overlay-1" onclick="playVideo(1)">
-                        <div class="play-button-icon">
-                            <i class="fas fa-play"></i>
+                <!-- Screening Theater Stage -->
+                <div class="video-container screening-theater relative overflow-hidden flex items-center justify-center p-3 sm:p-6 md:p-8" id="vc-1">
+                    <div class="screening-viewport is-portrait relative w-full rounded-xl overflow-hidden bg-black shadow-2xl flex items-center justify-center" id="vp-1">
+                        <!-- Custom Play Overlay (Fades on play) -->
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] cursor-pointer transition-opacity duration-300 z-10" id="play-overlay-1" onclick="playVideo(1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();playVideo(1);}" role="button" aria-label="Play The Summer Palace Wedding" tabindex="0">
+                            <div class="play-button-icon w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-orange-700/90 hover:bg-orange-700 text-white flex items-center justify-center pl-1 shadow-2xl transition-transform duration-200 hover:scale-105 border border-white/20">
+                                <i class="fas fa-play text-lg sm:text-xl"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <video id="vid-1"
-                           controls
-                           preload="none"
-                           playsinline
-                           poster="gallery/wedding/reception-01.webp"
-                           data-rot="0"
-                           class="protect-media"
-                           onplay="handleVideoPlay(1)">
-                        <source src="videos/wedding/reel-01.mp4" type="video/mp4">
-                        Your browser does not support video playback.
-                    </video>
+                        <video id="vid-1"
+                               controls
+                               preload="none"
+                               playsinline
+                               poster="gallery/wedding/reception-01.webp"
+                               class="protect-media w-full h-full object-contain"
+                               onplay="handleVideoPlay(1)">
+                            <source src="videos/wedding/reel-01.mp4" type="video/mp4">
+                            Your browser does not support video playback.
+                        </video>
+                    </div>
                 </div>
 
-                <!-- Video Details In Clean White Card Footer -->
-                <div class="p-4 sm:p-6 bg-white border-t border-stone-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+                <!-- Colophon & Metadata Plate -->
+                <div class="screening-colophon p-5 sm:p-7 bg-[#141210] border-t border-stone-800/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <div class="text-[10px] text-orange-700 font-bold uppercase tracking-widest">Wedding Highlight Film</div>
-                        <h3 class="text-xl md:text-2xl font-serif text-gray-900 mt-1">The Summer Palace Wedding</h3>
-                        <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">Leela Palace, Bengaluru • 2024</p>
+                        <div class="text-[10px] text-orange-600 font-semibold uppercase tracking-[0.2em] mb-1">Wedding Highlight Film</div>
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif text-[#faf8f5] tracking-tight">The Summer Palace Wedding</h3>
+                        <p class="text-xs text-stone-400 uppercase tracking-widest mt-1">Leela Palace, Bengaluru • 2024</p>
                     </div>
-                    <span class="text-[10px] border border-orange-700/30 text-orange-700 bg-orange-50 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold shrink-0">
-                        Highlight Reel
-                    </span>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-stone-300 bg-stone-900 border border-stone-800 px-3.5 py-1.5 rounded-full">
+                            Highlight Reel
+                        </span>
+                        <a href="index.html#contact" class="text-[10px] uppercase tracking-[0.18em] font-medium text-white bg-orange-700 hover:bg-orange-600 px-4 py-1.5 rounded-full transition shadow-sm">
+                            Inquire
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </article>
             </div>
         </section>
 
         <!-- Birthday Films -->
         <section id="birthdays" class="scroll-mt-36 space-y-6 md:space-y-8">
-            <div class="border-l-4 border-orange-700 pl-4">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif mb-1 text-gray-900">Birthdays &amp; Milestones</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-[11px] sm:text-xs">Joyful Milestones &amp; Celebrations</p>
+            <div class="editorial-section-header">
+                <span class="text-[10px] tracking-[0.25em] uppercase text-orange-800 font-semibold block mb-1">Chapter III • Celebrations</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif text-stone-900 mb-1">Birthdays &amp; Milestones</h2>
+                <p class="text-stone-500 uppercase tracking-[0.18em] text-[11px] sm:text-xs">Joyful Milestones &amp; Celebrations</p>
+                <div class="h-px bg-stone-200/80 w-full mt-3"></div>
             </div>
             <div id="films-birthdays" class="space-y-8 md:space-y-16">
-            <div class="coming-soon-card p-6 sm:p-12">
-                <i class="fas fa-film text-orange-700/60 text-4xl mb-4 block"></i>
-                <h3 class="text-xl font-serif italic text-gray-800 mb-2">One Year of Joy</h3>
-                <p class="text-gray-500 text-xs uppercase tracking-widest">Bengaluru</p>
-                <span class="mt-4 inline-block text-[10px] border border-stone-300 bg-stone-100 text-stone-600 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold">Coming Soon</span>
-            </div>
+            <article class="archival-plate bg-[#141210] rounded-2xl border border-stone-800/80 shadow-xl overflow-hidden p-8 sm:p-12 md:p-14 text-center max-w-2xl mx-auto">
+                <span class="text-[10px] tracking-[0.25em] uppercase text-orange-600 font-semibold block mb-2.5">Archival Preview • In Post-Production</span>
+                <h3 class="text-2xl sm:text-3xl font-serif text-[#faf8f5] mb-2">One Year of Joy</h3>
+                <p class="text-xs text-stone-400 uppercase tracking-widest mb-5">Bengaluru • 2025</p>
+                <div class="w-10 h-px bg-stone-800 mx-auto mb-5"></div>
+                <p class="text-stone-400 text-xs tracking-wider max-w-md mx-auto mb-6 leading-relaxed">Master color grading and cinematic sound design in progress.</p>
+                <span class="inline-block text-[10px] tracking-[0.2em] uppercase font-semibold text-stone-300 bg-stone-900/90 border border-stone-800 px-4 py-1.5 rounded-full">Coming Soon</span>
+            </article>
             </div>
         </section>
 
@@ -375,76 +316,99 @@
     <!-- Core Utilities & Fallback Data -->
     <script src="site.js"></script>
 
+    <!-- Three.js (Pinned v0.160.0) & WebGL Architecture -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="js/webgl/webgl-core.js"></script>
+    <script src="js/webgl/scene-manager.js"></script>
+    <script src="js/webgl/film-experience.js?v=2"></script>
+    <script src="js/ui/cursor.js"></script>
+    <script src="js/ui/page-transitions.js"></script>
+
     <script>
         function buildFilmCard(film, index) {
             // Placeholder card for empty/coming-soon items
             if (!film.src || film.src.endsWith('/')) {
+                const yearStr = film.year ? ` • ${film.year}` : '';
                 return `
-                <div class="coming-soon-card">
-                    <i class="fas fa-film text-orange-700/60 text-4xl mb-4 block"></i>
-                    <h3 class="text-xl font-serif italic text-gray-800 mb-2">${film.title}</h3>
-                    <p class="text-gray-500 text-xs uppercase tracking-widest">${film.location || 'Location upon release'}</p>
-                    <span class="mt-4 inline-block text-[10px] border border-stone-300 bg-stone-100 text-stone-600 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold">${film.tag || 'Coming Soon'}</span>
-                </div>`;
+            <article class="archival-plate bg-[#141210] rounded-2xl border border-stone-800/80 shadow-xl overflow-hidden p-8 sm:p-12 md:p-14 text-center max-w-2xl mx-auto">
+                <span class="text-[10px] tracking-[0.25em] uppercase text-orange-600 font-semibold block mb-2.5">Archival Preview • In Post-Production</span>
+                <h3 class="text-2xl sm:text-3xl font-serif text-[#faf8f5] mb-2">${film.title}</h3>
+                <p class="text-xs text-stone-400 uppercase tracking-widest mb-5">${film.location || 'Location upon release'}${yearStr}</p>
+                <div class="w-10 h-px bg-stone-800 mx-auto mb-5"></div>
+                <p class="text-stone-400 text-xs tracking-wider max-w-md mx-auto mb-6 leading-relaxed">Master color grading and cinematic sound design in progress.</p>
+                <span class="inline-block text-[10px] tracking-[0.2em] uppercase font-semibold text-stone-300 bg-stone-900/90 border border-stone-800 px-4 py-1.5 rounded-full">${film.tag || 'Coming Soon'}</span>
+            </article>`;
             }
 
             const isPortrait = film.orientation === 'portrait';
-            const portraitClass = isPortrait ? 'is-portrait' : '';
+            const viewportClass = isPortrait ? 'is-portrait' : 'is-theater';
+            const actLand = !isPortrait ? 'active' : '';
+            const actPort = isPortrait ? 'active' : '';
+            const locPart = film.location || '';
+            const yearPart = film.year ? ` • ${film.year}` : '';
+            const locFull = `${locPart}${yearPart}`.trim();
+            const eventType = film.eventType || 'Wedding Film';
+            const tag = film.tag || 'Highlight Reel';
 
             return `
-            <div class="video-card bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden" id="card-${index}">
-                <div class="video-container ${portraitClass}" id="vc-${index}">
-                    <!-- Controls Toolbar -->
-                    <div class="orient-toolbar">
-                        <button class="orient-btn ${!isPortrait ? 'active' : ''}" id="btn-land-${index}"
-                                onclick="setMode(${index}, 'landscape')"
-                                title="Cinematic Wide View">
-                            <i class="fas fa-desktop mr-1"></i> Wide
-                        </button>
-                        <button class="orient-btn ${isPortrait ? 'active' : ''}" id="btn-port-${index}"
-                                onclick="setMode(${index}, 'portrait')"
-                                title="Vertical Reel Format">
+            <article class="video-card screening-card bg-[#141210] rounded-2xl border border-stone-800/80 shadow-2xl overflow-hidden" id="card-${index}">
+                <!-- Screening Room Header with Presentation Mode Selector -->
+                <div class="screening-header px-4 py-3 sm:px-6 border-b border-stone-800/60 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-stone-400">
+                    <span class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                        <span class="font-medium text-stone-300">Screening Room</span>
+                    </span>
+                    <div class="presentation-mode-toggle flex items-center gap-1 bg-stone-900/90 p-1 rounded-full border border-stone-800 text-[10px]">
+                        <button type="button" class="mode-btn ${actPort} px-3 py-1 rounded-full transition text-stone-400 hover:text-stone-200" id="btn-port-${index}" onclick="setMode(${index}, 'portrait')" title="Vertical Reel Format">
                             <i class="fas fa-mobile-alt mr-1"></i> Reel
                         </button>
-                        <button class="orient-btn" id="btn-rot-${index}"
-                                onclick="rotateVideo(${index})"
-                                title="Rotate 90 Degrees">
-                            <i class="fas fa-sync-alt"></i>
+                        <button type="button" class="mode-btn ${actLand} px-3 py-1 rounded-full transition text-stone-400 hover:text-stone-200" id="btn-land-${index}" onclick="setMode(${index}, 'theater')" title="Cinema Stage Presentation">
+                            <i class="fas fa-desktop mr-1"></i> Stage
                         </button>
                     </div>
+                </div>
 
-                    <!-- Custom Play Button Overlay -->
-                    <div class="play-overlay" id="play-overlay-${index}" onclick="playVideo(${index})">
-                        <div class="play-button-icon">
-                            <i class="fas fa-play"></i>
+                <!-- Screening Theater Stage -->
+                <div class="video-container screening-theater relative overflow-hidden flex items-center justify-center p-3 sm:p-6 md:p-8" id="vc-${index}">
+                    <div class="screening-viewport ${viewportClass} relative w-full rounded-xl overflow-hidden bg-black shadow-2xl flex items-center justify-center" id="vp-${index}">
+                        <!-- Custom Play Overlay (Fades on play) -->
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] cursor-pointer transition-opacity duration-300 z-10" id="play-overlay-${index}" onclick="playVideo(${index})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();playVideo(${index});}" role="button" aria-label="Play ${film.title}" tabindex="0">
+                            <div class="play-button-icon w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-orange-700/90 hover:bg-orange-700 text-white flex items-center justify-center pl-1 shadow-2xl transition-transform duration-200 hover:scale-105 border border-white/20">
+                                <i class="fas fa-play text-lg sm:text-xl"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <video id="vid-${index}"
-                           controls
-                           preload="none"
-                           playsinline
-                           poster="${film.poster || ''}"
-                           data-rot="0"
-                           class="protect-media"
-                           onplay="handleVideoPlay(${index})">
-                        <source src="${film.src}" type="video/mp4">
-                        Your browser does not support video playback.
-                    </video>
+                        <video id="vid-${index}"
+                               controls
+                               controlsList="nodownload"
+                               preload="none"
+                               playsinline
+                               poster="${film.poster || ''}"
+                               class="protect-media w-full h-full object-contain"
+                               onplay="handleVideoPlay(${index})">
+                            <source src="${film.src}" type="video/mp4">
+                            Your browser does not support video playback.
+                        </video>
+                    </div>
                 </div>
 
-                <!-- Video Details In Clean White Card Footer -->
-                <div class="p-4 sm:p-6 bg-white border-t border-stone-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+                <!-- Colophon & Metadata Plate -->
+                <div class="screening-colophon p-5 sm:p-7 bg-[#141210] border-t border-stone-800/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <div class="text-[10px] text-orange-700 font-bold uppercase tracking-widest">${film.eventType || 'Wedding Film'}</div>
-                        <h3 class="text-xl md:text-2xl font-serif text-gray-900 mt-1">${film.title}</h3>
-                        <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">${film.location || ''} ${film.year ? `• ${film.year}` : ''}</p>
+                        <div class="text-[10px] text-orange-600 font-semibold uppercase tracking-[0.2em] mb-1">${eventType}</div>
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif text-[#faf8f5] tracking-tight">${film.title}</h3>
+                        <p class="text-xs text-stone-400 uppercase tracking-widest mt-1">${locFull}</p>
                     </div>
-                    <span class="text-[10px] border border-orange-700/30 text-orange-700 bg-orange-50 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold shrink-0">
-                        ${film.tag || 'Film'}
-                    </span>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-stone-300 bg-stone-900 border border-stone-800 px-3.5 py-1.5 rounded-full">
+                            ${tag}
+                        </span>
+                        <a href="index.html#contact" class="text-[10px] uppercase tracking-[0.18em] font-medium text-white bg-orange-700 hover:bg-orange-600 px-4 py-1.5 rounded-full transition shadow-sm">
+                            Inquire
+                        </a>
+                    </div>
                 </div>
-            </div>`;
+            </article>`;
         }
 
         function playVideo(index) {
@@ -462,43 +426,32 @@
         }
 
         function setMode(index, mode) {
-            const vc = document.getElementById(`vc-${index}`);
-            const vid = document.getElementById(`vid-${index}`);
+            const vp = document.getElementById(`vp-${index}`);
             const btnL = document.getElementById(`btn-land-${index}`);
             const btnP = document.getElementById(`btn-port-${index}`);
-            if (!vc || !vid) return;
-
-            vid.style.transform = 'none';
-            vid.dataset.rot = '0';
+            if (!vp) return;
 
             if (mode === 'portrait') {
-                vc.classList.add('is-portrait');
+                vp.classList.add('is-portrait');
+                vp.classList.remove('is-theater');
                 if (btnL) btnL.classList.remove('active');
                 if (btnP) btnP.classList.add('active');
             } else {
-                vc.classList.remove('is-portrait');
+                vp.classList.remove('is-portrait');
+                vp.classList.add('is-theater');
                 if (btnP) btnP.classList.remove('active');
                 if (btnL) btnL.classList.add('active');
             }
         }
 
-        function rotateVideo(index) {
-            const vid = document.getElementById(`vid-${index}`);
-            if (!vid) return;
-            let deg = (parseInt(vid.dataset.rot || '0') + 90) % 360;
-            vid.dataset.rot = deg;
-            const scale = (deg === 90 || deg === 270) ? 'scale(0.6)' : 'scale(1)';
-            vid.style.transform = `rotate(${deg}deg) ${scale}`;
-        }
-
         function selectFilmCategory(catId, shouldScroll = true) {
             // 1. Update button styles
             document.querySelectorAll('.film-category-tab').forEach(btn => {
-                btn.className = 'film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-white/80 text-stone-600 hover:text-orange-700 border border-stone-200';
+                btn.className = 'film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 bg-white/90 text-stone-700 hover:text-stone-900 border border-stone-300/80 hover:border-stone-400 font-medium';
             });
             const activeBtn = document.getElementById(`tab-film-${catId}`);
             if (activeBtn) {
-                activeBtn.className = 'film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 bg-orange-700 text-white shadow-md font-bold';
+                activeBtn.className = 'film-category-tab shrink-0 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 bg-orange-700 text-white shadow-sm font-semibold';
             }
 
             // 2. Toggle sections to eliminate half-visible sections

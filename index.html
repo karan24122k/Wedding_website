@@ -36,6 +36,9 @@
     <meta name="twitter:description" content="Documenting emotions, sacred rituals, and cinematic family legacies across Bengaluru, Hyderabad, and destination venues.">
     <meta name="twitter:image" content="https://karan24122k.github.io/Wedding_website/gallery/wedding/reception-01.webp">
 
+    <!-- Preload Hero LCP Asset -->
+    <link rel="preload" as="image" href="gallery/wedding/bridal-01.webp" type="image/webp" fetchpriority="high">
+
     <!-- Stylesheets & CDNs -->
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -168,93 +171,261 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.58)), url('gallery/wedding/bridal-01.webp');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-        }
     </style>
 </head>
 
-<body class="bg-white text-gray-900">
+<body class="bg-[#faf8f5] text-[#1c1917]">
 
     <!-- Accessibility Skip Link -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-orange-700 focus:text-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:text-xs focus:uppercase focus:tracking-widest">Skip to main content</a>
 
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-lg md:text-2xl font-bold tracking-tighter uppercase whitespace-normal">
-                <img src="Images/Kumar.png" alt="Kumar Video &amp; Photography Logo" class="h-8 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0">
-                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-700 font-light sm:ml-1">&amp; Photography</span></span>
+    <nav id="site-header" class="site-nav nav-hero fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-3.5 sm:py-4 flex justify-between items-center transition-all duration-300">
+            <a href="index.html" class="flex items-center space-x-2 md:space-x-3 text-[11px] sm:text-base md:text-xl font-bold tracking-tight uppercase whitespace-normal nav-brand-text">
+                <img src="Images/Kumar.png" alt="Kumar Video &amp; Photography Logo" class="nav-logo-img h-7 sm:h-9 md:h-10 w-auto object-contain flex-shrink-0 transition-all duration-300">
+                <span class="leading-tight">Kumar Video<br class="block sm:hidden"><span class="text-orange-500 font-light sm:ml-1">&amp; Photography</span></span>
             </a>
             
-            <button id="mobile-menu-btn" class="md:hidden text-xl p-2 ml-auto text-gray-800 flex-shrink-0" aria-label="Toggle mobile menu"><i class="fas fa-bars"></i></button>
+            <button id="mobile-menu-btn" class="nav-toggle-btn md:hidden text-lg p-2 ml-auto flex-shrink-0 focus:outline-none" aria-label="Toggle mobile menu"><i class="fas fa-bars"></i></button>
 
-            <div class="hidden md:flex items-center space-x-10 font-medium text-xs tracking-[0.2em] uppercase">
-                <a href="index.html" class="hover:text-orange-700 transition">Home</a>
-                <a href="gallery.html" class="hover:text-orange-700 transition">Gallery</a>
-                <a href="films.html" class="hover:text-orange-700 transition">Films</a>
-                <a href="#contact" class="hover:text-orange-700 transition">Inquire</a>
-                <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services." target="_blank" rel="noopener noreferrer" class="bg-orange-700 text-white px-7 py-3 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest">WhatsApp</a>
+            <div class="hidden md:flex items-center space-x-8 lg:space-x-10 font-medium text-xs tracking-editorial uppercase">
+                <a href="index.html" class="nav-link transition duration-200">Home</a>
+                <a href="gallery.html" class="nav-link transition duration-200">Gallery</a>
+                <a href="films.html" class="nav-link transition duration-200">Films</a>
+                <a href="#contact" class="nav-link transition duration-200">Inquire</a>
+                <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services." target="_blank" rel="noopener noreferrer" class="nav-cta px-5 py-2 rounded-full text-[11px] font-medium uppercase tracking-editorial transition duration-200">WhatsApp</a>
             </div>
         </div>
         
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-6 py-6 flex flex-col space-y-6 font-medium text-xs tracking-[0.2em] uppercase shadow-xl">
-            <a href="index.html" class="hover:text-orange-700 transition w-full">Home</a>
-            <a href="gallery.html" class="hover:text-orange-700 transition w-full">Gallery</a>
-            <a href="films.html" class="hover:text-orange-700 transition w-full">Films</a>
-            <a href="#contact" class="hover:text-orange-700 transition w-full">Inquire</a>
-            <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services." target="_blank" rel="noopener noreferrer" class="w-full bg-orange-700 text-white text-center py-4 rounded-full text-xs font-bold hover:bg-black transition uppercase tracking-widest mt-4">WhatsApp</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#faf8f5]/98 border-t border-stone-200/80 px-6 py-6 flex flex-col space-y-5 font-medium text-xs tracking-editorial uppercase shadow-xl text-[#1c1917] backdrop-blur-md">
+            <a href="index.html" class="hover:text-orange-700 transition w-full py-1">Home</a>
+            <a href="gallery.html" class="hover:text-orange-700 transition w-full py-1">Gallery</a>
+            <a href="films.html" class="hover:text-orange-700 transition w-full py-1">Films</a>
+            <a href="#contact" class="hover:text-orange-700 transition w-full py-1">Inquire</a>
+            <a href="https://wa.me/1234?text=Hi%20Kumar%20Video%20%26%20Photography%2C%20I%20would%20like%20to%20inquire%20about%20wedding%20photography%20and%20cinematography%20services." target="_blank" rel="noopener noreferrer" class="mobile-nav-cta w-full border border-orange-700/60 text-orange-700 text-center py-3 rounded-full text-xs font-medium hover:bg-orange-700 hover:text-white transition uppercase tracking-editorial mt-2">WhatsApp</a>
         </div>
     </nav>
 
     <!-- Semantic Main Content Wrapper -->
     <main id="main-content">
 
-    <section class="min-h-[100svh] flex items-center justify-center text-center hero-bg text-white px-4 sm:px-6 pt-24 pb-16">
-        <div class="max-w-4xl mx-auto">
-            <span class="uppercase tracking-[0.3em] sm:tracking-[0.5em] text-[10px] sm:text-xs md:text-sm mb-4 block opacity-80">Bengaluru | Hyderabad | Destination</span>
-            <h1 class="text-3xl sm:text-5xl md:text-8xl mb-8 leading-tight">Every Wedding Has a <br><span
+    <section class="min-h-[100svh] relative flex flex-col justify-end items-center text-center hero-bg text-white px-4 sm:px-6 pt-24 pb-8 sm:pb-10 md:pb-12 overflow-hidden">
+        <!-- Progressive WebGL Canvas Layer (Phase 2 Signature Hero) -->
+        <canvas id="hero-canvas" class="hero-webgl-canvas absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-1000 z-0" aria-hidden="true"></canvas>
+
+        <!-- Single Carefully Calibrated Editorial Vignette (Unobstructed bride & garments, contrast-protected lower text) -->
+        <div class="hero-vignette absolute inset-0 pointer-events-none z-[1]" aria-hidden="true"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10 w-full">
+            <span class="hero-reveal hero-sub uppercase tracking-editorial-wide text-[9px] sm:text-[11px] md:text-xs mb-2 sm:mb-3 block text-white/90 font-medium">Bengaluru | Hyderabad | Destination</span>
+            <h1 class="hero-reveal hero-title text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 leading-[1.1] font-normal">Every Wedding Has a <br><span
                     class="italic font-light">Unique Soul</span></h1>
             <a href="gallery.html"
-                class="inline-block border border-white px-8 md:px-12 py-3.5 md:py-4 hover:bg-white hover:text-black transition uppercase font-bold tracking-widest text-[11px] md:text-xs shadow-lg rounded-full sm:rounded-none">Explore
+                class="hero-reveal hero-cta inline-block border border-white/80 bg-black/25 backdrop-blur-sm px-6 sm:px-8 py-2.5 sm:py-3 hover:bg-white hover:text-[#1c1917] transition uppercase font-medium tracking-editorial text-[10px] sm:text-[11px] shadow-lg rounded-none">Explore
                 the Gallery</a>
         </div>
     </section>
 
     <section class="py-16 md:py-32 px-4 sm:px-6 max-w-7xl mx-auto reveal" id="intro">
-        <div class="grid md:grid-cols-2 gap-10 md:gap-20 items-center">
-            <div class="relative group">
-                <img loading="lazy" decoding="async" src="gallery/pre-wedding/sangeet-01.webp" class="rounded-2xl shadow-2xl protect-media w-full"
-                    alt="Luxury Indian wedding couple portrait during royal palace celebration in Udaipur">
-                <!-- Desktop Floating Badge -->
-                <div class="absolute -bottom-6 -right-6 bg-orange-700 text-white p-8 rounded-2xl hidden md:block">
-                    <p class="text-3xl font-serif italic">100+</p>
-                    <p class="text-xs uppercase tracking-widest">Weddings Captured</p>
-                </div>
-                <!-- Mobile Compact Badge -->
-                <div class="md:hidden mt-4 bg-orange-50 border border-orange-200 text-orange-900 p-4 rounded-xl flex items-center justify-between">
-                    <div>
-                        <span class="text-2xl font-serif font-bold text-orange-700 italic">100+</span>
-                        <span class="text-[11px] uppercase tracking-widest ml-2 font-semibold text-stone-700">Weddings Captured</span>
+        <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <!-- Left Column: Archival Fine-Art Photography Presentation -->
+            <div class="intro-composition-wrapper relative">
+                <div class="intro-photo-card relative bg-white p-2 sm:p-2.5 rounded-none border border-stone-200/80 shadow-none">
+                    <div class="relative overflow-hidden bg-stone-100">
+                        <img loading="lazy" decoding="async" src="gallery/pre-wedding/sangeet-01.webp" class="intro-photo-img w-full h-auto object-cover block"
+                            alt="Luxury Indian wedding couple portrait during royal celebration in Udaipur">
+                        <!-- Scoped WebGL Canvas Hook (Subtle atmospheric depth) -->
+                        <canvas id="intro-depth-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-700 z-10" aria-hidden="true"></canvas>
                     </div>
-                    <i class="fas fa-heart text-orange-700"></i>
+                    <!-- Archival Folio Caption Line -->
+                    <div class="pt-3 px-1 flex items-center justify-between text-[10px] uppercase tracking-editorial text-[#78716c]">
+                        <span>Royal Celebration • Udaipur</span>
+                        <span class="text-[9px] font-serif italic text-stone-400">Folio Archive 01</span>
+                    </div>
                 </div>
             </div>
-            <div>
-                <h2 class="text-3xl md:text-5xl mb-6 md:mb-8">Crafting Cinematic <br class="hidden sm:inline">Family Legacies</h2>
-                <p class="text-gray-500 text-base md:text-lg leading-relaxed mb-6 md:mb-8">We don't just take pictures; we document emotions.
+
+            <!-- Right Column: Editorial Narrative & Legacy Credibility -->
+            <div class="intro-text-col">
+                <span class="text-[11px] uppercase tracking-editorial text-[#c2410c] font-medium block mb-3">Artistry &amp; Heritage</span>
+                <h2 class="text-3xl md:text-5xl mb-6 md:mb-7 leading-[1.12]">Crafting Cinematic <br class="hidden sm:inline">Family Legacies</h2>
+                <p class="text-[#78716c] text-base md:text-lg leading-relaxed mb-8">We don't just take pictures; we document emotions.
                     From the grand entry to the silent tears during the vidaai, our lens captures it all.</p>
-                <div class="flex items-center space-x-4">
+
+                <!-- Archival Credibility Inscription (Quiet Editorial Treatment) -->
+                <div class="intro-legacy-marker pt-7 mt-8 mb-8 border-t border-stone-200/80">
+                    <div class="flex items-center justify-between mb-3 text-[10px] uppercase tracking-editorial text-[#78716c]/80">
+                        <span class="font-medium text-[#c2410c]">Archival Milestone</span>
+                        <span class="font-serif italic text-stone-400">Doc. Record</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-3.5 mb-3">
+                        <span class="text-3xl sm:text-[34px] font-serif text-[#1c1917] tracking-tight leading-none" id="film-counter" aria-label="100+ Weddings Captured">100<span class="text-[#c2410c] font-light ml-0.5">+</span></span>
+                        <span class="text-xs sm:text-[13px] uppercase tracking-editorial text-[#1c1917] font-medium">Weddings Captured</span>
+                    </div>
+                    <p class="text-xs sm:text-[13px] text-[#78716c] leading-relaxed max-w-lg">
+                        Documenting sacred rituals, royal ceremonies, and generational legacies across Bengaluru, Hyderabad, and destination venues worldwide.
+                    </p>
+                </div>
+
+                <div class="flex items-center space-x-6 pt-2">
                     <a href="gallery.html"
-                        class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1 uppercase tracking-widest text-xs">View
+                        class="text-[#1c1917] font-medium border-b border-[#1c1917]/70 pb-1 uppercase tracking-editorial text-xs hover:text-[#c2410c] hover:border-[#c2410c] transition">View
                         Pictures</a>
-                    <span class="text-gray-300">|</span>
+                    <span class="text-stone-300">/</span>
                     <a href="films.html"
-                        class="text-orange-700 font-bold border-b-2 border-orange-700 pb-1 uppercase tracking-widest text-xs">View
+                        class="text-[#1c1917] font-medium border-b border-[#1c1917]/70 pb-1 uppercase tracking-editorial text-xs hover:text-[#c2410c] hover:border-[#c2410c] transition">View
                         Films</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Wedding Story Section (P1.3 Editorial Photographic Story) -->
+    <section class="py-20 md:py-32 bg-[#faf8f5] border-t border-stone-200/80 text-[#1c1917] reveal" id="wedding-story" aria-label="Interactive Wedding Story">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+                <span class="text-[11px] uppercase tracking-editorial text-[#c2410c] font-medium block mb-2.5">Immersive Narrative</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif mb-3 text-[#1c1917]">A Wedding Story You Can Step Into</h2>
+                <p class="text-[#78716c] text-xs sm:text-sm uppercase tracking-editorial font-medium">
+                    Aditya &amp; Anjali • The Leela Palace, Bengaluru
+                </p>
+                <p class="text-[#78716c] text-sm md:text-base leading-relaxed mt-3 max-w-2xl mx-auto">
+                    A cinematic journey through sacred vows, unfiltered emotions, and generational heritage captured across four timeless chapters.
+                </p>
+            </div>
+
+            <!-- Roman Numeral Chapter Navigation Controls -->
+            <div class="flex items-center justify-between max-w-5xl mx-auto mb-6 px-1">
+                <nav class="flex items-center gap-4 sm:gap-8 overflow-x-auto no-scrollbar border-b border-stone-200/80 w-full sm:w-auto" role="tablist" aria-label="Wedding Story Chapters">
+                    <button type="button" role="tab" id="story-tab-0" aria-controls="story-article-0" aria-selected="true" tabindex="0" class="story-tab-btn active pb-2.5 text-xs sm:text-[13px] uppercase tracking-editorial transition border-b-2 border-[#c2410c] text-[#c2410c] font-medium shrink-0" data-index="0" aria-label="Chapter I: The Prelude &amp; Getting Ready">
+                        <span class="font-serif text-sm mr-1 font-semibold">I.</span> Prelude
+                    </button>
+                    <button type="button" role="tab" id="story-tab-1" aria-controls="story-article-1" aria-selected="false" tabindex="-1" class="story-tab-btn pb-2.5 text-xs sm:text-[13px] uppercase tracking-editorial transition border-b-2 border-transparent text-[#78716c] hover:text-[#1c1917] font-medium shrink-0" data-index="1" aria-label="Chapter II: The Sacred Pheras &amp; Vows">
+                        <span class="font-serif text-sm mr-1 font-semibold">II.</span> Pheras
+                    </button>
+                    <button type="button" role="tab" id="story-tab-2" aria-controls="story-article-2" aria-selected="false" tabindex="-1" class="story-tab-btn pb-2.5 text-xs sm:text-[13px] uppercase tracking-editorial transition border-b-2 border-transparent text-[#78716c] hover:text-[#1c1917] font-medium shrink-0" data-index="2" aria-label="Chapter III: Candid Vidaai &amp; Raw Emotion">
+                        <span class="font-serif text-sm mr-1 font-semibold">III.</span> Vidaai
+                    </button>
+                    <button type="button" role="tab" id="story-tab-3" aria-controls="story-article-3" aria-selected="false" tabindex="-1" class="story-tab-btn pb-2.5 text-xs sm:text-[13px] uppercase tracking-editorial transition border-b-2 border-transparent text-[#78716c] hover:text-[#1c1917] font-medium shrink-0" data-index="3" aria-label="Chapter IV: The Grand Reception Celebration">
+                        <span class="font-serif text-sm mr-1 font-semibold">IV.</span> Reception
+                    </button>
+                </nav>
+                <div class="hidden sm:flex items-center space-x-1.5 shrink-0 pb-2">
+                    <button type="button" id="story-prev-btn" class="w-8 h-8 rounded-full border border-stone-200 text-stone-600 flex items-center justify-center hover:bg-stone-100 hover:text-[#c2410c] transition" aria-label="Previous chapter">
+                        <i class="fas fa-chevron-left text-[10px]"></i>
+                    </button>
+                    <button type="button" id="story-next-btn" class="w-8 h-8 rounded-full border border-stone-200 text-stone-600 flex items-center justify-center hover:bg-stone-100 hover:text-[#c2410c] transition" aria-label="Next chapter">
+                        <i class="fas fa-chevron-right text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Story Interactive Stage / Container (Archival Matting Treatment) -->
+            <div class="max-w-5xl mx-auto bg-[#fdfcf9] border border-stone-200/90 rounded-none sm:rounded-sm overflow-hidden relative shadow-none" id="story-stage-container">
+                <div class="grid md:grid-cols-12 gap-0 items-stretch min-h-[460px] md:min-h-[520px]">
+                    <!-- Visual Stage Area (7 cols on desktop with adaptive matting) -->
+                    <div class="md:col-span-7 relative bg-[#f5f2eb] border-b md:border-b-0 md:border-r border-stone-200/80 flex items-center justify-center p-3 sm:p-5 md:p-6 overflow-hidden cursor-pointer group" id="story-visual-stage" title="Click to view full photograph">
+                        <!-- WebGL Canvas Overlay (aria-hidden) -->
+                        <canvas id="wedding-story-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-700 z-10" aria-hidden="true"></canvas>
+
+                        <!-- HTML Image Representation (Semantic Source of Truth) -->
+                        <div id="story-html-images" class="relative w-full h-[320px] sm:h-[420px] md:h-[480px] flex items-center justify-center">
+                            <img id="story-img-0" src="gallery/wedding/bridal-01.webp" alt="Bridal preparations and heirloom jewellery at The Leela Palace" loading="lazy" decoding="async" class="story-photo-layer active absolute max-w-full max-h-full object-contain shadow-sm border border-stone-300/60 transition-opacity duration-500">
+                            <img id="story-img-1" src="gallery/wedding/vows-01.webp" alt="Aditya and Anjali taking sacred pheras around the holy fire" loading="lazy" decoding="async" class="story-photo-layer absolute max-w-full max-h-full object-contain shadow-sm border border-stone-300/60 opacity-0 transition-opacity duration-500">
+                            <img id="story-img-2" src="gallery/wedding/moments-01.webp" alt="Emotional farewell tears and embraces during the vidaai ceremony" loading="lazy" decoding="async" class="story-photo-layer absolute max-w-full max-h-full object-contain shadow-sm border border-stone-300/60 opacity-0 transition-opacity duration-500">
+                            <img id="story-img-3" src="gallery/wedding/reception-01.webp" alt="Royally lit reception celebration and evening revelry" loading="lazy" decoding="async" class="story-photo-layer absolute max-w-full max-h-full object-contain shadow-sm border border-stone-300/60 opacity-0 transition-opacity duration-500">
+                        </div>
+
+                        <!-- Archival Matting Indicator Labels -->
+                        <div class="absolute bottom-2.5 left-3.5 z-20 text-[9px] uppercase tracking-editorial text-[#78716c] font-medium bg-[#f5f2eb]/90 px-2 py-0.5 backdrop-blur-xs">
+                            Plate <span id="story-mat-numeral">I</span> • Archival Print
+                        </div>
+                        <div class="absolute bottom-2.5 right-3.5 z-20 text-[9px] uppercase tracking-editorial text-[#78716c] group-hover:text-[#c2410c] font-medium bg-[#f5f2eb]/90 px-2 py-0.5 backdrop-blur-xs flex items-center gap-1 transition">
+                            <i class="fas fa-expand text-[8px]"></i> Full View
+                        </div>
+                    </div>
+
+                    <!-- Narrative Text Area (5 cols on desktop) -->
+                    <div class="md:col-span-5 p-6 sm:p-8 md:p-9 flex flex-col justify-between bg-white relative z-20">
+                        <div id="story-narrative-content">
+                            <!-- Chapter I Article -->
+                            <article class="story-article-pane block" id="story-article-0" role="tabpanel" aria-labelledby="story-tab-0" aria-current="true">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="text-[10px] font-medium uppercase tracking-editorial text-[#c2410c]">Chapter I</span>
+                                    <span class="text-stone-300">•</span>
+                                    <span class="text-[10px] uppercase tracking-editorial text-[#78716c] font-medium">The Prelude</span>
+                                </div>
+                                <h3 class="text-2xl sm:text-3xl font-serif text-[#1c1917] mb-3 leading-snug">The Prelude &amp; Getting Ready</h3>
+                                <p class="text-[#78716c] text-sm sm:text-[15px] leading-relaxed mb-6 font-serif italic">
+                                    "In the quiet stillness before vows are spoken, generations of tradition come alive. Intricate heirloom jewels, hand-embroidered silk, and the sacred anticipation of a new dawn."
+                                </p>
+                                <div class="border-t border-stone-200/70 pt-4 text-xs text-[#78716c] space-y-1.5 font-sans">
+                                    <div class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-[#c2410c]/80 text-[10px]"></i> <span>The Royal Suite, The Leela Palace</span></div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-camera text-[#c2410c]/80 text-[10px]"></i> <span>Bridal Heirloom Portraiture</span></div>
+                                </div>
+                            </article>
+
+                            <!-- Chapter II Article -->
+                            <article class="story-article-pane hidden" id="story-article-1" role="tabpanel" aria-labelledby="story-tab-1" aria-current="false">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="text-[10px] font-medium uppercase tracking-editorial text-[#c2410c]">Chapter II</span>
+                                    <span class="text-stone-300">•</span>
+                                    <span class="text-[10px] uppercase tracking-editorial text-[#78716c] font-medium">Sacred Pheras</span>
+                                </div>
+                                <h3 class="text-2xl sm:text-3xl font-serif text-[#1c1917] mb-3 leading-snug">The Sacred Pheras &amp; Vows</h3>
+                                <p class="text-[#78716c] text-sm sm:text-[15px] leading-relaxed mb-6 font-serif italic">
+                                    "Circled around the sacred Agni, seven vows bind two souls together forever. Scent of jasmine, Vedic chants echoing through the palatial courtyards, and hands clasped in eternal devotion."
+                                </p>
+                                <div class="border-t border-stone-200/70 pt-4 text-xs text-[#78716c] space-y-1.5 font-sans">
+                                    <div class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-[#c2410c]/80 text-[10px]"></i> <span>Grand Mandap Courtyard, Bengaluru</span></div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-fire text-[#c2410c]/80 text-[10px]"></i> <span>Vedic Rituals &amp; Seven Pheras</span></div>
+                                </div>
+                            </article>
+
+                            <!-- Chapter III Article -->
+                            <article class="story-article-pane hidden" id="story-article-2" role="tabpanel" aria-labelledby="story-tab-2" aria-current="false">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="text-[10px] font-medium uppercase tracking-editorial text-[#c2410c]">Chapter III</span>
+                                    <span class="text-stone-300">•</span>
+                                    <span class="text-[10px] uppercase tracking-editorial text-[#78716c] font-medium">Raw Emotion</span>
+                                </div>
+                                <h3 class="text-2xl sm:text-3xl font-serif text-[#1c1917] mb-3 leading-snug">Candid Vidaai &amp; Raw Emotion</h3>
+                                <p class="text-[#78716c] text-sm sm:text-[15px] leading-relaxed mb-6 font-serif italic">
+                                    "The most poignant chapter of every Indian wedding. Tender tears, heartfelt parental embraces, and quiet blessings marking the transition from daughter to bride."
+                                </p>
+                                <div class="border-t border-stone-200/70 pt-4 text-xs text-[#78716c] space-y-1.5 font-sans">
+                                    <div class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-[#c2410c]/80 text-[10px]"></i> <span>Palace Portico, Evening</span></div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-heart text-[#c2410c]/80 text-[10px]"></i> <span>Unfiltered Family Tears &amp; Blessings</span></div>
+                                </div>
+                            </article>
+
+                            <!-- Chapter IV Article -->
+                            <article class="story-article-pane hidden" id="story-article-3" role="tabpanel" aria-labelledby="story-tab-3" aria-current="false">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="text-[10px] font-medium uppercase tracking-editorial text-[#c2410c]">Chapter IV</span>
+                                    <span class="text-stone-300">•</span>
+                                    <span class="text-[10px] uppercase tracking-editorial text-[#78716c] font-medium">Grand Gala</span>
+                                </div>
+                                <h3 class="text-2xl sm:text-3xl font-serif text-[#1c1917] mb-3 leading-snug">The Grand Reception Celebration</h3>
+                                <p class="text-[#78716c] text-sm sm:text-[15px] leading-relaxed mb-6 font-serif italic">
+                                    "Under chandeliers of crystal and royal heritage architecture, laughter rings into the midnight air. A joyous family milestone celebrated with royal elegance."
+                                </p>
+                                <div class="border-t border-stone-200/70 pt-4 text-xs text-[#78716c] space-y-1.5 font-sans">
+                                    <div class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-[#c2410c]/80 text-[10px]"></i> <span>The Grand Ballroom</span></div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-glass-cheers text-[#c2410c]/80 text-[10px]"></i> <span>Royal Reception &amp; Revelry</span></div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Colophon Footer & Inquire CTA -->
+                        <div class="pt-5 border-t border-stone-200/70 mt-6 flex items-center justify-between">
+                            <span class="text-[11px] uppercase tracking-editorial font-medium text-[#78716c]" id="story-counter">Plate I of IV</span>
+                            <a href="gallery.html#wedding" class="text-[#1c1917] hover:text-[#c2410c] transition text-xs uppercase tracking-editorial font-medium inline-flex items-center gap-1.5 border-b border-[#1c1917]/50 pb-0.5 hover:border-[#c2410c]">
+                                Explore Gallery <i class="fas fa-arrow-right text-[9px]"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -389,8 +560,37 @@
         &copy; <span id="current-year">2026</span> Kumar Video &amp; Photography | Preserving Eternal Bonds
     </footer>
 
+    <!-- Standard Accessible Lightbox Modal (Phase 6 Story Integration) -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Story Image Modal" class="fixed inset-0 z-[999] bg-black/95 items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <button id="lb-close" class="absolute top-6 right-6 text-white text-3xl p-3 z-50 hover:text-orange-500 transition" aria-label="Close modal">&times;</button>
+        <button id="lb-prev" class="absolute left-4 md:left-8 text-white text-2xl md:text-3xl p-4 z-50 hover:text-orange-500 transition" aria-label="Previous image">&#10094;</button>
+        <button id="lb-next" class="absolute right-4 md:right-8 text-white text-2xl md:text-3xl p-4 z-50 hover:text-orange-500 transition" aria-label="Next image">&#10095;</button>
+        
+        <div class="relative max-w-5xl max-h-[85vh] p-4 flex flex-col items-center">
+            <img id="lb-img" src="" alt="" class="max-h-[75vh] w-auto object-contain rounded-lg shadow-2xl">
+            <div class="mt-4 text-center text-white">
+                <h4 id="lb-title" class="text-lg md:text-xl font-serif"></h4>
+                <p id="lb-caption" class="text-xs uppercase tracking-widest text-gray-400 mt-1"></p>
+                <div id="lb-counter" class="text-[11px] tracking-widest text-orange-400 mt-1 font-mono"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Site Core Scripts -->
     <script src="site.js"></script>
+
+    <!-- Three.js (Pinned v0.160.0) & WebGL Architecture -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="js/webgl/webgl-core.js"></script>
+    <script src="js/webgl/scene-manager.js"></script>
+    <script src="js/webgl/hero-scene.js"></script>
+    <script src="js/webgl/story-depth.js"></script>
+    <script src="js/webgl/film-experience.js?v=2"></script>
+    <script src="js/webgl/wedding-story.js"></script>
+
+    <!-- UI Enhancements (Phase 7) -->
+    <script src="js/ui/cursor.js"></script>
+    <script src="js/ui/page-transitions.js"></script>
 
     <script>
         function reveal() {
@@ -445,6 +645,38 @@
                 }
             }
         });
+
+        // Header scroll state transition (P1.1 Refinement)
+        (function() {
+            const header = document.getElementById('site-header');
+            if (!header) return;
+
+            let ticking = false;
+            function updateHeader() {
+                const isScrolled = window.scrollY > 40;
+                if (isScrolled) {
+                    if (!header.classList.contains('nav-scrolled')) {
+                        header.classList.remove('nav-hero');
+                        header.classList.add('nav-scrolled');
+                    }
+                } else {
+                    if (!header.classList.contains('nav-hero')) {
+                        header.classList.remove('nav-scrolled');
+                        header.classList.add('nav-hero');
+                    }
+                }
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateHeader);
+                    ticking = true;
+                }
+            }, { passive: true });
+
+            updateHeader();
+        })();
 
     </script>
 </body>

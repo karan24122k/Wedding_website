@@ -37,7 +37,6 @@ def build_gallery_html(photos, offset):
                              src="{photo.get('src')}"
                              alt="{alt_desc}"
                              class="w-full h-auto object-cover protect-media block">
-                        <div class="media-shield" aria-hidden="true"></div>
                     </div>
                     <div class="p-4 bg-white border-t border-stone-100">
                         <div class="text-[10px] tracking-widest uppercase font-bold text-orange-800">
@@ -54,74 +53,84 @@ def build_film_card_html(film, index):
     if not src or src.endswith("/"):
         tag = film.get("tag", "Coming Soon")
         loc = film.get("location", "Location upon release")
-        return f'''            <div class="coming-soon-card p-6 sm:p-12">
-                <i class="fas fa-film text-orange-700/60 text-4xl mb-4 block"></i>
-                <h3 class="text-xl font-serif italic text-gray-800 mb-2">{film.get("title")}</h3>
-                <p class="text-gray-500 text-xs uppercase tracking-widest">{loc}</p>
-                <span class="mt-4 inline-block text-[10px] border border-stone-300 bg-stone-100 text-stone-600 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold">{tag}</span>
-            </div>'''
+        year_str = f" • {film.get('year')}" if film.get("year") else ""
+        return f'''            <article class="archival-plate bg-[#141210] rounded-2xl border border-stone-800/80 shadow-xl overflow-hidden p-8 sm:p-12 md:p-14 text-center max-w-2xl mx-auto">
+                <span class="text-[10px] tracking-[0.25em] uppercase text-orange-600 font-semibold block mb-2.5">Archival Preview • In Post-Production</span>
+                <h3 class="text-2xl sm:text-3xl font-serif text-[#faf8f5] mb-2">{film.get("title")}</h3>
+                <p class="text-xs text-stone-400 uppercase tracking-widest mb-5">{loc}{year_str}</p>
+                <div class="w-10 h-px bg-stone-800 mx-auto mb-5"></div>
+                <p class="text-stone-400 text-xs tracking-wider max-w-md mx-auto mb-6 leading-relaxed">Master color grading and cinematic sound design in progress.</p>
+                <span class="inline-block text-[10px] tracking-[0.2em] uppercase font-semibold text-stone-300 bg-stone-900/90 border border-stone-800 px-4 py-1.5 rounded-full">{tag}</span>
+            </article>'''
 
     is_portrait = film.get("orientation") == "portrait"
-    portrait_class = "is-portrait" if is_portrait else ""
+    viewport_class = "is-portrait" if is_portrait else "is-theater"
     act_land = "active" if not is_portrait else ""
     act_port = "active" if is_portrait else ""
     loc_part = film.get("location", "")
     year_part = f" • {film.get('year')}" if film.get("year") else ""
     loc_full = f"{loc_part}{year_part}".strip()
+    event_type = film.get("eventType", "Wedding Film")
+    tag = film.get("tag", "Highlight Reel")
 
-    return f'''            <div class="video-card bg-white rounded-2xl shadow-md border border-stone-200 overflow-hidden" id="card-{index}">
-                <div class="video-container {portrait_class}" id="vc-{index}">
-                    <!-- Controls Toolbar -->
-                    <div class="orient-toolbar">
-                        <button class="orient-btn {act_land}" id="btn-land-{index}"
-                                onclick="setMode({index}, 'landscape')"
-                                title="Cinematic Wide View">
-                            <i class="fas fa-desktop mr-1"></i> Wide
-                        </button>
-                        <button class="orient-btn {act_port}" id="btn-port-{index}"
-                                onclick="setMode({index}, 'portrait')"
-                                title="Vertical Reel Format">
+    return f'''            <article class="video-card screening-card bg-[#141210] rounded-2xl border border-stone-800/80 shadow-2xl overflow-hidden" id="card-{index}">
+                <!-- Screening Room Header with Presentation Mode Selector -->
+                <div class="screening-header px-4 py-3 sm:px-6 border-b border-stone-800/60 flex items-center justify-between text-[11px] uppercase tracking-[0.18em] text-stone-400">
+                    <span class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                        <span class="font-medium text-stone-300">Screening Room</span>
+                    </span>
+                    <div class="presentation-mode-toggle flex items-center gap-1 bg-stone-900/90 p-1 rounded-full border border-stone-800 text-[10px]">
+                        <button type="button" class="mode-btn {act_port} px-3 py-1 rounded-full transition text-stone-400 hover:text-stone-200" id="btn-port-{index}" onclick="setMode({index}, 'portrait')" title="Vertical Reel Format">
                             <i class="fas fa-mobile-alt mr-1"></i> Reel
                         </button>
-                        <button class="orient-btn" id="btn-rot-{index}"
-                                onclick="rotateVideo({index})"
-                                title="Rotate 90 Degrees">
-                            <i class="fas fa-sync-alt"></i>
+                        <button type="button" class="mode-btn {act_land} px-3 py-1 rounded-full transition text-stone-400 hover:text-stone-200" id="btn-land-{index}" onclick="setMode({index}, 'theater')" title="Cinema Stage Presentation">
+                            <i class="fas fa-desktop mr-1"></i> Stage
                         </button>
                     </div>
+                </div>
 
-                    <!-- Custom Play Overlay -->
-                    <div class="play-overlay" id="play-overlay-{index}" onclick="playVideo({index})">
-                        <div class="play-button-icon">
-                            <i class="fas fa-play"></i>
+                <!-- Screening Theater Stage -->
+                <div class="video-container screening-theater relative overflow-hidden flex items-center justify-center p-3 sm:p-6 md:p-8" id="vc-{index}">
+                    <div class="screening-viewport {viewport_class} relative w-full rounded-xl overflow-hidden bg-black shadow-2xl flex items-center justify-center" id="vp-{index}">
+                        <!-- Custom Play Overlay (Fades on play) -->
+                        <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] cursor-pointer transition-opacity duration-300 z-10" id="play-overlay-{index}" onclick="playVideo({index})" onkeydown="if(event.key==='Enter'||event.key===' '){{event.preventDefault();playVideo({index});}}" role="button" aria-label="Play {film.get('title')}" tabindex="0">
+                            <div class="play-button-icon w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-orange-700/90 hover:bg-orange-700 text-white flex items-center justify-center pl-1 shadow-2xl transition-transform duration-200 hover:scale-105 border border-white/20">
+                                <i class="fas fa-play text-lg sm:text-xl"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <video id="vid-{index}"
-                           controls
-                           preload="none"
-                           playsinline
-                           poster="{film.get('poster', '')}"
-                           data-rot="0"
-                           class="protect-media"
-                           onplay="handleVideoPlay({index})">
-                        <source src="{src}" type="video/mp4">
-                        Your browser does not support video playback.
-                    </video>
+                        <video id="vid-{index}"
+                               controls
+                               controlsList="nodownload"
+                               preload="none"
+                               playsinline
+                               poster="{film.get('poster', '')}"
+                               class="protect-media w-full h-full object-contain"
+                               onplay="handleVideoPlay({index})">
+                            <source src="{src}" type="video/mp4">
+                            Your browser does not support video playback.
+                        </video>
+                    </div>
                 </div>
 
-                <!-- Video Details In Clean White Card Footer -->
-                <div class="p-4 sm:p-6 bg-white border-t border-stone-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+                <!-- Colophon & Metadata Plate -->
+                <div class="screening-colophon p-5 sm:p-7 bg-[#141210] border-t border-stone-800/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <div class="text-[10px] text-orange-700 font-bold uppercase tracking-widest">{film.get("eventType", "Wedding Film")}</div>
-                        <h3 class="text-xl md:text-2xl font-serif text-gray-900 mt-1">{film.get("title")}</h3>
-                        <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">{loc_full}</p>
+                        <div class="text-[10px] text-orange-600 font-semibold uppercase tracking-[0.2em] mb-1">{event_type}</div>
+                        <h3 class="text-xl sm:text-2xl md:text-3xl font-serif text-[#faf8f5] tracking-tight">{film.get('title')}</h3>
+                        <p class="text-xs text-stone-400 uppercase tracking-widest mt-1">{loc_full}</p>
                     </div>
-                    <span class="text-[10px] border border-orange-700/30 text-orange-700 bg-orange-50 px-4 py-1.5 rounded-full uppercase tracking-widest font-semibold shrink-0">
-                        {film.get("tag", "Film")}
-                    </span>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <span class="text-[10px] uppercase tracking-[0.18em] font-medium text-stone-300 bg-stone-900 border border-stone-800 px-3.5 py-1.5 rounded-full">
+                            {tag}
+                        </span>
+                        <a href="index.html#contact" class="text-[10px] uppercase tracking-[0.18em] font-medium text-white bg-orange-700 hover:bg-orange-600 px-4 py-1.5 rounded-full transition shadow-sm">
+                            Inquire
+                        </a>
+                    </div>
                 </div>
-            </div>'''
+            </article>'''
 
 def prerender_gallery(data):
     gallery_file = os.path.join(ROOT_DIR, "gallery.html")

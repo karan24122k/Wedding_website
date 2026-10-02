@@ -9,3 +9,17 @@ desktop.ini
 # Ignore temporary optimizer scripts
 optimizer.py
 optimize_video.py
+
+# Cloudflare / Wrangler local artifacts
+.wrangler/
+.dev.vars
+
+# Google Cloud Service Account & Secret Credentials
+*.pem
+*.key
+.env
+.env.*
+*service-account*.json
+*credentials*.json
+gdrive-secret*.json
+

@@ -1,0 +1,13 @@
+name = "kumar-photography-media"
+main = "worker/index.js"
+compatibility_date = "2024-04-01"
+
+# Development variables (do NOT place private keys here; use wrangler secret put)
+[vars]
+GDRIVE_ROOT_FOLDER_ID = "1_JX_WEdxdiBUZ4S1QavDEiqVZJGezPUj"
+ALLOWED_ORIGIN = "https://kumarphotography.in"
+
+# Secrets required in Cloudflare Dashboard or via wrangler secret put:
+# - GOOGLE_CLIENT_EMAIL
+# - GOOGLE_PRIVATE_KEY
+# - MEDIA_SYNC_SECRET

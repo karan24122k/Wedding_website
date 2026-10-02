@@ -29,71 +29,220 @@
   outline-offset: 3px;
 }
 
-/* Content Protection & Anti-Scraping Shields */
-img,
-video,
-.protect-media,
-.gallery-item,
-.gallery-item img,
-.video-container,
-.video-container video,
-.video-container img,
-#lightbox,
-#lightbox img,
+/* Luxury Editorial Design Variables */
+:root {
+  --color-cream: #faf8f5;
+  --color-warm-white: #ffffff;
+  --color-cinema: #141210;
+  --color-ink: #1c1917;
+  --color-muted: #78716c;
+  --color-terracotta: #c2410c;
+  --color-terracotta-hover: #9a3412;
+  --color-hairline: rgba(231, 229, 228, 0.8);
+  --color-stone-border: rgba(231, 229, 228, 0.8);
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Typography Scale & Editorial System */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, .font-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.012em;
+}
+
+h1 {
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+h2 {
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+h3 {
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+/* Restrained Editorial Tracking Scale */
+.tracking-editorial-tight {
+  letter-spacing: 0.04em;
+}
+
+.tracking-editorial {
+  letter-spacing: 0.12em;
+}
+
+.tracking-editorial-wide {
+  letter-spacing: 0.16em;
+}
+
+/* Single Calibrated Hero Vignette (P0 Refinement) */
 .hero-bg {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
-  -webkit-touch-callout: none !important;
-  user-select: none !important;
-  -webkit-user-select: none !important;
+  background-image: url('gallery/wedding/bridal-01.webp');
+  background-size: cover;
+  background-position: center 25%;
+  background-repeat: no-repeat;
+  background-color: var(--color-cinema);
 }
 
-/* Transparent Media Shield Layer (Prevents Direct Image Right-Click & Drag) */
-.media-shield {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  background: transparent;
-  pointer-events: auto;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
+.hero-vignette {
+  background: 
+    /* Top delicate vignette ensuring navigation legibility */
+    linear-gradient(to bottom, rgba(20, 18, 16, 0.42) 0%, rgba(20, 18, 16, 0.08) 16%, transparent 28%),
+    /* Radial vignette preserving bridal portrait and jewelry clarity */
+    radial-gradient(ellipse at 50% 32%, transparent 48%, rgba(20, 18, 16, 0.12) 75%, rgba(20, 18, 16, 0.45) 100%),
+    /* Lower third gradient ensuring crisp typography contrast in the fog layer */
+    linear-gradient(to top, rgba(20, 18, 16, 0.88) 0%, rgba(20, 18, 16, 0.45) 28%, transparent 55%);
 }
 
-/* Subtle copyright notification toast */
-#protection-toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  background: rgba(18, 18, 18, 0.92);
-  color: #f5f5f5;
-  padding: 10px 20px;
-  border-radius: 9999px;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: 500;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+/* ==========================================================================
+   Navigation / Header System (P1.1 Refinement)
+   ========================================================================== */
+.site-nav {
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, color 0.3s ease;
 }
 
-#protection-toast.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
+/* Translucent Hero State (Default over hero photograph) */
+.site-nav.nav-hero {
+  background-color: rgba(20, 18, 16, 0.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
 }
 
-/* Smooth layout transitions */
+.site-nav.nav-hero .nav-logo-img {
+  filter: brightness(0) invert(1);
+}
+
+.site-nav.nav-hero .nav-brand-text {
+  color: #ffffff;
+}
+
+.site-nav.nav-hero .nav-link {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.site-nav.nav-hero .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-nav.nav-hero .nav-toggle-btn {
+  color: #ffffff;
+}
+
+.site-nav.nav-hero .nav-cta {
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.site-nav.nav-hero .nav-cta:hover {
+  background-color: #ffffff;
+  color: var(--color-ink);
+  border-color: #ffffff;
+}
+
+/* Scrolled & Solid Editorial State (Cream Surface) */
+.site-nav.nav-scrolled,
+.site-nav.nav-solid {
+  background-color: rgba(250, 248, 245, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(231, 229, 228, 0.85);
+  box-shadow: 0 4px 20px -4px rgba(28, 25, 23, 0.05);
+  color: var(--color-ink);
+}
+
+.site-nav.nav-scrolled .nav-logo-img,
+.site-nav.nav-solid .nav-logo-img {
+  filter: none;
+}
+
+.site-nav.nav-scrolled .nav-brand-text,
+.site-nav.nav-solid .nav-brand-text {
+  color: var(--color-ink);
+}
+
+.site-nav.nav-scrolled .nav-link,
+.site-nav.nav-solid .nav-link {
+  color: var(--color-ink);
+}
+
+.site-nav.nav-scrolled .nav-link:hover,
+.site-nav.nav-solid .nav-link:hover {
+  color: var(--color-terracotta);
+}
+
+.site-nav.nav-scrolled .nav-toggle-btn,
+.site-nav.nav-solid .nav-toggle-btn {
+  color: var(--color-ink);
+}
+
+.site-nav.nav-scrolled .nav-cta,
+.site-nav.nav-solid .nav-cta {
+  border: 1px solid rgba(194, 65, 12, 0.45);
+  background-color: transparent;
+  color: var(--color-terracotta);
+}
+
+.site-nav.nav-scrolled .nav-cta:hover,
+.site-nav.nav-solid .nav-cta:hover {
+  background-color: var(--color-terracotta);
+  color: #ffffff;
+  border-color: var(--color-terracotta);
+}
+
+/* Mobile Drawer (High Contrast Cream Surface) */
+.site-nav #mobile-menu {
+  background-color: #faf8f5 !important;
+  border-top: 1px solid rgba(231, 229, 228, 0.9) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.site-nav #mobile-menu a {
+  color: #1c1917 !important;
+}
+
+.site-nav #mobile-menu a:hover {
+  color: #c2410c !important;
+}
+
+.site-nav #mobile-menu a.mobile-nav-cta {
+  border: 1px solid #c2410c !important;
+  color: #c2410c !important;
+}
+
+.site-nav #mobile-menu a.mobile-nav-cta:hover {
+  background-color: #c2410c !important;
+  color: #ffffff !important;
+}
+
+/* Editorial Gallery Layout (Phase 4) */
 .gallery-item {
   break-inside: avoid;
   will-change: transform;
+  border: 1px solid rgba(231, 229, 228, 0.75);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 30px -8px rgba(0, 0, 0, 0.1);
+  }
 }
 
 /* Mobile Responsiveness & Viewport Enhancements */
@@ -124,4 +273,354 @@ html, body {
 body.lb-locked {
   overflow: hidden !important;
   touch-action: none;
+}
+
+/* Staggered Hero Typography Entrance (Phase 2) */
+.hero-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroTextReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-sub {
+  animation-delay: 0.15s;
+}
+
+.hero-title {
+  animation-delay: 0.35s;
+}
+
+.hero-cta {
+  animation-delay: 0.6s;
+}
+
+@keyframes heroTextReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Intro Archival Photographic Framing (P1.2 Refinement) */
+.intro-composition-wrapper {
+  perspective: 1200px;
+}
+
+.intro-photo-card {
+  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-legacy-marker {
+  font-feature-settings: "pnum" 1, "lnum" 1;
+}
+
+#film-counter {
+  font-variant-numeric: proportional-nums;
+  display: inline-block;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Cinematography Frame Approach (Phase 5) */
+.cinematic-frame {
+  transform: scale(0.995);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s ease;
+}
+
+.cinematic-frame.in-view {
+  transform: scale(1.01);
+  box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.12);
+}
+
+/* Interactive Wedding Story (P1.3 Editorial Photographic Refinement) */
+.story-photo-layer {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.story-photo-layer.active {
+  opacity: 1;
+}
+
+.story-article-pane {
+  animation: storyTextFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes storyTextFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.story-tab-btn {
+  position: relative;
+  outline: none;
+}
+
+.story-tab-btn:focus-visible {
+  outline: 2px solid #c2410c;
+  outline-offset: 4px;
+}
+
+/* Custom Editorial Cursor (Phase 7) */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role="button"] {
+    cursor: none !important;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.cursor-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #c2410c;
+  border-radius: 50%;
+  margin-top: -3px;
+  margin-left: -3px;
+  will-change: transform;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.cursor-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(194, 65, 12, 0.45);
+  border-radius: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease;
+}
+
+.cursor-label {
+  display: none;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* Cursor Context States */
+.cursor-state-link .cursor-ring {
+  width: 44px;
+  height: 44px;
+  margin-top: -22px;
+  margin-left: -22px;
+  background-color: rgba(194, 65, 12, 0.12);
+  border-color: #c2410c;
+}
+
+.cursor-state-image .cursor-ring {
+  width: 58px;
+  height: 58px;
+  margin-top: -29px;
+  margin-left: -29px;
+  background-color: rgba(194, 65, 12, 0.9);
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(194, 65, 12, 0.35);
+}
+
+.cursor-state-image .cursor-dot {
+  opacity: 0;
+}
+
+.cursor-state-image .cursor-label {
+  display: inline-block;
+}
+
+.cursor-state-video .cursor-ring {
+  width: 58px;
+  height: 58px;
+  margin-top: -29px;
+  margin-left: -29px;
+  background-color: rgba(194, 65, 12, 0.9);
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(194, 65, 12, 0.35);
+}
+
+.cursor-state-video .cursor-dot {
+  opacity: 0;
+}
+
+.cursor-state-video .cursor-label {
+  display: inline-block;
+}
+
+/* Click Active State */
+.cursor-active .cursor-ring {
+  transform: scale(0.85) !important;
+}
+
+/* Page Transitions (Phase 7) */
+body {
+  transition: opacity 0.2s ease-out;
+}
+
+body.page-exiting {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   P1.4 CINEMATOGRAPHY / SCREENING ROOM EDITORIAL SYSTEM
+   ========================================================================== */
+
+.screening-card {
+  background-color: var(--color-cinema);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.screening-theater {
+  background: radial-gradient(circle at center, #1c1815 0%, #0c0a09 100%);
+  min-height: 360px;
+}
+
+.screening-viewport {
+  transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              aspect-ratio 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.screening-viewport.is-portrait {
+  max-width: 420px;
+  aspect-ratio: 9 / 16;
+  max-height: 75vh;
+}
+
+.screening-viewport.is-theater {
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 75vh;
+}
+
+@media (max-width: 640px) {
+  .screening-viewport.is-portrait {
+    max-width: 100%;
+    max-height: 70vh;
+  }
+  .screening-theater {
+    min-height: 300px;
+  }
+}
+
+.mode-btn.active {
+  background-color: var(--color-terracotta);
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.archival-plate {
+  background-color: var(--color-cinema);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Reduced Motion Mode Overrides */
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .intro-photo-card,
+  #film-counter,
+  .gallery-item,
+  .cinematic-frame,
+  .story-photo-layer,
+  .story-article-pane,
+  .screening-card,
+  .screening-viewport,
+  .play-overlay,
+  .mode-btn {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .custom-cursor {
+    display: none !important;
+  }
+  html.has-custom-cursor,
+  html.has-custom-cursor body,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button {
+    cursor: auto !important;
+  }
+  body {
+    transition: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Anti-Piracy Content Deterrent Rules */
+.protect-media,
+.gallery-item img,
+.video-card video,
+.screening-viewport video,
+#lightbox img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+/* Copyright Deterrence Toast */
+.copyright-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(18, 16, 14, 0.94);
+  color: #f5f5f4;
+  border: 1px solid rgba(194, 65, 12, 0.4);
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.copyright-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }

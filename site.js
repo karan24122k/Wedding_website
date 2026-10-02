@@ -41,68 +41,89 @@ const SITE_FALLBACK_DATA = {
 };
 
 /**
- * Universal content loader: tries fetch('content.json'), gracefully falls back to SITE_FALLBACK_DATA
+ * Universal content loader:
+ * 1. Tries secure Cloudflare Gateway (/api/manifest)
+ * 2. Falls back to static manifest (content.json)
+ * 3. Gracefully falls back to SITE_FALLBACK_DATA for offline/file:// protocol
  */
 async function loadSiteContent() {
+  // Tier 1: Cloudflare Gateway /api/manifest (Private Google Drive origin)
+  try {
+    const apiRes = await fetch('/api/manifest', {
+      headers: { 'Accept': 'application/json' },
+      cache: 'default'
+    });
+    if (apiRes.ok) {
+      const data = await apiRes.json();
+      if (data && data.gallery && !data.fallback) {
+        return data;
+      }
+    }
+  } catch (e) {
+    // API not running or offline; proceed to Tier 2
+  }
+
+  // Tier 2: Static content.json
   try {
     const res = await fetch('content.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   } catch (err) {
-    console.info('Loading embedded fallback data (operating offline or under file:// protocol)');
+    // Tier 3: In-memory fallback
+    console.info('Operating under local/offline mode: loading embedded fallback data.');
     return SITE_FALLBACK_DATA;
   }
 }
 
 /**
- * Toast Notification Utility
+ * Anti-Piracy Deterrent: Toast Notification
  */
-function showToast(message, duration = 3000) {
-  let toast = document.getElementById('protection-toast');
+let toastTimeout = null;
+function showCopyrightToast(message = '© Kumar Video & Photography. All visual content is copyrighted.') {
+  let toast = document.getElementById('copyright-toast');
   if (!toast) {
     toast = document.createElement('div');
-    toast.id = 'protection-toast';
+    toast.id = 'copyright-toast';
+    toast.className = 'copyright-toast';
+    toast.setAttribute('role', 'alert');
+    toast.innerHTML = '<i class="fas fa-shield-alt text-orange-500"></i> <span id="toast-text"></span>';
     document.body.appendChild(toast);
   }
-  toast.textContent = message;
-  toast.classList.add('show');
-  clearTimeout(toast._timeout);
-  toast._timeout = setTimeout(() => {
-    toast.classList.remove('show');
-  }, duration);
+
+  document.getElementById('toast-text').textContent = message;
+  toast.classList.add('visible');
+
+  if (toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('visible');
+  }, 2800);
 }
 
 /**
- * Comprehensive Content Protection Deterrents
- * Multi-layer client-side security against casual scraping, hotlinking, and image saving.
+ * Initialize protection deterrents and copyright dynamic year
  */
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Prevent dragging on all images and videos
-  document.querySelectorAll('img, video').forEach(media => {
-    media.setAttribute('draggable', 'false');
-    media.setAttribute('oncontextmenu', 'return false;');
-    media.addEventListener('dragstart', e => e.preventDefault());
-  });
-
-  // 2. Right-click deterrence across all media, galleries, lightboxes, and hero banners
-  document.addEventListener('contextmenu', e => {
-    if (e.target.closest('.gallery-item, .video-container, .hero-bg, img, video, #lightbox, #lightbox-image-wrap, .media-shield')) {
-      e.preventDefault();
-      showToast('© Kumar Video & Photography. Visual assets are copyrighted and protected.');
-    }
-  });
-
-  // 3. Prevent casual keyboard shortcuts for saving or inspecting source (Ctrl+S, Ctrl+U, Cmd+S, Cmd+U)
-  document.addEventListener('keydown', e => {
-    if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) {
-      e.preventDefault();
-      showToast('© Kumar Video & Photography. Content viewing is protected.');
-    }
-  });
-
-  // 4. Dynamic copyright year
+  // Dynamic copyright year
   const yearSpan = document.getElementById('current-year');
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
+
+  // Prevent drag-to-desktop on all images and videos
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO' || e.target.closest('.gallery-item, .screening-viewport, #lightbox')) {
+      e.preventDefault();
+      showCopyrightToast();
+    }
+  });
+
+  // Intercept right-click context menu on protected visual media
+  document.addEventListener('contextmenu', (e) => {
+    const protectedTarget = e.target.closest('img, video, .gallery-item, .video-card, .screening-viewport, #lightbox');
+    if (protectedTarget) {
+      e.preventDefault();
+      showCopyrightToast();
+    }
+  });
 });
+
