@@ -100,12 +100,15 @@ export default {
       }
 
       // Adaptive streaming preview player redirect
-      if (url.searchParams.get('embed') === '1') {
+      if (url.searchParams.get('embed') === '1' || !env.GOOGLE_CLIENT_EMAIL) {
         return Response.redirect(`https://drive.google.com/file/d/${meta.fileId}/preview`, 302);
       }
 
       const range = request.headers.get('Range');
       const res = await fetchDriveVideo(meta.fileId, range, env);
+      if (res.status === 302 || res.headers.has('Location')) {
+        return res;
+      }
       const headers = new Headers(res.headers);
       headers.set('Access-Control-Allow-Origin', allowedOrigin);
       headers.set('Accept-Ranges', 'bytes');

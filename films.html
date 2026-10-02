@@ -350,6 +350,8 @@
             const eventType = film.eventType || 'Wedding Film';
             const tag = film.tag || 'Highlight Reel';
 
+            const isDriveFilm = Boolean(film.embedUrl || (film.src && film.src.startsWith('/api/video/')));
+
             return `
             <article class="video-card screening-card bg-[#141210] rounded-2xl border border-stone-800/80 shadow-2xl overflow-hidden" id="card-${index}">
                 <!-- Screening Room Header with Presentation Mode Selector -->
@@ -371,7 +373,16 @@
                 <!-- Screening Theater Stage -->
                 <div class="video-container screening-theater relative overflow-hidden flex items-center justify-center p-3 sm:p-6 md:p-8" id="vc-${index}">
                     <div class="screening-viewport ${viewportClass} relative w-full rounded-xl overflow-hidden bg-black shadow-2xl flex items-center justify-center" id="vp-${index}">
-                        <!-- Custom Play Overlay (Fades on play) -->
+                        ${isDriveFilm ? `
+                        <div class="video-preview-wrapper relative w-full h-full flex items-center justify-center bg-stone-950 overflow-hidden cursor-pointer group" onclick="playVideo(${index})" role="button" aria-label="Play ${film.title}" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();playVideo(${index});}">
+                            ${film.poster ? `<img src="${film.poster}" alt="${film.title}" class="protect-media w-full h-full object-cover opacity-85 transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.style.display='none'">` : ''}
+                            <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] transition-opacity duration-300 z-10" id="play-overlay-${index}">
+                                <div class="play-button-icon w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-orange-700/90 hover:bg-orange-700 text-white flex items-center justify-center pl-1 shadow-2xl transition-transform duration-200 group-hover:scale-110 border border-white/20">
+                                    <i class="fas fa-play text-lg sm:text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        ` : `
                         <div class="play-overlay absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] cursor-pointer transition-opacity duration-300 z-10" id="play-overlay-${index}" onclick="playVideo(${index})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();playVideo(${index});}" role="button" aria-label="Play ${film.title}" tabindex="0">
                             <div class="play-button-icon w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-orange-700/90 hover:bg-orange-700 text-white flex items-center justify-center pl-1 shadow-2xl transition-transform duration-200 hover:scale-105 border border-white/20">
                                 <i class="fas fa-play text-lg sm:text-xl"></i>
@@ -389,6 +400,7 @@
                             <source src="${film.src}" type="video/mp4">
                             Your browser does not support video playback.
                         </video>
+                        `}
                     </div>
                 </div>
 
@@ -414,32 +426,28 @@
         let allFilmsList = [];
 
         function playVideo(index) {
-            const overlay = document.getElementById(`play-overlay-${index}`);
-            if (overlay) overlay.classList.add('hidden');
-
             const film = allFilmsList[index];
             const vp = document.getElementById(`vp-${index}`);
-            const vid = document.getElementById(`vid-${index}`);
+            if (!vp) return;
 
-            // 1. If film is from Google Drive API gateway, load secure embed endpoint
-            if (film && film.src && film.src.startsWith('/api/video/')) {
-                if (vp) {
-                    vp.innerHTML = `<iframe src="${film.src}?embed=1" class="w-full h-full border-0 rounded-xl" allow="autoplay; encrypted-media; fullscreen" allowfullscreen style="width:100%; height:100%; min-height:360px;"></iframe>`;
-                    return;
-                }
+            // Target embed: prefer direct preview player URL, then fallback to API proxy
+            const targetEmbed = (film && film.embedUrl)
+                ? film.embedUrl
+                : (film && film.src && film.src.startsWith('/api/video/') ? `${film.src}?embed=1` : null);
+
+            if (targetEmbed) {
+                // Instantly inject Google Drive adaptive transcode streaming player
+                vp.innerHTML = `<iframe src="${targetEmbed}" class="w-full h-full border-0 rounded-xl" allow="autoplay; encrypted-media; fullscreen" allowfullscreen style="width:100%; height:100%; min-height:360px; background:#000;"></iframe>`;
+                return;
             }
 
-            // 2. Otherwise play local HTML5 video
+            const vid = document.getElementById(`vid-${index}`);
             if (vid) {
-                const playPromise = vid.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(err => {
-                        console.warn('Native HTML5 video playback stalled:', err);
-                        if (film && film.src && vp) {
-                            vp.innerHTML = `<iframe src="${film.src}?embed=1" class="w-full h-full border-0 rounded-xl" allow="autoplay; encrypted-media; fullscreen" allowfullscreen style="width:100%; height:100%; min-height:360px;"></iframe>`;
-                        }
-                    });
-                }
+                const overlay = document.getElementById(`play-overlay-${index}`);
+                if (overlay) overlay.classList.add('hidden');
+                vid.play().catch(err => {
+                    console.warn('Native HTML5 video playback stalled:', err);
+                });
             }
         }
 

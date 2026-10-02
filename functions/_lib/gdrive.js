@@ -304,6 +304,22 @@ export async function getDriveManifest(env, forceRefresh = false) {
     return cachedManifest;
   }
 
+  // Check Cloudflare Edge Cache API if running in worker/pages environment
+  const cacheKey = new Request('https://internal.wedding-website/manifest-cache');
+  if (!forceRefresh && typeof caches !== 'undefined' && caches.default) {
+    try {
+      const match = await caches.default.match(cacheKey);
+      if (match) {
+        const cachedData = await match.json();
+        cachedManifest = cachedData;
+        manifestExpiresAt = now + (3600 * 1000);
+        return cachedData;
+      }
+    } catch (e) {
+      // Proceed to live fetch
+    }
+  }
+
   // Path 1: Google Apps Script Web App Feed (Zero Google Cloud credentials needed)
   if (env.GDRIVE_FEED_URL) {
     const feedRes = await fetch(env.GDRIVE_FEED_URL, { redirect: 'follow' });
@@ -314,6 +330,22 @@ export async function getDriveManifest(env, forceRefresh = false) {
     const manifest = parseAppsScriptFeed(rawData);
     cachedManifest = manifest;
     manifestExpiresAt = now + (3600 * 1000); // 1 hour TTL
+
+    // Persist in Cloudflare Edge Cache for ultra-fast multi-isolate sharing
+    if (typeof caches !== 'undefined' && caches.default) {
+      try {
+        const cacheRes = new Response(JSON.stringify(manifest), {
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'public, max-age=86400, s-maxage=86400'
+          }
+        });
+        await caches.default.put(cacheKey, cacheRes);
+      } catch (e) {
+        // Silently continue
+      }
+    }
+
     return manifest;
   }
 
@@ -518,7 +550,7 @@ export async function fetchDriveVideo(fileId, rangeHeader, env) {
     }
   }
 
-  // Path B: Public Google Drive stream
-  return await fetch(`https://drive.google.com/uc?export=download&id=${encodeURIComponent(fileId)}`, { headers });
+  // Path B: Public Google Drive stream (Direct adaptive preview streaming player)
+  return Response.redirect(`https://drive.google.com/file/d/${encodeURIComponent(fileId)}/preview`, 302);
 }
 
