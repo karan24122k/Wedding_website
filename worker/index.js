@@ -104,6 +104,11 @@ export default {
       });
     }
 
+    // Serve static site assets (HTML, CSS, JS, images)
+    if (env.ASSETS) {
+      return env.ASSETS.fetch(request);
+    }
+
     return new Response('Not Found', { status: 404 });
   }
 };
