@@ -32,10 +32,13 @@ const SITE_FALLBACK_DATA = {
       { id: "film-pw-01", couple: "Kabir & Tara", title: "A Tuscan Romance in Udaipur", location: "Oberoi Udaivilas, Udaipur", src: "videos/pre-wedding/", poster: "gallery/pre-wedding/sangeet-01.webp", tag: "Coming Soon", orientation: "landscape", aspectRatio: "16/9" }
     ],
     "wedding": [
-      { id: "film-wed-01", couple: "Aditya & Anjali", title: "The Summer Palace Wedding", location: "Leela Palace, Bengaluru", src: "videos/wedding/reel-01.mp4", poster: "gallery/wedding/reception-01.webp", tag: "Highlight Reel", orientation: "portrait", aspectRatio: "9/16" }
+      { id: "film-wed-01", couple: "Aditya & Anjali", title: "The Summer Palace Wedding", location: "Leela Palace, Bengaluru", src: "videos/wedding/reel-01.mp4", poster: "gallery/wedding/reception-01.webp", tag: "Highlight Reel", orientation: "portrait", aspectRatio: "9/16" },
+      { id: "film-wed-02", couple: "Ankit & Soni", title: "A Royal Vows Teaser", location: "Destination Wedding, India", src: "videos/wedding/", poster: "gallery/wedding/vows-01.webp", tag: "Teaser Film", orientation: "landscape", aspectRatio: "16/9" },
+      { id: "film-wed-03", couple: "Haldi & Sangeet Celebrations", title: "Joyous Rituals & Sangeet Night", location: "Rajasthan", src: "videos/wedding/", poster: "gallery/wedding/bridal-01.webp", tag: "Sangeet Reel", orientation: "portrait", aspectRatio: "9/16" },
+      { id: "film-wed-04", couple: "The Baraat & Royal Procession", title: "Groom's Grand Arrival", location: "Heritage Palace", src: "videos/wedding/", poster: "gallery/wedding/moments-01.webp", tag: "Teaser Film", orientation: "landscape", aspectRatio: "16/9" }
     ],
     "birthdays": [
-      { id: "film-bday-01", couple: "Aarav's 1st Birthday", title: "One Year of Joy", location: "Bengaluru", src: "videos/birthdays/", poster: "gallery/birthdays/celebration-01.webp", tag: "Coming Soon", orientation: "landscape", aspectRatio: "16/9" }
+      { id: "film-bday-01", couple: "Prehan's 1st Birthday", title: "One Year of Pure Joy", location: "Bengaluru", src: "videos/birthdays/", poster: "gallery/birthdays/celebration-01.webp", tag: "Birthday Teaser", orientation: "landscape", aspectRatio: "16/9" }
     ]
   }
 };
